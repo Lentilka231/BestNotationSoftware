@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="stylesheets/newproject.css">
+    <meta charset="UTF-8">
+    <title>New Project</title>
+</head>
+<body>
+    <div id="tools">
+        <div class="tool"></div>
+        <div class="tool"></div>
+        <div class="tool"></div>
+        <div class="tool"></div>
+        <div class="tool"></div>
+        <div class="tool"></div>
+        <div class="tool"></div>
+        <div class="tool"></div>
+        <div class="tool"></div>
+    </div>
+    <div id="whitePage">
+        <div id="Nadpis" contenteditable="true">New Project</div>
+        <div id="MusicBY" contenteditable="true">Music by:</div>
+        <div id="Arranged"contenteditable="true">Arranged by:</div>
+        <div class="row" style="margin-top:200px;">
+            <div class="space"></div>
+            <div class="line"><div class="blackline"></div></div>
+            <div class="space"></div>
+            <div class="line"><div class="blackline"></div></div>
+            <div class="space"></div>
+            <div class="line"><div class="blackline"></div></div>
+            <div class="space"></div>
+            <div class="line"><div class="blackline"></div></div>
+            <div class="space"></div>
+            <div class="line"><div class="blackline"></div></div>
+            <img class="houslovyKEY" src="images/HouslovyKEY.png">
+        </div>
+    </div>
+    <script>
+
+        x=document.getElementsByClassName("line");
+        for(let i=0;i<10;i++){
+            x[i].onmouseenter=targetable;
+            x[i].onmouseout=hideNote;
+        }
+        function targetable(){
+            window.event.clientX;
+        }
+        function hideNote(){
+
+        }
+    </script>
+</body>
+</html>
