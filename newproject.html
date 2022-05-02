@@ -7,6 +7,17 @@
 </head>
 <body>
     <div id="tools">
+        <div class="tool" value="0"><img src="images/celaNota.png"></div>
+        <div class="tool" value="1"><img src="images/pulovaNota.png"></div>
+        <div class="tool" value="2"><img src="images/ctvrtovaNota.png"></div>
+        <div class="tool" value="3"><img src="images/osminkaNota.png"></div>
+        <div class="tool" value="4"><img src="images/sestnatinkaNota.png"></div>
+        <div class="tool" value="5"><img src="images/celaPomlka.png"></div>
+        <div class="tool" value="6"><img src="images/pulovaPomlka.png"></div>
+        <div class="tool" value="7"><img src="images/ctvrtovaPomlka.png"></div>
+        <div class="tool" value="8"><img src="images/osminkaPomlka.png"></div>
+        <div class="tool" value="9"><img src="images/sestnatinkovaPomlka.png"></div>
+        <div class="tool"></div>
         <div class="tool"></div>
         <div class="tool"></div>
         <div class="tool"></div>
@@ -36,17 +47,71 @@
         </div>
     </div>
     <script>
-
+        let selectedNote;
         x=document.getElementsByClassName("line");
-        for(let i=0;i<10;i++){
+        for(let i=0;i<x.length;i++){
             x[i].onmouseenter=targetable;
             x[i].onmouseout=hideNote;
+        }
+        
+        tools=document.getElementsByClassName("tool");
+        for(let i=0;i<tools.length;i++){
+            tools[i].onclick=selectNote;
+            console.log("etwas")
+
         }
         function targetable(){
             window.event.clientX;
         }
         function hideNote(){
 
+        }
+        function selectNote(){
+            for(i=0;i<tools.length;i++){
+                tools[i].style.background="white"
+            }
+            selectedNote=this.value
+            this.style.background="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
+        }
+    </script>
+    <script>
+        dragElement(document.getElementById("tools"));
+
+        function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+        document.getElementById("tools").onmousedown = dragMouseDown;
+
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            /* stop moving when mouse button is released:*/
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
         }
     </script>
 </body>
