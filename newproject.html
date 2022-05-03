@@ -33,44 +33,54 @@
         <div id="MusicBY" contenteditable="true">Music by:</div>
         <div id="Arranged"contenteditable="true">Arranged by:</div>
         <div class="row" style="margin-top:200px;">
-            <div class="space"></div>
-            <div class="line"><div class="blackline"></div></div>
-            <div class="space"></div>
-            <div class="line"><div class="blackline"></div></div>
-            <div class="space"></div>
-            <div class="line"><div class="blackline"></div></div>
-            <div class="space"></div>
-            <div class="line"><div class="blackline"></div></div>
-            <div class="space"></div>
-            <div class="line"><div class="blackline"></div></div>
+            <div class="space"><div class="c"></div></div>
+            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"><div class="c"></div></div>
+            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"><div class="c"></div></div>
+            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"><div class="c"></div></div>
+            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"><div class="c"></div></div>
+            <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <img class="houslovyKEY" src="images/HouslovyKEY.png">
         </div>
     </div>
     <script>
-        let selectedNote;
+        const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka"]
+        let selectedTool;
         x=document.getElementsByClassName("line");
+        y=document.getElementsByClassName("space");
         for(let i=0;i<x.length;i++){
             x[i].onmouseenter=targetable;
             x[i].onmouseout=hideNote;
         }
-        
-        tools=document.getElementsByClassName("tool");
-        for(let i=0;i<tools.length;i++){
-            tools[i].onclick=selectNote;
-            console.log("etwas")
-
+        for(let i=0;i<y.length;i++){
+            y[i].onmouseenter=targetable;
+            y[i].onmouseout=hideNote;
+        }
+        boxes=document.getElementsByClassName("tool");
+        for(let i=0;i<boxes.length;i++){
+            boxes[i].onclick=selectNote;
         }
         function targetable(){
-            window.event.clientX;
+            if(selectedTool){
+                img =document.createElement("img");
+                img.src="images/"+tools[selectedTool]+".png"
+                img.classList.add("nota");
+                img.style.left=window.event.clientX-100+"px";
+                this.getElementsByClassName("c")[0].appendChild(img);
+            }
         }
         function hideNote(){
-
+            this.getElementsByClassName("c")[0].removeChild(this.getElementsByClassName("c")[0].lastChild)
         }
         function selectNote(){
-            for(i=0;i<tools.length;i++){
-                tools[i].style.background="white"
+            for(i=0;i<boxes.length;i++){
+                boxes[i].style.background="white"
             }
-            selectedNote=this.value
+            selectedTool=this.getAttribute("value");
+            console.log(selectedTool);
             this.style.background="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
         }
     </script>

@@ -88,3 +88,13 @@ body{
 .tool img{
     height: 35px;
 }
+.nota{
+    position:absolute;
+    height:35px;
+    top: -27px;
+    z-index:-1
+}
+.line, .space{
+    position:relative;
+}
+.blackline{z-index: -2;}
