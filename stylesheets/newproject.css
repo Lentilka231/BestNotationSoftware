@@ -65,15 +65,15 @@ body{
 }
 #tools{
     z-index: 5;
-    width:250px;
-    height:300px;
+    width:350px;
+    height:100px;
     background-color: rgb(158, 50, 50);
     position: fixed;
     top:200px;
     left:50px;
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(7,40px) ;
+    grid-template-rows: repeat(5,40px);
     gap:10px;
     padding: 10px;
 }
@@ -91,10 +91,10 @@ body{
 .nota{
     position:absolute;
     height:35px;
-    top: -27px;
+    top: -31px;
     z-index:-1
 }
 .line, .space{
     position:relative;
 }
-.blackline{z-index: -2;}
+.blackline{z-index: -2;position: relative;}
