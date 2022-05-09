@@ -8,16 +8,12 @@
 <body>
     <div id="mainBar">
         <div class="cell">
-            <img src="images/celaNota.png" style="height:30px">
+            <img src="images/newDocument.png" style="height:30px">
             <div>Nový dokument</div>
         </div>
         <div class="cell">
             <img src="images/HouslovyKEY.png">
             <div>Klíč</div>
-        </div>
-        <div class="cell">
-            <img src="images/HouslovyKEY.png">
-            <div>Takt</div>
         </div>
         <div class="cell">
             <img src="images/HouslovyKEY.png">
@@ -56,6 +52,20 @@
         <div class="tool" h="40" x="58" y="-15" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
         <div class="tool" h="45" x="48" y="-20" value="13"><img src="images/taktovaCara.png"></div>
     </div>
+    <div id="Tacts">
+        <img src="images/Takt22.png">
+        <img src="images/Takt24.png">
+        <img src="images/Takt28.png">
+        <img src="images/Takt32.png">
+        <img src="images/Takt34.png">
+        <img src="images/Takt38.png">
+        <img src="images/Takt44.png">
+        <img src="images/Takt48.png">
+        <img src="images/Takt64.png">
+        <img src="images/Takt68.png">
+        <img src="images/TaktC.png">
+        <img src="images/TaktAllabreve.png">
+    </div>
     <div id="whitePage">
         <div id="Nadpis" contenteditable="true">New Project</div>
         <div id="MusicBY" contenteditable="true">Music by:</div>
@@ -73,6 +83,7 @@
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
             <img class="houslovyKEY" src="images/HouslovyKEY.png">
+            <img class="takt" src="images/TaktC.png">
             <div class="tempo"><img style="height:20px" src="images/ctvrtovaNota.png"> = <p contenteditable="true">60</p></div>
         </div>
         <div class="row" style="margin-top:50px">
@@ -167,8 +178,10 @@
             <img class="houslovyKEY" src="images/HouslovyKEY.png">
         </div>
     </div>
+    <!-- Vkládání not -->
     <script>
         const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka","tricetidvatinkaPomlka","taktovaCara"];
+        const takty=[]
         const page =document.getElementById("whitePage");
         const specialLine = document.getElementById("special");
         let selectedTool=50;
@@ -297,6 +310,7 @@
             this.style.background="rgb(236, 160, 160)"
         }
     </script>
+    <!-- Dragging system -->
     <script>
         dragElement(document.getElementById("tools"));
 
@@ -337,6 +351,7 @@
         }
         }
     </script>
+    <!-- On Key pressed -->
     <script>
         document.addEventListener("keydown",function(e){
             if(e.key==="Escape"){
@@ -363,6 +378,38 @@
                 selectedH="";
             }
         })
+        document.onclick=function(){
+            if(CanClickAnyWhere==1){
+                nabidkaTakty.style.display="none";
+            }
+            else{
+                CanClickAnyWhere-=1;
+            }
+        }
+    </script>
+    <!-- Takty -->
+    <script>
+
+        x=document.getElementsByClassName("takt");
+        const nabidkaTakty =document.getElementById("Tacts");
+        let n;
+        CanClickAnyWhere=2;
+        function showTacts(){
+            nabidkaTakty.style.display="grid";
+            nabidkaTakty.style.top=this.getBoundingClientRect().top+50+"px";
+            nabidkaTakty.style.left=this.getBoundingClientRect().left+"px";
+            CanClickAnyWhere=2;
+            n=this
+        }
+        for(let i=0;i<x.length;i++){
+            x[0].onclick=showTacts;
+        }
+        y=nabidkaTakty.getElementsByTagName("img");
+        for(let i=0;i<y.length;i++){
+            y[i].onclick=function(){
+                n.src=y[i].src;
+            }
+        }
     </script>
 </body>
 </html>
