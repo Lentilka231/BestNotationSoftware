@@ -34,20 +34,27 @@
 
     </div>
     <div id="tools">
-        <div class="tool" value="0"><img src="images/celaNota.png"></div>
-        <div class="tool" value="1"><img src="images/pulovaNota.png"></div>
-        <div class="tool" value="2"><img src="images/ctvrtovaNota.png"></div>
-        <div class="tool" value="3"><img src="images/osminkaNota.png"></div>
-        <div class="tool" value="4"><img src="images/sestnatinkaNota.png"></div>
-        <div class="tool" value="5"><img src="images/tricetidvatinkaNota.png"></div>
-        <div class="tool" value="6"><img src="images/sedesatictyritinkaNota.png"></div>
-        <div class="tool" value="7"><img src="images/celaPomlka.png"></div>
-        <div class="tool" value="8"><img src="images/pulovaPomlka.png"></div>
-        <div class="tool" value="9"><img src="images/ctvrtovaPomlka.png"></div>
-        <div class="tool" value="10"><img src="images/osminkaPomlka.png"></div>
-        <div class="tool" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
-        <div class="tool"></div>
-        <div class="tool"></div>
+        <div class="tool" h="" x="" y="" id="cursor" value="50" style="background:radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(167, 167, 167) 100%)"><img src="images/cursor.png"></div>
+        <div class="" h="" x="" y="" value=""></div>
+        <div class="" h="" x="" y="" value=""></div>
+        <div class="" h="" x="" y="" value=""></div>
+        <div class="" h="" x="" y="" value=""></div>
+        <div class="" h="" x="" y="" value=""></div>
+        <div class="" h="" x="" y="" value=""></div>
+        <div class="tool" h="35" x="50" y="-16" value="0"><img src="images/celaNota.png"></div>
+        <div class="tool" h="35" x="50" y="-26" value="1"><img src="images/pulovaNota.png"></div>
+        <div class="tool" h="35" x="50" y="-26" value="2"><img src="images/ctvrtovaNota.png"></div>
+        <div class="tool" h="35" x="48" y="-26" value="3"><img src="images/osminkaNota.png"></div>
+        <div class="tool" h="35" x="48" y="-26" value="4"><img src="images/sestnatinkaNota.png"></div>
+        <div class="tool" h="35" x="47" y="-26" value="5"><img src="images/tricetidvatinkaNota.png"></div>
+        <div class="tool" h="40" x="50" y="-26" value="6"><img src="images/sedesatictyritinkaNota.png"></div>
+        <div class="tool" h="35" x="58" y="-15" value="7"><img src="images/celaPomlka.png"></div>
+        <div class="tool" h="35" x="58" y="-15" value="8"><img src="images/pulovaPomlka.png"></div>
+        <div class="tool" h="35" x="50" y="-15" value="9"><img src="images/ctvrtovaPomlka.png"></div>
+        <div class="tool" h="35" x="50" y="-15" value="10"><img src="images/osminkaPomlka.png"></div>
+        <div class="tool" h="35" x="50" y="-10" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
+        <div class="tool" h="40" x="58" y="-15" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
+        <div class="tool" h="45" x="48" y="-20" value="13"><img src="images/taktovaCara.png"></div>
     </div>
     <div id="whitePage">
         <div id="Nadpis" contenteditable="true">New Project</div>
@@ -64,6 +71,7 @@
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"><div class="c"></div></div>
             <img class="houslovyKEY" src="images/HouslovyKEY.png">
             <div class="tempo"><img style="height:20px" src="images/ctvrtovaNota.png"> = <p contenteditable="true">60</p></div>
         </div>
@@ -160,81 +168,133 @@
         </div>
     </div>
     <script>
-        const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka"]
+        const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka","tricetidvatinkaPomlka","taktovaCara"];
         const page =document.getElementById("whitePage");
         const specialLine = document.getElementById("special");
-        let selectedTool;
+        let selectedTool=50;
+        let selectedX;
+        let selectedY;
+        let selectedH;
         x=document.getElementsByClassName("line");
         y=document.getElementsByClassName("space");
         for(let i=0;i<x.length;i++){
             x[i].onmouseenter=targetable;
             x[i].onmouseout=hideNote;
             x[i].onmousemove=moveWithNote;
-            x[i].onclick=putNote;
+            x[i].onmouseup=stopMovingNote;
         }
         for(let i=0;i<y.length;i++){
             y[i].onmouseenter=targetable;
             y[i].onmouseout=hideNote;
-            y[i].onclick=putNote;
             y[i].onmousemove=moveWithNote;
+            y[i].onmouseup=stopMovingNote;
+
         }
         boxes=document.getElementsByClassName("tool");
         for(let i=0;i<boxes.length;i++){
             boxes[i].onclick=selectNote;
         }
         function targetable(){
-            if(selectedTool){
-                img = document.createElement("img");
-                img.src = "images/"+tools[selectedTool]+".png"
-                img.classList.add("nota");
-                if(selectedTool==0){
-                    img.style.top = "-16px"
-                    img.style.left = window.event.clientX-page.getBoundingClientRect().left-60+"px";
-                }
-                else if(selectedTool<7){
-                    img.style.left = window.event.clientX-page.getBoundingClientRect().left-50+"px";
-                }
-                else{
-                    img.style.left = window.event.clientX-page.getBoundingClientRect().left-58+"px";
-                }
+            if(selectedTool!=50){
+                let divimg = document.createElement("div");
+                let img = document.createElement("img");
+                img.src = "images/"+tools[selectedTool]+".png";
+                img.style.height = selectedH+"px";
+                img.style.zIndex="5";
+                divimg.classList.add("nota");
+                divimg.classList.add("t");
+                divimg.setAttribute("value",selectedTool);
+                divimg.setAttribute("x",selectedX);
+                divimg.setAttribute("y",selectedY);
+                divimg.setAttribute("h",selectedH);
+                divimg.style.top = selectedY+"px";
+                divimg.style.left = window.event.clientX-page.getBoundingClientRect().left-selectedX+"px";
+                img.onmousedown=moveNoteManually;
+                divimg.onmouseup=stopMovingNote;
+                divimg.onmouseenter=showOptions;;
+                divimg.appendChild(img);
                 if(selectedTool<7){
-                    this.getElementsByClassName("c")[0].appendChild(img);
+                    this.getElementsByClassName("c")[0].appendChild(divimg);
                 }
                 else{
-                    img.style.top="-15px"
-                    specialLine.appendChild(img);
+                    specialLine.appendChild(divimg);
+                }
+            }else{
+                movingNote = document.getElementsByClassName("t")[0];
+                if(movingNote){
+                    if(movingNote.getAttribute("value")<7){
+                        this.getElementsByClassName("c")[0].appendChild(movingNote);
+                    }
+                    else{
+                        specialLine.appendChild(movinNote);
+                    }
                 }
             }
         }
         function hideNote(){
-            if(selectedTool<7){
-                this.getElementsByClassName("c")[0].removeChild(this.getElementsByClassName("c")[0].lastChild)
+            if(selectedTool==50){
             }
             else{
-                specialLine.removeChild(specialLine.lastChild);
+                if(document.getElementsByClassName("t")[0]){
+                    document.getElementsByClassName("t")[0].remove();
+                }
             }
-        }
-        function putNote(){
-
-        }
+        }       
         function moveWithNote(){
-            if(selectedTool==0){
-                img.style.left = window.event.clientX-page.getBoundingClientRect().left-60+"px";
-            }
-            else if(selectedTool<7){
-                img.style.left = window.event.clientX-page.getBoundingClientRect().left-50+"px";
-            }
-            else{
-                img.style.left = window.event.clientX-page.getBoundingClientRect().left-58+"px";
+            movingDiv=document.getElementsByClassName("t")[0];
+            if(movingDiv){
+                movingDiv.style.left= window.event.clientX-page.getBoundingClientRect().left-movingDiv.getAttribute("x")+"px";
             }
         }
         function selectNote(){
-            for(i=0;i<boxes.length;i++){
-                boxes[i].style.background="white"
-            }
             selectedTool=this.getAttribute("value");
-            console.log(selectedTool);
+            selectedX=this.getAttribute("x");
+            selectedY=this.getAttribute("y");
+            selectedH=this.getAttribute("h");
+            for(i=0;i<boxes.length;i++){
+                boxes[i].style.background="white";
+            }
             this.style.background="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
+            
+        }
+        function moveNoteManually(){
+            this.src="images/"+tools[this.getAttribute("value")]+"Orange.png";
+            this.parentElement.classList.add("t");
+        }
+        function stopMovingNote(){
+            movingNote=document.getElementsByClassName("t")[0].getElementsByTagName("img")[0];
+            if(movingNote){
+                movingNote.src="images/"+tools[movingNote.parentElement.getAttribute("value")]+".png";
+                if(document.getElementsByClassName("option1")[0]){
+                    document.getElementsByClassName("option1")[0].remove();
+                }
+                
+                movingNote.parentElement.classList.remove("t");
+            }
+        }
+        function showOptions(){
+            if(selectedTool==50){
+                this.getElementsByTagName("img")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
+                if(!this.getElementsByClassName("options")[0]){
+                    let options = `
+                    <div class="options">
+                        <img src="images/krizek.png" style="transform:rotate(-90deg) translateX(50px) rotate(90deg);" onmouseenter=barvitko>
+                        <img src="images/becko.png" style="transform:rotate(-120deg) translateX(50px) rotate(120deg);">
+                        <img src="images/odrazka.png" style="transform:rotate(-150deg) translateX(50px) rotate(150deg);">
+                    </div>`;
+
+
+                    this.insertAdjacentHTML("beforeend",options);
+                    document.getElementsByClassName("options")[0].onmouseleave=function(){
+                        this.parentElement.getElementsByTagName("img")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                        this.remove();
+                    }
+                }
+            }
+        }
+        function barvitko(){
+            console.log()
+            this.style.background="rgb(236, 160, 160)"
         }
     </script>
     <script>
@@ -276,6 +336,33 @@
             document.onmousemove = null;
         }
         }
+    </script>
+    <script>
+        document.addEventListener("keydown",function(e){
+            if(e.key==="Escape"){
+                div=document.getElementsByClassName("t")[0];
+                if(selectedTool<7){
+                    if(div){
+                        div.remove();
+                    }
+                }
+                else if(selectedTool==50){
+                }
+                else{
+                    if(div){
+                        div.remove();
+                    }
+                }
+                for(i=0;i<boxes.length;i++){
+                    boxes[i].style.background="white";
+                }
+                document.getElementById("cursor").style.background="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
+                selectedTool="50";
+                selectedX="";
+                selectedY="";
+                selectedH="";
+            }
+        })
     </script>
 </body>
 </html>
