@@ -176,3 +176,11 @@ body{
 #Tacts img:hover{
     background-color: var(--hover);
 }
+.konecniTakt{
+    height:37px;
+    width:1px;
+    position: absolute;
+    background-color: black;
+    top:6px;
+    right:0px;
+}
