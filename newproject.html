@@ -191,7 +191,6 @@
         const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka","tricetidvatinkaPomlka","taktovaCara"];
         const takty=[]
         const page =document.getElementById("whitePage");
-        const specialLine = document.getElementById("special");
         let selectedTool=50;
         let selectedX;
         let selectedY;
@@ -231,14 +230,14 @@
                 divimg.style.top = selectedY+"px";
                 divimg.style.left = window.event.clientX-page.getBoundingClientRect().left-selectedX+"px";
                 img.onmousedown=moveNoteManually;
-                divimg.onmouseup=stopMovingNote;
-                divimg.onmouseenter=showOptions;;
+                img.onmouseup=stopMovingNote;
+                divimg.onmouseenter=showOptions;
                 divimg.appendChild(img);
                 if(selectedTool<7){
                     this.getElementsByClassName("c")[0].appendChild(divimg);
                 }
                 else{
-                    specialLine.appendChild(divimg);
+                    this.parentElement.getElementsByClassName("line")[2].appendChild(divimg);
                 }
             }else{
                 movingNote = document.getElementsByClassName("t")[0];
@@ -247,7 +246,7 @@
                         this.getElementsByClassName("c")[0].appendChild(movingNote);
                     }
                     else{
-                        specialLine.appendChild(movinNote);
+                        this.parentElement.getElementsByClassName("line")[2].appendChild(movingNote);
                     }
                 }
             }
@@ -279,15 +278,17 @@
             
         }
         function moveNoteManually(){
-            this.src="images/"+tools[this.getAttribute("value")]+"Orange.png";
+            if(this.parentElement.getElementsByClassName("options")[0]){
+                this.parentElement.getElementsByClassName("options")[0].remove();
+            }
             this.parentElement.classList.add("t");
         }
         function stopMovingNote(){
             movingNote=document.getElementsByClassName("t")[0].getElementsByTagName("img")[0];
             if(movingNote){
                 movingNote.src="images/"+tools[movingNote.parentElement.getAttribute("value")]+".png";
-                if(document.getElementsByClassName("option1")[0]){
-                    document.getElementsByClassName("option1")[0].remove();
+                if(document.getElementsByClassName("options")[0]){
+                    document.getElementsByClassName("options")[0].remove();
                 }
                 
                 movingNote.parentElement.classList.remove("t");
@@ -296,27 +297,35 @@
         function showOptions(){
             if(selectedTool==50){
                 this.getElementsByTagName("img")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
-                
                 if(!this.getElementsByClassName("options")[0]){
-                    if(this.getAttribute("value")!=13){
+                    if(this.getAttribute("value")<7){
                         options = `
                         <div class="options">
-                            <img src="images/krizek.png" style="transform:rotate(-90deg) translateX(50px) rotate(90deg);" onmouseenter=barvitko>
-                            <img src="images/becko.png" style="transform:rotate(-120deg) translateX(50px) rotate(120deg);">
-                            <img src="images/odrazka.png" style="transform:rotate(-150deg) translateX(50px) rotate(150deg);">
+                            <img src="images/krizek.png" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
+                            <img src="images/becko.png" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
+                            <img src="images/odrazka.png" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
                         </div>`;   
-                    }else{
+                        this.insertAdjacentHTML("beforeend",options);
+                        document.getElementsByClassName("options")[0].onmouseleave=function(){
+                            this.parentElement.getElementsByTagName("img")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            this.remove();
+                        }
+                    
+                    }else if(this.getAttribute("value")<12){
+                        //zde se musí změnit změnění barvy zpátky na černou po zmiznutí kurzoru
+                    this.getElementsByTagName("img")[0].src="images/"+tools[this.getAttribute("value")]+".png";
+                    }else if(this.getAttribute("value")==13){
                         options = `
                         <div class="options">
-                            <img src="images/krizek.png" style="transform:rotate(-90deg) translateX(50px) rotate(90deg);" onmouseenter=barvitko>
-                            <img src="images/becko.png" style="transform:rotate(-120deg) translateX(50px) rotate(120deg);">
-                            <img src="images/odrazka.png" style="transform:rotate(-150deg) translateX(50px) rotate(150deg);">
+                            <img src="images/krizek.png" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
+                            <img src="images/becko.png" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
+                            <img src="images/odrazka.png" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
                         </div>`;
-                    }
-                    this.insertAdjacentHTML("beforeend",options);
-                    document.getElementsByClassName("options")[0].onmouseleave=function(){
-                        this.parentElement.getElementsByTagName("img")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                        this.remove();
+                        this.insertAdjacentHTML("beforeend",options);
+                        document.getElementsByClassName("options")[0].onmouseleave=function(){
+                            this.parentElement.getElementsByTagName("img")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            this.remove();
+                        }
                     }
                 }
             }
