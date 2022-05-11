@@ -210,3 +210,6 @@ body{
     left:calc(50% - 8px);
     position: absolute;
 }
+.options div{
+    z-index:5;
+}

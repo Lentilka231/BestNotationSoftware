@@ -37,20 +37,20 @@
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
-        <div class="tool" h="35" x="50" y="-16" value="0"><img src="images/celaNota.png"></div>
-        <div class="tool" h="35" x="50" y="-26" value="1"><img src="images/pulovaNota.png"></div>
-        <div class="tool" h="35" x="50" y="-26" value="2"><img src="images/ctvrtovaNota.png"></div>
-        <div class="tool" h="35" x="48" y="-26" value="3"><img src="images/osminkaNota.png"></div>
-        <div class="tool" h="35" x="48" y="-26" value="4"><img src="images/sestnatinkaNota.png"></div>
-        <div class="tool" h="35" x="47" y="-26" value="5"><img src="images/tricetidvatinkaNota.png"></div>
-        <div class="tool" h="40" x="50" y="-26" value="6"><img src="images/sedesatictyritinkaNota.png"></div>
-        <div class="tool" h="35" x="58" y="-15" value="7"><img src="images/celaPomlka.png"></div>
-        <div class="tool" h="35" x="58" y="-15" value="8"><img src="images/pulovaPomlka.png"></div>
-        <div class="tool" h="35" x="50" y="-15" value="9"><img src="images/ctvrtovaPomlka.png"></div>
-        <div class="tool" h="35" x="50" y="-15" value="10"><img src="images/osminkaPomlka.png"></div>
-        <div class="tool" h="35" x="50" y="-10" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
-        <div class="tool" h="40" x="58" y="-15" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
-        <div class="tool" h="45" x="48" y="-20" value="13"><img src="images/taktovaCara.png"></div>
+        <div class="tool" h="35" x="50" y="-9" value="0"><img src="images/celaNota.png"></div>
+        <div class="tool" h="35" x="50" y="-19" value="1"><img src="images/pulovaNota.png"></div>
+        <div class="tool" h="35" x="50" y="-19" value="2"><img src="images/ctvrtovaNota.png"></div>
+        <div class="tool" h="35" x="48" y="-19" value="3"><img src="images/osminkaNota.png"></div>
+        <div class="tool" h="35" x="48" y="-19" value="4"><img src="images/sestnatinkaNota.png"></div>
+        <div class="tool" h="35" x="47" y="-19" value="5"><img src="images/tricetidvatinkaNota.png"></div>
+        <div class="tool" h="40" x="50" y="-21" value="6"><img src="images/sedesatictyritinkaNota.png"></div>
+        <div class="tool" h="35" x="58" y="-8" value="7"><img src="images/celaPomlka.png"></div>
+        <div class="tool" h="35" x="58" y="-8" value="8"><img src="images/pulovaPomlka.png"></div>
+        <div class="tool" h="35" x="50" y="-8" value="9"><img src="images/ctvrtovaPomlka.png"></div>
+        <div class="tool" h="35" x="50" y="-8" value="10"><img src="images/osminkaPomlka.png"></div>
+        <div class="tool" h="35" x="50" y="-3" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
+        <div class="tool" h="40" x="58" y="-6" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
+        <div class="tool" h="45" x="48" y="-8" value="13"><img src="images/taktovaCara.png"></div>
     </div>
     <div id="Tacts">
         <img src="images/Takt22.png">
@@ -279,16 +279,15 @@
             
         }
         function moveNoteManually(){
-            console.log(this.parentElement);
             if(this.parentElement.classList.contains("options")){
-                this.parentElement.appendChild(this);
-                this.parentElement.remove();
+                this.parentElement.parentElement.appendChild(this);
+                this.parentElement.classList.add("t");
+                this.parentElement.getElementsByClassName("options")[0].remove();
             }
-            this.parentElement.classList.add("t");
         }
         function stopMovingNote(){
-            movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("n")[0];
-            if(movingNote){
+            if(document.getElementsByClassName("t")[0]){
+                movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("n")[0];
                 movingNote.src="images/"+tools[movingNote.parentElement.getAttribute("value")]+".png";
                 if(document.getElementsByClassName("options")[0]){
                     document.getElementsByClassName("options")[0].parentElement.appendChild(document.getElementsByClassName("options")[0]);
@@ -297,9 +296,10 @@
                 
                 movingNote.parentElement.classList.remove("t");
             }
+            
         }
-        function deleteNote(){
-            this.parentElement.parentElement.remove();
+        function notedelete(){
+            this.parentElement.parentElement.remove()
         }
         function showOptions(){
             if(selectedTool==50){
@@ -310,46 +310,74 @@
                 this.getElementsByTagName("img")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
                 if(!this.getElementsByClassName("options")[0]){
                     if(this.getAttribute("value")<7){
-                        options = `
-                        <div class="options">
-                            <img src="images/krizek.png" class="v" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
-                            <img src="images/becko.png" class="v" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
-                            <img src="images/odrazka.png" class="v" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
-                            <img src="images/krizek.png" class="v" style="transform:rotate(0deg) translateX(60px) rotate(0deg);" onclick=deleteNote>
-                        </div>`;   
-                        this.insertAdjacentHTML("beforeend",options);
+                        divOptions=document.createElement("div");
+                        divOptions.classList.add("options");
+                        a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizek.png"];
+                        b=[,,,notedelete]
+                        for(let i=0;i<4;i++){
+                            imgV=document.createElement("img");
+                            imgV.src=a[i];
+                            imgV.classList.add("v");
+                            imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
+                            imgV.onmouseenter=function(){this.style.height="32px"};
+                            imgV.onmouseleave=function(){this.style.height="30px"};
+                            imgV.onclick=b[i];
+                            divOptions.appendChild(imgV);
+                        }
+                        this.appendChild(divOptions);
                         this.getElementsByClassName("options")[0].appendChild(this.getElementsByTagName("img")[0]);
                         document.getElementsByClassName("options")[0].onmouseleave=function(){
                             this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
                             this.parentElement.appendChild(this.parentElement.getElementsByClassName("n")[0]);
                             this.remove();
                         }
-                    
-                    }else if(this.getAttribute("value")<12){
-                        //zde se musí změnit změnění barvy zpátky na černou po zmiznutí kurzoru
-                    this.getElementsByTagName("img")[0].src="images/"+tools[this.getAttribute("value")]+".png";
-                    }else if(this.getAttribute("value")==13){
-                        options = `
-                        <div class="options">
-                            <img src="images/krizek.png" class="v" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
-                            <img src="images/becko.png" class="v" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
-                            <img src="images/odrazka.png" class="v" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
-                        </div>`;
-                        this.insertAdjacentHTML("beforeend",options);
+                    }
+                    else if(this.getAttribute("value")<13){
+                        divOptions=document.createElement("div");
+                        divOptions.classList.add("options");
+                        a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizek.png"];
+                        for(let i=0;i<4;i++){
+                            imgV=document.createElement("img");
+                            imgV.src=a[i];
+                            imgV.classList.add("v");
+                            imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
+                            imgV.onmouseenter=function(){this.style.height="32px"};
+                            imgV.onmouseleave=function(){this.style.height="30px"};
+                            divOptions.appendChild(imgV);
+                        }
+                        this.appendChild(divOptions);
                         this.getElementsByClassName("options")[0].appendChild(this.getElementsByTagName("img")[0]);
                         document.getElementsByClassName("options")[0].onmouseleave=function(){
-                            this.parentElement.getElementsByTagName("img")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                            this.parentElement.appendChild(this.parentElement.getElementsByTagName("img")[0]);
+                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            this.parentElement.appendChild(this.parentElement.getElementsByClassName("n")[0]);
+                            this.remove();
+                        }
+                    }
+                    else if(this.getAttribute("value")==13){
+                        divOptions=document.createElement("div");
+                        divOptions.classList.add("options");
+                        a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizek.png"];
+                        for(let i=0;i<4;i++){
+                            imgV=document.createElement("img");
+                            imgV.src=a[i];
+                            imgV.classList.add("v");
+                            imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
+                            imgV.onmouseenter=function(){this.style.height="32px"};
+                            imgV.onmouseleave=function(){this.style.height="30px"};
+                            divOptions.appendChild(imgV);
+                        }
+                        this.appendChild(divOptions);
+                        this.getElementsByClassName("options")[0].appendChild(this.getElementsByTagName("img")[0]);
+                        document.getElementsByClassName("options")[0].onmouseleave=function(){
+                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            this.parentElement.appendChild(this.parentElement.getElementsByClassName("n")[0]);
                             this.remove();
                         }
                     }
                 }
             }
         }
-        function barvitko(){
-            console.log()
-            this.style.background="rgb(236, 160, 160)"
-        }
+
     </script>
     <!-- Dragging system -->
     <script>
