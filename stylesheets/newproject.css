@@ -96,6 +96,11 @@ body{
 .nota{
     position:absolute;
     z-index:2;
+    width:20px;
+    height:20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 .t{
     z-index:-1;
@@ -195,8 +200,11 @@ body{
     position: absolute;
     z-index:-1;
     padding:5px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
-.options img{
+.v{
     height:30px;
     top:calc(50% - 15px);
     left:calc(50% - 8px);

@@ -221,6 +221,7 @@
                 img.src = "images/"+tools[selectedTool]+".png";
                 img.style.height = selectedH+"px";
                 img.style.zIndex="5";
+                img.classList.add("n");
                 divimg.classList.add("nota");
                 divimg.classList.add("t");
                 divimg.setAttribute("value",selectedTool);
@@ -278,36 +279,49 @@
             
         }
         function moveNoteManually(){
-            if(this.parentElement.getElementsByClassName("options")[0]){
-                this.parentElement.getElementsByClassName("options")[0].remove();
+            console.log(this.parentElement);
+            if(this.parentElement.classList.contains("options")){
+                this.parentElement.appendChild(this);
+                this.parentElement.remove();
             }
             this.parentElement.classList.add("t");
         }
         function stopMovingNote(){
-            movingNote=document.getElementsByClassName("t")[0].getElementsByTagName("img")[0];
+            movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("n")[0];
             if(movingNote){
                 movingNote.src="images/"+tools[movingNote.parentElement.getAttribute("value")]+".png";
                 if(document.getElementsByClassName("options")[0]){
+                    document.getElementsByClassName("options")[0].parentElement.appendChild(document.getElementsByClassName("options")[0]);
                     document.getElementsByClassName("options")[0].remove();
                 }
                 
                 movingNote.parentElement.classList.remove("t");
             }
         }
+        function deleteNote(){
+            this.parentElement.parentElement.remove();
+        }
         function showOptions(){
             if(selectedTool==50){
+                if(document.getElementsByClassName("options")[0]){
+                    document.getElementsByClassName("options")[0].parentElement.appendChild(document.getElementsByClassName("options")[0]);
+                    document.getElementsByClassName("options")[0].remove();
+                }
                 this.getElementsByTagName("img")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
                 if(!this.getElementsByClassName("options")[0]){
                     if(this.getAttribute("value")<7){
                         options = `
                         <div class="options">
-                            <img src="images/krizek.png" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
-                            <img src="images/becko.png" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
-                            <img src="images/odrazka.png" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
+                            <img src="images/krizek.png" class="v" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
+                            <img src="images/becko.png" class="v" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
+                            <img src="images/odrazka.png" class="v" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
+                            <img src="images/krizek.png" class="v" style="transform:rotate(0deg) translateX(60px) rotate(0deg);" onclick=deleteNote>
                         </div>`;   
                         this.insertAdjacentHTML("beforeend",options);
+                        this.getElementsByClassName("options")[0].appendChild(this.getElementsByTagName("img")[0]);
                         document.getElementsByClassName("options")[0].onmouseleave=function(){
-                            this.parentElement.getElementsByTagName("img")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            this.parentElement.appendChild(this.parentElement.getElementsByClassName("n")[0]);
                             this.remove();
                         }
                     
@@ -317,13 +331,15 @@
                     }else if(this.getAttribute("value")==13){
                         options = `
                         <div class="options">
-                            <img src="images/krizek.png" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
-                            <img src="images/becko.png" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
-                            <img src="images/odrazka.png" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
+                            <img src="images/krizek.png" class="v" style="transform:rotate(-90deg) translateX(60px) rotate(90deg);" onmouseenter=barvitko>
+                            <img src="images/becko.png" class="v" style="transform:rotate(-120deg) translateX(60px) rotate(120deg);">
+                            <img src="images/odrazka.png" class="v" style="transform:rotate(-150deg) translateX(60px) rotate(150deg);">
                         </div>`;
                         this.insertAdjacentHTML("beforeend",options);
+                        this.getElementsByClassName("options")[0].appendChild(this.getElementsByTagName("img")[0]);
                         document.getElementsByClassName("options")[0].onmouseleave=function(){
                             this.parentElement.getElementsByTagName("img")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            this.parentElement.appendChild(this.parentElement.getElementsByTagName("img")[0]);
                             this.remove();
                         }
                     }
