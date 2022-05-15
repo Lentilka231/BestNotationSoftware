@@ -26,12 +26,13 @@ body{
 .line{
     padding:2px 0px;
 }
-.space{
+.space,.spaceLine{
     height:4px;
 }
+
 .houslovyKEY{
     position: absolute;
-    top:-10px;
+    top:23px;
     left:0px;
     height:70px    
 }
@@ -113,7 +114,7 @@ body{
     display:flex;
     align-items: center;
     position: absolute;
-    top:-35px;
+    top:0px;
     left:40px;
 }
 #mainBar{
@@ -153,7 +154,7 @@ body{
 .takt{
     height: 42px;
     position: absolute;
-    top:4px;
+    top:37px;
     left:30px;
     cursor: pointer;
 }
@@ -186,7 +187,7 @@ body{
     width:1px;
     position: absolute;
     background-color: black;
-    top:6px;
+    top:38px;
     right:0px;
 }
 .options{
@@ -198,7 +199,7 @@ body{
     width: 150px;
     height:150px;
     position: absolute;
-    z-index:-1;
+    z-index:6;
     padding:5px;
     display:flex;
     justify-content: center;
@@ -212,4 +213,9 @@ body{
 }
 .options div{
     z-index:5;
+}
+.znak{
+    height:30px;
+    position: absolute;
+    left:-15px;
 }
