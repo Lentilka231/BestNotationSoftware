@@ -15,8 +15,8 @@
             <img src="images/HouslovyKEY.png">
             <div>Klíč</div>
         </div>
-        <div class="cell">
-            <img src="images/HouslovyKEY.png">
+        <div class="cell" onclick="stupnice()" >
+            <img src="images/krizek.png">
             <div>Stupnice</div>
         </div>
         <div class="cell">
@@ -29,6 +29,33 @@
         </div>
 
     </div>
+    <div id="stupniceBar">
+        <div>
+            Durové stupnice
+            <div>
+                <div class="stupniceL">
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupniceC"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                    <div class="stupnice"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            Molové stupnice
+        </div>
+    </div>
     <div id="tools">
         <div class="tool" h="" x="" y="" id="cursor" value="50" style="background:radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(167, 167, 167) 100%)"><img src="images/cursor.png"></div>
         <div class="" h="" x="" y="" value=""></div>
@@ -37,7 +64,7 @@
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
-        <div class="tool" h="35" x="50" y="-9" znak="-20" value="0"><img src="images/celaNota.png"></div>
+        <div class="tool" h="35" x="50" y="-19" znak="-10" value="0"><img src="images/celaNota.png"></div>
         <div class="tool" h="35" x="50" y="-19" znak="-10" value="1"><img src="images/pulovaNota.png"></div>
         <div class="tool" h="35" x="50" y="-19" znak="-10" value="2"><img src="images/ctvrtovaNota.png"></div>
         <div class="tool" h="35" x="48" y="-19" znak="-10" value="3"><img src="images/osminkaNota.png"></div>
@@ -71,14 +98,14 @@
         <div id="MusicBY" contenteditable="true">Music by:</div>
         <div id="Arranged"contenteditable="true">Arranged by:</div>
         <div class="row" style="margin-top:200px;">
-            <div class="space" x="4" y="0"><div class="c"></div></div>
-            <div class="space" x="4"><div class="c"></div></div>
-            <div class="space" x="3" y="0"><div class="c"></div></div>
-            <div class="space" x="3"><div class="c"></div></div>
-            <div class="space" x="2" y="0"><div class="c"></div></div>
-            <div class="space" x="2"><div class="c"></div></div>
-            <div class="space" x="1" y="0"><div class="c"></div></div>
-            <div class="space" x="1"><div class="c"></div></div>
+            <div class="space" x="4" y="7"><div class="c"></div></div>
+            <div class="space" x="4" y="3"><div class="c"></div></div>
+            <div class="space" x="3" y="7"><div class="c"></div></div>
+            <div class="space" x="3" y="3"><div class="c"></div></div>
+            <div class="space" x="2" y="7"><div class="c"></div></div>
+            <div class="space" x="2" y="3"><div class="c"></div></div>
+            <div class="space" x="1" y="7"><div class="c"></div></div>
+            <div class="space" x="1" y="3"><div class="c"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
@@ -90,28 +117,29 @@
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
-            <div class="space" x="-1"><div class="c"></div></div>
-            <div class="space" x="-1" y="0"><div class="c"></div></div>
-            <div class="space" x="-2"><div class="c"></div></div>
-            <div class="space" x="-2" y="0"><div class="c"></div></div>
-            <div class="space" x="-3"><div class="c"></div></div>
-            <div class="space" x="-3" y="0"><div class="c"></div></div>
-            <div class="space" x="-4"><div class="c"></div></div>
-            <div class="space" x="-4" y="0"><div class="c"></div></div>
+            <div class="space" x="-1" y="2"><div class="c"></div></div>
+            <div class="space" x="-1" y="6"><div class="c"></div></div>
+            <div class="space" x="-2" y="2"><div class="c"></div></div>
+            <div class="space" x="-2" y="6"><div class="c"></div></div>
+            <div class="space" x="-3" y="2"><div class="c"></div></div>
+            <div class="space" x="-3" y="6"><div class="c"></div></div>
+            <div class="space" x="-4" y="2"><div class="c"></div></div>
+            <div class="space" x="-4" y="6"><div class="c"></div></div>
             <img class="houslovyKEY" src="images/HouslovyKEY.png">
+            <div class="preznamenani"></div>
             <img class="takt" src="images/TaktC.png">
             <div class="tempo"><img style="height:20px" src="images/ctvrtovaNota.png"> = <p contenteditable="true">60</p></div>
             <div class="konecniTakt"></div>
         </div>
         <div class="row" style="margin-top:75px;">
-            <div class="space" x="4" y="0"><div class="c"></div></div>
-            <div class="space" x="4"><div class="c"></div></div>
-            <div class="space" x="3" y="0"><div class="c"></div></div>
-            <div class="space" x="3"><div class="c"></div></div>
-            <div class="space" x="2" y="0"><div class="c"></div></div>
-            <div class="space" x="2"><div class="c"></div></div>
-            <div class="space" x="1" y="0"><div class="c"></div></div>
-            <div class="space" x="1"><div class="c"></div></div>
+            <div class="space" x="4" y="6"><div class="c"></div></div>
+            <div class="space" x="4" y="2"><div class="c"></div></div>
+            <div class="space" x="3" y="6"><div class="c"></div></div>
+            <div class="space" x="3" y="2"><div class="c"></div></div>
+            <div class="space" x="2" y="6"><div class="c"></div></div>
+            <div class="space" x="2" y="2"><div class="c"></div></div>
+            <div class="space" x="1" y="6"><div class="c"></div></div>
+            <div class="space" x="1" y="2"><div class="c"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
@@ -123,14 +151,14 @@
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
-            <div class="space" x="-1" y="0"><div class="c"></div></div>
-            <div class="space" x="-1" y="5"><div class="c"></div></div>
-            <div class="space" x="-2" y="0"><div class="c"></div></div>
-            <div class="space" x="-2" y="5"><div class="c"></div></div>
-            <div class="space" x="-3" y="0"><div class="c"></div></div>
-            <div class="space" x="-3" y="5"><div class="c"></div></div>
-            <div class="space" x="-4" y="0"><div class="c"></div></div>
-            <div class="space" x="-4" y="5"><div class="c"></div></div>
+            <div class="space" x="-1" y="2"><div class="c"></div></div>
+            <div class="space" x="-1" y="6"><div class="c"></div></div>
+            <div class="space" x="-2" y="2"><div class="c"></div></div>
+            <div class="space" x="-2" y="6"><div class="c"></div></div>
+            <div class="space" x="-3" y="2"><div class="c"></div></div>
+            <div class="space" x="-3" y="6"><div class="c"></div></div>
+            <div class="space" x="-4" y="2"><div class="c"></div></div>
+            <div class="space" x="-4" y="6"><div class="c"></div></div>
             <img class="houslovyKEY" src="images/HouslovyKEY.png">
             <div class="konecniTakt"></div>
         </div>
@@ -190,16 +218,16 @@
                 divimg.onmouseenter=showOptions;
                 containImg.appendChild(img)
                 divimg.appendChild(containImg);
-                if(this.getAttribute("x")){
+                if(this.getAttribute("x")&&selectedTool<7){
                     let container = document.createElement("div");
                     if(this.getAttribute("x")<0){
-                        container.style.bottom=this.getAttribute("y")+"px";
+                        container.style.bottom=+this.getAttribute("y")+ +selectedZnak+"px";
                         container.style.position="absolute";
                         for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
                             let space= document.createElement("div");
                             let line=document.createElement("div");
                             space.style.width="20px";
-                            space.style.height="9px";
+                            space.style.height="8px";
                             line.style.height="1px";
                             line.style.backgroundColor="black";
                             space.appendChild(line)
@@ -207,19 +235,19 @@
                         }
                         divimg.appendChild(container);
                     }else if(this.getAttribute("x")>0){
-                        if(this.getAttribute("y")){
-                            container.style.top="10px"
-                        }else{
-                            container.style.top="10px"
-                        }
+                        container.style.top=+this.getAttribute("y")+ -selectedZnak+"px";                        
                         container.style.position="absolute";
                         for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
                             let space= document.createElement("div");
                             let line=document.createElement("div");
                             space.style.width="20px";
-                            space.style.height="9px";
+                            space.style.height="8px";
+                            space.style.position="relative";
                             line.style.height="1px";
+                            line.style.width="20px";
                             line.style.backgroundColor="black";
+                            line.style.bottom="0px";
+                            line.style.position="absolute";
                             space.appendChild(line)
                             container.appendChild(space);
                         }
@@ -470,6 +498,11 @@
             else{
                 CanClickAnyWhere-=1;
             }
+            if(canclickStupnice==1){
+                document.getElementById("stupniceBar").style.display="none";
+            }else{
+                canclickStupnice-=1;
+            }
         }
     </script>
     <!-- Takty -->
@@ -481,7 +514,7 @@
         CanClickAnyWhere=2;
         function showTacts(){
             nabidkaTakty.style.display="grid";
-            nabidkaTakty.style.top=this.getBoundingClientRect().top+50+"px";
+            nabidkaTakty.style.top=+this.getBoundingClientRect().top+50+"px";
             nabidkaTakty.style.left=this.getBoundingClientRect().left+"px";
             CanClickAnyWhere=2;
             n=this
@@ -494,6 +527,23 @@
             y[i].onclick=function(){
                 n.src=y[i].src;
             }
+        }
+    </script>
+    <!-- Main Menu -->
+    <script>
+        canclickStupnice=0;
+        for(let i=0;i<7;i++){
+            let sDiv=document.createElement("div");
+            sDiv.classList.add("stupnice");
+            sDiv.style.left="px";
+        }
+        function stupnice(){
+            canclickStupnice=2;
+            document.getElementById("stupniceBar").style.top=+this.offsetTop + +20+"px"
+            document.getElementById("stupniceBar").style.display="flex";
+        }
+        document.getElementById("stupniceBar").onclick=function(){
+            canclickStupnice=2;
         }
     </script>
 </body>
