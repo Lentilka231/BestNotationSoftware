@@ -32,23 +32,11 @@
     <div id="stupniceBar">
         <div>
             Durové stupnice
-            <div>
+            <div style="position:relative">
+                <div id="UkazatelDS"  value="UDS">
+                    <img src="images/ukazatelS.png" style="height:25px;pointer-events: none" >
+                </div>
                 <div class="stupniceL">
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupniceC"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
-                    <div class="stupnice"></div>
                 </div>
             </div>
         </div>
@@ -132,14 +120,14 @@
             <div class="konecniTakt"></div>
         </div>
         <div class="row" style="margin-top:75px;">
-            <div class="space" x="4" y="6"><div class="c"></div></div>
-            <div class="space" x="4" y="2"><div class="c"></div></div>
-            <div class="space" x="3" y="6"><div class="c"></div></div>
-            <div class="space" x="3" y="2"><div class="c"></div></div>
-            <div class="space" x="2" y="6"><div class="c"></div></div>
-            <div class="space" x="2" y="2"><div class="c"></div></div>
-            <div class="space" x="1" y="6"><div class="c"></div></div>
-            <div class="space" x="1" y="2"><div class="c"></div></div>
+            <div class="space" x="4" y="7"><div class="c"></div></div>
+            <div class="space" x="4" y="3"><div class="c"></div></div>
+            <div class="space" x="3" y="7"><div class="c"></div></div>
+            <div class="space" x="3" y="3"><div class="c"></div></div>
+            <div class="space" x="2" y="7"><div class="c"></div></div>
+            <div class="space" x="2" y="3"><div class="c"></div></div>
+            <div class="space" x="1" y="7"><div class="c"></div></div>
+            <div class="space" x="1" y="3"><div class="c"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
@@ -503,8 +491,14 @@
             }else{
                 canclickStupnice-=1;
             }
+
         }
-    </script>
+        document.onmouseup=function(){
+            if(cursor){
+                cursor="";
+            }
+        }
+    </script>   
     <!-- Takty -->
     <script>
 
@@ -531,11 +525,20 @@
     </script>
     <!-- Main Menu -->
     <script>
+        stupniceDurove=["Ces","Ges","Des","As","Es","B","F","C","G","D","A","E","H","Fis","Cis"]
         canclickStupnice=0;
-        for(let i=0;i<7;i++){
+        let cursor="";
+        document.getElementById("UkazatelDS").onmousedown=function(){cursor=this.getAttribute("value")};
+        for(let i=0;i<15;i++){
             let sDiv=document.createElement("div");
+            let text= document.createElement("div");
+            text.innerText=stupniceDurove[i];
+            text.classList.add("textstupnice")
+            sDiv.appendChild(text);
             sDiv.classList.add("stupnice");
-            sDiv.style.left="px";
+            sDiv.style.left=400/14*i+"px";
+            document.getElementsByClassName("stupniceL")[0].appendChild(sDiv);
+
         }
         function stupnice(){
             canclickStupnice=2;
@@ -544,6 +547,18 @@
         }
         document.getElementById("stupniceBar").onclick=function(){
             canclickStupnice=2;
+        }
+        document.getElementById("stupniceBar").onmousemove=function(){
+            if(cursor=="UDS"){
+                
+                for(let i=0;i<15;i++){
+                    let h=window.event.clientX-document.getElementById("stupniceBar").getBoundingClientRect().left+ -35;
+
+                    if(h>Math.round(400/14*i)-5&&h<Math.round(400/14*i)+5){
+                        document.getElementById("UkazatelDS").style.left=Math.round(400/14*i)+"px";
+                    }
+                }
+            }
         }
     </script>
 </body>

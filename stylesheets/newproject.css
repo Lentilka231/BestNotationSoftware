@@ -1,4 +1,5 @@
 :root{
+    --red:rgb(194, 22, 22);
     --shadow1: rgb(153, 153, 153);
     --shadow2: rgb(200, 200, 200);
     --hover:rgb(176, 176, 176);
@@ -73,7 +74,7 @@ body{
     z-index: 5;
     width:350px;
     height:200px;
-    background-color: rgb(158, 50, 50);
+    background-color: var(--red);
     position: fixed;
     top:100px;
     left:50px;
@@ -85,6 +86,7 @@ body{
 }
 
 .tool{
+    cursor: pointer;
     border-radius: 10px;
     background-color: white;
     display:flex;
@@ -206,10 +208,15 @@ body{
     align-items: center;
 }
 .v{
+    cursor: pointer;
     height:30px;
     top:calc(50% - 15px);
     left:calc(50% - 8px);
     position: absolute;
+}
+.cImg{
+    cursor: pointer;
+
 }
 .options div{
     z-index:5;
@@ -220,8 +227,10 @@ body{
     left:-15px;
 }
 .stupniceL{
-    width:300px;
-    height:1px;
+    margin-top:50px;
+    margin-bottom:30px;
+    width:400px;
+    height:3px;
     background-color: black;
     position: relative;
 }
@@ -231,12 +240,14 @@ body{
     background-color: black;
     position: absolute;
     top:-5px;
+    display:flex;
+    justify-content: center;
 }
 #stupniceBar{
     text-align: center;
     display:none;
     z-index: 6;
-    width:350px;
+    width:450px;
     height:200px;
     background-color:var(--shadow2);
     position: fixed;
@@ -245,4 +256,19 @@ body{
     padding: 10px;   
     align-items: center;
     flex-direction: column;
+    font-size: 20px;
+
+}
+.textstupnice{
+    font-size: 16px;
+    position: relative;
+    top:10px;
+}
+#UkazatelDS{
+    cursor: pointer;
+    height:25px;
+    position: absolute;
+    left:200px;
+    transform: translate(-50%,0%);
+    top:-40px;
 }
