@@ -30,9 +30,9 @@
 
     </div>
     <div id="keysBar">
-        <img src="images/HouslovyKEY.png">
-        <img src="images/BasovyKEY.png">
-        <img src="images/.png">
+        <img src="images/HouslovyKEY.png" onclick="keyChange(0)">
+        <img src="images/BasovyKEY.png" onclick="keyChange(1)">
+        <img src="images/AltovyKey.png" onclick="keyChange(2)">
     </div>
     <div id="stupniceBar">
         <div style="position:relative">
@@ -50,14 +50,12 @@
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
-        <div class="" h="" x="" y="" value=""></div>
         <div class="tool" h="35" x="50" y="-19" znak="-10" value="0"><img src="images/celaNota.png"></div>
         <div class="tool" h="35" x="50" y="-19" znak="-10" value="1"><img src="images/pulovaNota.png"></div>
         <div class="tool" h="35" x="50" y="-19" znak="-10" value="2"><img src="images/ctvrtovaNota.png"></div>
         <div class="tool" h="35" x="48" y="-19" znak="-10" value="3"><img src="images/osminkaNota.png"></div>
         <div class="tool" h="35" x="48" y="-19" znak="-10" value="4"><img src="images/sestnatinkaNota.png"></div>
         <div class="tool" h="35" x="47" y="-19" znak="-10" value="5"><img src="images/tricetidvatinkaNota.png"></div>
-        <div class="tool" h="40" x="50" y="-21" znak="-10" value="6"><img src="images/sedesatictyritinkaNota.png"></div>
         <div class="tool" h="35" x="58" y="-8" znak="0" value="7"><img src="images/celaPomlka.png"></div>
         <div class="tool" h="35" x="58" y="-8" znak="0" value="8"><img src="images/pulovaPomlka.png"></div>
         <div class="tool" h="35" x="50" y="-8" znak="0" value="9"><img src="images/ctvrtovaPomlka.png"></div>
@@ -85,20 +83,20 @@
         <div id="MusicBY" contenteditable="true">Music by:</div>
         <div id="Arranged"contenteditable="true">Arranged by:</div>
         <div class="row" style="margin-top:200px;">
-            <div class="space" x="4" y="7"><div class="c"></div></div>
-            <div class="space" x="4" y="3"><div class="c"></div></div>
-            <div class="space" x="3" y="7"><div class="c"></div></div>
-            <div class="space" x="3" y="3"><div class="c"></div></div>
-            <div class="space" x="2" y="7"><div class="c"></div></div>
-            <div class="space" x="2" y="3"><div class="c"></div></div>
-            <div class="space" x="1" y="7"><div class="c"></div></div>
-            <div class="space" x="1" y="3"><div class="c"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space" o="t" x="4" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="4" y="3"><div class="c"></div></div>
+            <div class="space" o="t" x="3" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="3" y="3"><div class="c"></div></div>
+            <div class="space" o="t" x="2" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="2" y="3"><div class="c"></div></div>
+            <div class="space" o="t" x="1" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="1" y="3"><div class="c"></div></div>
+            <div class="space" o="t"><div class="c"></div></div>
+            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space" o="t"><div class="c"></div></div>
+            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space" o="t"><div class="c"></div></div>
+            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
@@ -113,7 +111,7 @@
             <div class="space" x="-4" y="2"><div class="c"></div></div>
             <div class="space" x="-4" y="6"><div class="c"></div></div>
             <div class="naLince">
-                <img class="houslovyKEY" src="images/HouslovyKEY.png">
+                <img class="key" src="images/HouslovyKEY.png">
                 <div class="preznamenani" id="prvnipreznameni"><img src=""></div>
                 <img class="takt" src="images/TaktC.png">
             </div>
@@ -121,20 +119,20 @@
             <div class="konecniTakt"></div>
         </div>
         <div class="row" style="margin-top:75px;">
-            <div class="space" x="4" y="7"><div class="c"></div></div>
-            <div class="space" x="4" y="3"><div class="c"></div></div>
-            <div class="space" x="3" y="7"><div class="c"></div></div>
-            <div class="space" x="3" y="3"><div class="c"></div></div>
-            <div class="space" x="2" y="7"><div class="c"></div></div>
-            <div class="space" x="2" y="3"><div class="c"></div></div>
-            <div class="space" x="1" y="7"><div class="c"></div></div>
-            <div class="space" x="1" y="3"><div class="c"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space" o="t" x="4" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="4" y="3"><div class="c"></div></div>
+            <div class="space" o="t" x="3" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="3" y="3"><div class="c"></div></div>
+            <div class="space" o="t" x="2" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="2" y="3"><div class="c"></div></div>
+            <div class="space" o="t" x="1" y="7"><div class="c"></div></div>
+            <div class="space" o="t" x="1" y="3"><div class="c"></div></div>
+            <div class="space" o="t"><div class="c"></div></div>
+            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space" o="t"><div class="c"></div></div>
+            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space" o="t"><div class="c"></div></div>
+            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
@@ -148,14 +146,15 @@
             <div class="space" x="-3" y="6"><div class="c"></div></div>
             <div class="space" x="-4" y="2"><div class="c"></div></div>
             <div class="space" x="-4" y="6"><div class="c"></div></div>
-            <img class="houslovyKEY" src="images/HouslovyKEY.png">
+            <div class="naLince">
+                <img class="key" src="images/HouslovyKEY.png">
+                <div class="preznamenani"><img src=""></div>
+            </div>
             <div class="konecniTakt"></div>
         </div>
-    </div>
     <!-- Vkládání not -->
     <script>
         const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka","tricetidvatinkaPomlka","taktovaCara"];
-        const takty=[]
         const page =document.getElementById("whitePage");
         let selectedTool=50;
         let selectedX;
@@ -188,7 +187,13 @@
                 let containImg =document.createElement("div"); 
                 containImg.style.position="relative";
                 containImg.classList.add("cImg");
-                img.src = "images/"+tools[selectedTool]+".png";
+                if(this.getAttribute("o")&&selectedTool>0&&selectedTool<7){
+                    img.src = "images/"+tools[selectedTool]+"O.png";
+                    img.style.marginTop="21px";
+                }else{
+                    img.src = "images/"+tools[selectedTool]+".png";
+                    img.style.marginTop="0px";
+                }
                 img.style.height = selectedH+"px";
                 containImg.style.height=selectedH+"px";
                 containImg.style.zIndex="5";
@@ -212,6 +217,7 @@
                     if(this.getAttribute("x")<0){
                         container.style.bottom=+this.getAttribute("y")+ +selectedZnak+"px";
                         container.style.position="absolute";
+                        container.classList.add("helpLine");
                         for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
                             let space= document.createElement("div");
                             let line=document.createElement("div");
@@ -226,6 +232,7 @@
                     }else if(this.getAttribute("x")>0){
                         container.style.top=+this.getAttribute("y")+ -selectedZnak+"px";                        
                         container.style.position="absolute";
+                        container.classList.add("helpLine");
                         for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
                             let space= document.createElement("div");
                             let line=document.createElement("div");
@@ -242,7 +249,6 @@
                         }
                         divimg.appendChild(container);
                     }
-
                 }
                 if(selectedTool<7){
                     this.getElementsByClassName("c")[0].appendChild(divimg);
@@ -250,10 +256,61 @@
                 else{
                     this.parentElement.getElementsByClassName("line")[2].appendChild(divimg);
                 }
-            }else{
+            }
+            else{
                 movingNote = document.getElementsByClassName("t")[0];
                 if(movingNote){
                     if(movingNote.getAttribute("value")<7){
+                        if(this.getAttribute("o")&&movingNote.getAttribute("value")!=0){
+                            movingNote.getElementsByClassName("n")[0].src = "images/"+tools[movingNote.getAttribute("value")]+"O.png";
+                            movingNote.getElementsByClassName("n")[0].style.marginTop="21px";
+                        }else{
+                            movingNote.getElementsByClassName("n")[0].src = "images/"+tools[movingNote.getAttribute("value")]+".png";
+                            movingNote.getElementsByClassName("n")[0].style.marginTop="0px";
+                        }
+                        if(movingNote.getElementsByClassName("helpLine")[0]){
+                            movingNote.getElementsByClassName("helpLine")[0].remove();
+                        }
+                        if(this.getAttribute("x")){
+                            let container = document.createElement("div");
+                            
+                            if(this.getAttribute("x")<0){
+                                container.style.bottom=+this.getAttribute("y")+ +movingNote.getAttribute("znak")+"px";
+                                container.style.position="absolute";
+                                container.classList.add("helpLine");
+                                for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
+                                    let space= document.createElement("div");
+                                    let line=document.createElement("div");
+                                    space.style.width="20px";
+                                    space.style.height="8px";
+                                    line.style.height="1px";
+                                    line.style.backgroundColor="black";
+                                    space.appendChild(line)
+                                    container.appendChild(space);
+                                }
+                                movingNote.appendChild(container);
+                            }
+                            else if(this.getAttribute("x")>0){
+                                container.style.top=+this.getAttribute("y")+ -movingNote.getAttribute("znak")+"px";                        
+                                container.style.position="absolute";
+                                container.classList.add("helpLine");
+                                for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
+                                    let space= document.createElement("div");
+                                    let line=document.createElement("div");
+                                    space.style.width="20px";
+                                    space.style.height="8px";
+                                    space.style.position="relative";
+                                    line.style.height="1px";
+                                    line.style.width="20px";
+                                    line.style.backgroundColor="black";
+                                    line.style.bottom="0px";
+                                    line.style.position="absolute";
+                                    space.appendChild(line)
+                                    container.appendChild(space);
+                                }
+                                movingNote.appendChild(container);
+                            }
+                        }
                         this.getElementsByClassName("c")[0].appendChild(movingNote);
                     }
                     else{
@@ -300,7 +357,13 @@
         function stopMovingNote(){
             if(document.getElementsByClassName("t")[0]){
                 movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("cImg")[0].getElementsByClassName("n")[0];
-                movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+".png";
+                if(movingNote.parentElement.parentElement.parentElement.parentElement.getAttribute("o")&&movingNote.parentElement.parentElement.getAttribute("value")!=0){
+                    movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+"O.png";
+                    movingNote.style.marginTop="21px";
+                }else{
+                    movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+".png";
+                    movingNote.style.marginTop="0px";
+                }
                 movingNote.parentElement.parentElement.classList.remove("t");
                 movingNote.parentElement.parentElement.style.zIndex=2;
             }
@@ -330,7 +393,14 @@
                     document.getElementsByClassName("options")[0].remove();
                 }
                 this.style.zIndex=5
-                this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
+                if(this.parentElement.parentElement.getAttribute("o")&&this.getAttribute("value")!=0){
+                    this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"OrangeO.png";
+                    this.getElementsByClassName("n")[0].style.marginTop="21px";
+                }else{
+                    this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
+                    this.getElementsByClassName("n")[0].style.marginTop="0px";
+                }
+                
                 if(!this.getElementsByClassName("options")[0]){
                     if(this.getAttribute("value")<7){
                         divOptions=document.createElement("div");
@@ -352,7 +422,13 @@
                         this.appendChild(divOptions);
                         this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
                         document.getElementsByClassName("options")[0].onmouseleave=function(){
-                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            if(this.parentElement.parentElement.parentElement.getAttribute("o")&&this.parentElement.getAttribute("value")!=0){
+                                this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
+                                this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
+                            }else{
+                                this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                                this.getElementsByClassName("n")[0].style.marginTop="0px";
+                            }
                             this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
                             this.parentElement.style.zIndex=2;
                             this.remove();
@@ -400,6 +476,7 @@
                         this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
                         document.getElementsByClassName("options")[0].onmouseleave=function(){
                             this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                            
                             this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
                             this.remove();
                         }
@@ -492,6 +569,11 @@
             }else{
                 canclickStupnice-=1;
             }
+            if(canclickKey==1){
+                document.getElementById("keysBar").style.display="none";
+            }else{
+                canclickKey-=1;
+            }
 
         }
         document.onmouseup=function(){
@@ -526,12 +608,20 @@
     </script>
     <!-- Main Menu -->
     <script>
-
+        canclickKey=0
         function keys(){
             document.getElementById("keysBar").style.display="flex";
-            document.getElementById("keysBar").style.left=""
+            canclickKey=2;
         }
-
+        const keysSRC=["images/HouslovyKEY.png","images/BasovyKEY.png","images/AltovyKEY.png"];
+        const keyheight=[70,48,53]
+        function keyChange(value){
+            let keys=document.getElementsByClassName("key");
+            for(let i=0;i<keys.length;i++){
+                keys[i].src=keysSRC[value];
+                keys[i].style.height=keyheight[value]+"px";
+            }
+        }
 
         stupniceDurove=["Ces","Ges","Des","As","Es","B","F","C","G","D","A","E","H","Fis","Cis"]
         canclickStupnice=0;
@@ -564,9 +654,12 @@
 
                     if(h>Math.round(400/14*i)-5&&h<Math.round(400/14*i)+5){
                         document.getElementById("UkazatelDS").style.left=Math.round(400/14*i)+"px";
-                        document.getElementById("prvnipreznameni").getElementsByTagName("img")[0].src="images/stupnice"+i+".png";
-                        if(i==7){
-                            document.getElementById("prvnipreznameni").getElementsByTagName("img")[0].src="";
+                        preznamenani=document.getElementsByClassName("preznamenani");
+                        for(let x=0;x<preznamenani.length;x++){
+                            preznamenani[x].getElementsByTagName("img")[0].src="images/stupnice"+i+".png";
+                            if(i==7){
+                                preznamenani[x].getElementsByTagName("img")[0].src="";
+                            }
                         }
                     }
                 }

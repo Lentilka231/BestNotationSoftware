@@ -30,15 +30,8 @@ body{
 .space,.spaceLine{
     height:4px;
 }
-
-.houslovyKEY{
-    height:70px    
-}
-.basovyKEY{
-    position: absolute;
-    top:0px;
-    left:0px;
-    height:50px    
+.key{
+    height: 70px;
 }
 .blackline{
     height:1px;
@@ -69,14 +62,14 @@ body{
 }
 #tools{
     z-index: 5;
-    width:350px;
+    width:300px;
     height:200px;
     background-color: var(--red);
     position: fixed;
     top:100px;
     left:50px;
     display:grid;
-    grid-template-columns: repeat(7,40px) ;
+    grid-template-columns: repeat(6,40px) ;
     grid-template-rows: repeat(5,40px);
     gap:10px;
     padding: 10px;
@@ -260,6 +253,7 @@ body{
     background-color: var(--shadow2);
     position:fixed;
     top:120px;
+    left:50px;
     padding:10px;
     align-items: center;
     justify-content: space-around;
