@@ -32,9 +32,6 @@ body{
 }
 
 .houslovyKEY{
-    position: absolute;
-    top:23px;
-    left:0px;
     height:70px    
 }
 .basovyKEY{
@@ -116,7 +113,7 @@ body{
     display:flex;
     align-items: center;
     position: absolute;
-    top:0px;
+    top:-10px;
     left:40px;
 }
 #mainBar{
@@ -155,9 +152,6 @@ body{
 }
 .takt{
     height: 42px;
-    position: absolute;
-    top:36px;
-    left:30px;
     cursor: pointer;
 }
 .takt:hover{
@@ -248,7 +242,7 @@ body{
     display:none;
     z-index: 6;
     width:450px;
-    height:200px;
+    height:100px;
     background-color:var(--shadow2);
     position: fixed;
     top:120px;
@@ -257,7 +251,26 @@ body{
     align-items: center;
     flex-direction: column;
     font-size: 20px;
-
+}
+#keysBar{
+    display:none;
+    z-index:6;
+    width:180px;
+    height:80px;
+    background-color: var(--shadow2);
+    position:fixed;
+    top:120px;
+    padding:10px;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+}
+#keysBar img{
+    height:60px;
+    border-radius:10px;
+}
+#keysBar img:hover{
+    background-color: var(--hover);
 }
 .textstupnice{
     font-size: 16px;
@@ -270,5 +283,18 @@ body{
     position: absolute;
     left:200px;
     transform: translate(-50%,0%);
-    top:-40px;
+}
+.preznamenani{
+    height:70px;
+}
+.preznamenani img{
+    height: 70px;
+}
+.naLince{
+    position: absolute;
+    top:22px;
+    left:0px;
+    width:fit-content;
+    display:flex;
+    align-items: center;
 }

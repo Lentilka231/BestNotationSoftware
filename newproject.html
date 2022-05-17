@@ -11,12 +11,12 @@
             <img src="images/newDocument.png" style="height:30px">
             <div>Nový dokument</div>
         </div>
-        <div class="cell">
-            <img src="images/HouslovyKEY.png">
+        <div class="cell" onclick="keys()">
+            <img src="images/HouslovyKEY.png" >
             <div>Klíč</div>
         </div>
         <div class="cell" onclick="stupnice()" >
-            <img src="images/krizek.png">
+            <img src="images/klomenob.png">
             <div>Stupnice</div>
         </div>
         <div class="cell">
@@ -29,19 +29,18 @@
         </div>
 
     </div>
+    <div id="keysBar">
+        <img src="images/HouslovyKEY.png">
+        <img src="images/BasovyKEY.png">
+        <img src="images/.png">
+    </div>
     <div id="stupniceBar">
-        <div>
-            Durové stupnice
-            <div style="position:relative">
-                <div id="UkazatelDS"  value="UDS">
-                    <img src="images/ukazatelS.png" style="height:25px;pointer-events: none" >
-                </div>
-                <div class="stupniceL">
-                </div>
+        <div style="position:relative">
+            <div id="UkazatelDS"  value="UDS">
+                <img src="images/ukazatelS.png" style="height:25px;pointer-events: none" >
             </div>
-        </div>
-        <div>
-            Molové stupnice
+            <div class="stupniceL">
+            </div>
         </div>
     </div>
     <div id="tools">
@@ -113,9 +112,11 @@
             <div class="space" x="-3" y="6"><div class="c"></div></div>
             <div class="space" x="-4" y="2"><div class="c"></div></div>
             <div class="space" x="-4" y="6"><div class="c"></div></div>
-            <img class="houslovyKEY" src="images/HouslovyKEY.png">
-            <div class="preznamenani"></div>
-            <img class="takt" src="images/TaktC.png">
+            <div class="naLince">
+                <img class="houslovyKEY" src="images/HouslovyKEY.png">
+                <div class="preznamenani" id="prvnipreznameni"><img src=""></div>
+                <img class="takt" src="images/TaktC.png">
+            </div>
             <div class="tempo"><img style="height:20px" src="images/ctvrtovaNota.png"> = <p contenteditable="true">60</p></div>
             <div class="konecniTakt"></div>
         </div>
@@ -525,6 +526,13 @@
     </script>
     <!-- Main Menu -->
     <script>
+
+        function keys(){
+            document.getElementById("keysBar").style.display="flex";
+            document.getElementById("keysBar").style.left=""
+        }
+
+
         stupniceDurove=["Ces","Ges","Des","As","Es","B","F","C","G","D","A","E","H","Fis","Cis"]
         canclickStupnice=0;
         let cursor="";
@@ -556,10 +564,16 @@
 
                     if(h>Math.round(400/14*i)-5&&h<Math.round(400/14*i)+5){
                         document.getElementById("UkazatelDS").style.left=Math.round(400/14*i)+"px";
+                        document.getElementById("prvnipreznameni").getElementsByTagName("img")[0].src="images/stupnice"+i+".png";
+                        if(i==7){
+                            document.getElementById("prvnipreznameni").getElementsByTagName("img")[0].src="";
+                        }
                     }
                 }
             }
         }
+    
+    
     </script>
 </body>
 </html>
