@@ -50,12 +50,12 @@
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
-        <div class="tool" h="35" x="50" y="-18" posuvka="-10" value="0"><img src="images/celaNota.png"></div>
-        <div class="tool" h="35" x="50" y="-18" posuvka="-10" value="1"><img src="images/pulovaNota.png"></div>
-        <div class="tool" h="35" x="50" y="-18" posuvka="-10" value="2"><img src="images/ctvrtovaNota.png"></div>
-        <div class="tool" h="35" x="50" y="-18" posuvka="-10" value="3"><img src="images/osminkaNota.png"></div>
-        <div class="tool" h="35" x="49" y="-18" posuvka="-10" value="4"><img src="images/sestnatinkaNota.png"></div>
-        <div class="tool" h="35" x="49" y="-18" posuvka="-10" value="5"><img src="images/tricetidvatinkaNota.png"></div>
+        <div class="tool" h="38" x="50" y="-19" posuvka="-10" value="0"><img src="images/celaNota.png"></div>
+        <div class="tool" h="38" x="50" y="-19" posuvka="-10" value="1"><img src="images/pulovaNota.png"></div>
+        <div class="tool" h="38" x="50" y="-19" posuvka="-10" value="2"><img src="images/ctvrtovaNota.png"></div>
+        <div class="tool" h="38" x="50" y="-18" posuvka="-10" value="3"><img src="images/osminkaNota.png"></div>
+        <div class="tool" h="38" x="49" y="-18" posuvka="-10" value="4"><img src="images/sestnatinkaNota.png"></div>
+        <div class="tool" h="38" x="49" y="-18" posuvka="-10" value="5"><img src="images/tricetidvatinkaNota.png"></div>
         <div class="tool" h="35" x="58" y="-8" posuvka="0" value="7"><img src="images/celaPomlka.png"></div>
         <div class="tool" h="35" x="58" y="-8" posuvka="0" value="8"><img src="images/pulovaPomlka.png"></div>
         <div class="tool" h="35" x="50" y="-8" posuvka="0" value="9"><img src="images/ctvrtovaPomlka.png"></div>
@@ -94,11 +94,11 @@
             <div class="space" o="t"><div class="c"></div></div>
             <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
             <div class="space" o="t"><div class="c"></div></div>
-            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="line" o="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
             <div class="space" o="t"><div class="c"></div></div>
-            <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="line" o="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="line" middle="t"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="line"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
@@ -271,6 +271,28 @@
                         if(movingNote.getElementsByClassName("helpLine")[0]){
                             movingNote.getElementsByClassName("helpLine")[0].remove();
                         }
+                        console.log(movingNote.getElementsByClassName("znamenko")[0]);
+                        if(movingNote.getElementsByClassName("znamenko")[0]){
+                            znakImg = movingNote.getElementsByClassName("znamenko")[0];
+                            if(this.getAttribute("middle")){
+                                if(this.getAttribute("o")){
+                                    console.log("1")
+                                    znakImg.style.top=+movingNote.getAttribute("top")+ -5+"px";
+                                }else{
+                                    console.log("2")
+                                    znakImg.style.top=+movingNote.getAttribute("top")+ +22+"px";
+                                }
+                            }
+                            else{
+                                if(this.getAttribute("o")){
+                                    console.log("3")
+                                    znakImg.style.top=+movingNote.getAttribute("top")+ -3+"px";
+                                }else{
+                                    console.log("4")
+                                    znakImg.style.top=+movingNote.getAttribute("top")+ +18+"px";
+                                }
+                            }
+                        }
                         if(this.getAttribute("x")){
                             let container = document.createElement("div");
                             
@@ -396,11 +418,40 @@
             }
             znakImg = document.createElement("img");
             znakImg.classList.add("znamenko");
+            znakImg.setAttribute("top",this.getAttribute("top"))
             znakImg.src=this.src;
+            k=this.parentElement.parentElement.getAttribute("value")
             if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
-                znakImg.style.top=+this.getAttribute("top")+ -30+"px";
-            }else{
-                znakImg.style.top=this.getAttribute("top")+"px";
+                if(k==0){
+                    znakImg.style.left="1px";
+                }else if(k==1||k==2){
+                    znakImg.style.left="-1px";
+                }else if(k>=3&&k<=6){
+                    znakImg.style.left="2px";
+                }
+            }
+            else{
+                if(k==0){
+                    znakImg.style.left="0px";
+                }else if(k==1||k==2){
+                    znakImg.style.left="-2px";
+                }else if(k>=3&&k<=6){
+                    znakImg.style.left="3px";
+                }
+            }
+            if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("middle")){
+                if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
+                    znakImg.style.top=+this.getAttribute("top")+ -20+"px";
+                }else{
+                    znakImg.style.top=+this.getAttribute("top")+ +8+"px";
+                }
+            }
+            else{
+                if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
+                    znakImg.style.top=+this.getAttribute("top")+ -16+"px";
+                }else{
+                    znakImg.style.top=+this.getAttribute("top")+ +3+"px";
+                }
             }
             znakImg.style.position="absolute";
             this.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
@@ -426,7 +477,7 @@
                         divOptions.classList.add("options");
                         let a=["images/krizek.png","images/becko.png","images/odrazka.png","images/akcent1.png","images/tenuto.png","images/krizekk.png"];
                         let b=[posuvka,posuvka,posuvka,znamenko,znamenko,notedelete];
-                        let top=[24,20,24,30,15,0];
+                        let top=[26,22,26,20,15,0];
                         for(let i=0;i<a.length;i++){
                             imgV=document.createElement("img");
                             imgV.src=a[i];
