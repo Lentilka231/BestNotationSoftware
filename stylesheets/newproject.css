@@ -208,10 +208,15 @@ body{
 .options div{
     z-index:5;
 }
-.znak{
+.posuvka{
     height:30px;
     position: absolute;
     left:-15px;
+}
+.znamenko{
+    height:30px;
+    position:absolute;
+    left:-2px;
 }
 .stupniceL{
     margin-top:50px;
