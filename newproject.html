@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <link rel="stylesheet" href="stylesheets/newproject.css">
     <meta charset="UTF-8">
@@ -93,14 +93,14 @@
             <div class="space" o="t" x="1" y="3"><div class="c"></div></div>
             <div class="space" o="t"><div class="c"></div></div>
             <div class="line" o="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space" o="t"><div class="c"></div></div>
-            <div class="line" o="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space" o="t"><div class="c"></div></div>
-            <div class="line" o="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line" middle="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="line"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"l="1" o="t"><div class="c"></div></div>
+            <div class="line" l="2"o="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"l="3" o="t"><div class="c"></div></div>
+            <div class="line" l="4" o="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"l="3"><div class="c"></div></div>
+            <div class="line" l="2"middle="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"l="1"><div class="c"></div></div>
+            <div class="line" ><div class="c"></div><div class="blackline"></div></div>
             <div class="space"><div class="c"></div></div>
             <div class="space" x="-1" y="2"><div class="c"></div></div>
             <div class="space" x="-1" y="6"><div class="c"></div></div>
@@ -420,42 +420,64 @@
             znakImg.classList.add("znamenko");
             znakImg.setAttribute("top",this.getAttribute("top"))
             znakImg.src=this.src;
-            k=this.parentElement.parentElement.getAttribute("value")
+            let k=this.parentElement.parentElement.getAttribute("value")
             if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
                 if(k==0){
                     znakImg.style.left="1px";
                 }else if(k==1||k==2){
                     znakImg.style.left="-1px";
-                }else if(k>=3&&k<=6){
+                }else if(k==3||k==4){
                     znakImg.style.left="2px";
+                }else{
+                    znakImg.style.left="1px";
                 }
-            }
-            else{
+            }else{
                 if(k==0){
                     znakImg.style.left="0px";
                 }else if(k==1||k==2){
                     znakImg.style.left="-2px";
-                }else if(k>=3&&k<=6){
+                }else if(k==3||k==4){
                     znakImg.style.left="3px";
+                }else{
+                    znakImg.style.left="1px";
                 }
             }
+            let j=this.getAttribute("znak");
+            if(j=="akcent1"){
+                if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("l")){
+                    if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
+                        znakImg.style.top=-this.getAttribute("top")*this.parentElement.parentElement.parentElement.parentElement.getAttribute("l")+ +8+"px";
+                    }else{
+                        znakImg.style.top=+this.getAttribute("top")*this.parentElement.parentElement.parentElement.parentElement.getAttribute("l")+ +22+"px";
+                    }
+                }else{
+                    if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
+                        znakImg.style.top="3px";
+                    }else{
+                        znakImg.style.top="27px";
+                    }
+                }
+            }else if(j=="tenuto"){
             if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("middle")){
                 if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
                     znakImg.style.top=+this.getAttribute("top")+ -20+"px";
                 }else{
                     znakImg.style.top=+this.getAttribute("top")+ +8+"px";
                 }
-            }
-            else{
+            }else{
                 if(this.parentElement.parentElement.parentElement.parentElement.getAttribute("o")){
                     znakImg.style.top=+this.getAttribute("top")+ -16+"px";
                 }else{
                     znakImg.style.top=+this.getAttribute("top")+ +3+"px";
                 }
             }
+            }
+            
             znakImg.style.position="absolute";
             this.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
         }
+        const znamenka=["krizek","becko","odrazka","akcent1","tenuto","krizekk"];
+
         function showOptions(){
             if(selectedTool==50&&!(document.getElementsByClassName("options")[0])&&!(document.getElementsByClassName("t")[0])){
                 if(document.getElementsByClassName("options")[0]){
@@ -475,12 +497,12 @@
                     if(this.getAttribute("value")<7){
                         divOptions=document.createElement("div");
                         divOptions.classList.add("options");
-                        let a=["images/krizek.png","images/becko.png","images/odrazka.png","images/akcent1.png","images/tenuto.png","images/krizekk.png"];
                         let b=[posuvka,posuvka,posuvka,znamenko,znamenko,notedelete];
-                        let top=[26,22,26,20,15,0];
-                        for(let i=0;i<a.length;i++){
+                        let top=[26,22,26,5,15,0];
+                        for(let i=0;i<znamenka.length;i++){
                             imgV=document.createElement("img");
-                            imgV.src=a[i];
+                            imgV.src="images/"+znamenka[i]+".png";
+                            imgV.setAttribute("znak",znamenka[i]);
                             imgV.classList.add("v");
                             imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
                             imgV.onmouseenter=function(){this.style.height="32px"};
