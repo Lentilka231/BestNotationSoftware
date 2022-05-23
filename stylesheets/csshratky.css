@@ -1,0 +1,29 @@
+#circle{
+    width:200px;
+    height:200px;
+    background-color: red;
+    border-radius: 50%;
+    position:relative   
+}
+.section{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:200px;
+    height:200px;
+    background-color: green;
+    transition:all 100ms ease;}
+    
+.s1{
+    border-radius: 50% 50% 0 0;
+    transform:rotate(33deg);
+}
+.s2{
+}
+.s3{
+}
+.section:hover{
+    width:250px;
+    height:250px;
+}

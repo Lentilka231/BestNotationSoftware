@@ -92,24 +92,24 @@
             <div class="space" TonVzhuruNohama="t" x="1" y="7"><div class="c"></div></div>
             <div class="space" TonVzhuruNohama="t" x="1" y="3"><div class="c"></div></div>
             <div class="space" TonVzhuruNohama="t"><div class="c"></div></div>
-            <div class="line" TonVzhuruNohama="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"prostredniTony="1" TonVzhuruNohama="t"><div class="c"></div></div>
-            <div class="line" prostredniTony="2"TonVzhuruNohama="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"prostredniTony="3" TonVzhuruNohama="t"><div class="c"></div></div>
-            <div class="line" prostredniTony="4" TonVzhuruNohama="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"prostredniTony="3"><div class="c"></div></div>
-            <div class="line" prostredniTony="2"middle="t"><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"prostredniTony="1"><div class="c"></div></div>
-            <div class="line" ><div class="c"></div><div class="blackline"></div></div>
-            <div class="space"><div class="c"></div></div>
-            <div class="space" x="-1" y="2"><div class="c"></div></div>
-            <div class="space" x="-1" y="6"><div class="c"></div></div>
-            <div class="space" x="-2" y="2"><div class="c"></div></div>
-            <div class="space" x="-2" y="6"><div class="c"></div></div>
-            <div class="space" x="-3" y="2"><div class="c"></div></div>
-            <div class="space" x="-3" y="6"><div class="c"></div></div>
-            <div class="space" x="-4" y="2"><div class="c"></div></div>
-            <div class="space" x="-4" y="6"><div class="c"></div></div>
+            <div class="line" z="1" TonVzhuruNohama="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"z="1"prostredniTony="1" TonVzhuruNohama="t"><div class="c"></div></div>
+            <div class="line" z="2"prostredniTony="2"TonVzhuruNohama="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"z="3"prostredniTony="3" TonVzhuruNohama="t"><div class="c"></div></div>
+            <div class="line" z="4"prostredniTony="4" TonVzhuruNohama="t" middle="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"z="5"prostredniTony="3"><div class="c"></div></div>
+            <div class="line" z="6"prostredniTony="2"middle="t"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"z="7"prostredniTony="1"><div class="c"></div></div>
+            <div class="line" z="8"><div class="c"></div><div class="blackline"></div></div>
+            <div class="space"z="9"><div class="c"></div></div>
+            <div class="space"z="10" x="-1" y="2"><div class="c"></div></div>
+            <div class="space"z="11" x="-1" y="6"><div class="c"></div></div>
+            <div class="space"z="12" x="-2" y="2"><div class="c"></div></div>
+            <div class="space"z="13" x="-2" y="6"><div class="c"></div></div>
+            <div class="space"z="14" x="-3" y="2"><div class="c"></div></div>
+            <div class="space"z="15" x="-3" y="6"><div class="c"></div></div>
+            <div class="space"z="16" x="-4" y="2"><div class="c"></div></div>
+            <div class="space"z="17" x="-4" y="6"><div class="c"></div></div>
             <div class="naLince">
                 <img class="key" src="images/HouslovyKEY.png">
                 <div class="preznamenani" id="prvnipreznameni"><img src=""></div>
@@ -522,13 +522,7 @@
                 }
             }
             else if(j=="korunka"){
-                if(radek.getAttribute("prostredniTony")){
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?
-                    -5*radek.getAttribute("prostredniTony")+ +8+"px":
-                    +5*radek.getAttribute("prostredniTony")+ +22+"px";
-                }else{
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"3px":"27px";
-                }
+                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+5+"px":"0.5px";
                 if(radek.getAttribute("TonVzhuruNohama")){
                     znakImg.style.left= 
                     k==0?"0px":
@@ -538,9 +532,9 @@
                 }
                 else{
                     znakImg.style.left= 
-                    k==0?"-1px":
+                    k==0?"0px":
                     k==1||k==2?"-2px":
-                    k==3||k==4?"2px":
+                    k==3||k==4?"3px":
                     "1px";
                 }
             }
