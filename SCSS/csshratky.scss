@@ -17,10 +17,16 @@
             fill: green;
         }
         .s2{
-            fill:blue;
+            fill:black;
         }
         .s3{
             fill:red;
+        }
+        .s4{
+            fill:blue;
+        }
+        &:hover{
+            
         }
     }
 }
