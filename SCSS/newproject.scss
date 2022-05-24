@@ -108,6 +108,7 @@ body{
     top:-10px;
     left:40px;
 }
+
 #mainBar{
     top:0;
     left:0;
@@ -118,30 +119,43 @@ body{
     background-color: rgb(200, 200, 200);
     display:flex;
     align-items: center;
-    justify-content: flex-start;
-    column-gap:20px;
     padding:5px 20px;
     font-family: Arial, Helvetica, sans-serif;
+    #stupniceBar{
+        text-align: center;
+        width:450px;
+        background-color:var($shadow2);
+        padding: 10px;   
+        display:flex;
+        align-items: center;
+        flex-direction: column;
+        font-size: 20px;
+    }
 }   
 .cell{
-    cursor: pointer;
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-end;
     height:75px;
     width:60px;
     text-align: center;
     align-items: center;
     font-size: 14px;
-    border-radius:5px;
     padding:5px;
+    border-left:1px solid rgb(155, 155, 155);
+    img{
+        cursor: pointer;
+        padding: 5px;
+        height:50px;
+    }
 }
-.cell img{
-    height:50px;
+.KEYS{
+    display:flex;
+    justify-content: space-around;
+    width:150px;
+    align-items: center;
+    img:hover{
+        background-color: $hover;
+    }
 }
-.cell:hover{
-    background-color: var($hover);
-}
+
 .takt{
     height: 42px;
     cursor: pointer;
@@ -234,21 +248,7 @@ body{
     display:flex;
     justify-content: center;
 }
-#stupniceBar{
-    text-align: center;
-    display:none;
-    z-index: 6;
-    width:450px;
-    height:100px;
-    background-color:var($shadow2);
-    position: fixed;
-    top:120px;
-    left:50px;
-    padding: 10px;   
-    align-items: center;
-    flex-direction: column;
-    font-size: 20px;
-}
+
 #keysBar{
     display:none;
     z-index:6;
