@@ -1,0 +1,26 @@
+.pie{
+    width: 230px;
+    height: 230px;
+}
+.options{
+    margin:200px;
+    position:relative;
+    width:200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg{
+        fill: transparent;
+        position: absolute;
+        .s1 {
+            fill: green;
+        }
+        .s2{
+            fill:blue;
+        }
+        .s3{
+            fill:red;
+        }
+    }
+}
