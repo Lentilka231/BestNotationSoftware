@@ -11,13 +11,19 @@
             <img src="images/newDocument.png" style="height:30px">
             <div>Nový dokument</div>
         </div>
-        <div class="cell" onclick="keys()">
-            <img src="images/HouslovyKEY.png" >
-            <div>Klíč</div>
+        <div class="cell" id="KEYS">
+            <img src="images/HouslovyKEY.png" onclick="keyChange(0)">
+            <img src="images/BasovyKEY.png" onclick="keyChange(1)">
+            <img src="images/AltovyKEY.png" onclick="keyChange(2)">
         </div>
-        <div class="cell" onclick="stupnice()" >
-            <img src="images/klomenob.png">
-            <div>Stupnice</div>
+        <div class="cell"id="stupniceBar">
+            <div style="position:relative">
+                <div id="UkazatelDS"  value="UDS">
+                    <img src="images/ukazatelS.png" style="height:25px;pointer-events: none" >
+                </div>
+                <div class="stupniceL">
+                </div>
+            </div>
         </div>
         <div class="cell">
             <img src="images/HouslovyKEY.png">
@@ -30,19 +36,9 @@
 
     </div>
     <div id="keysBar">
-        <img src="images/HouslovyKEY.png" onclick="keyChange(0)">
-        <img src="images/BasovyKEY.png" onclick="keyChange(1)">
-        <img src="images/AltovyKey.png" onclick="keyChange(2)">
+
     </div>
-    <div id="stupniceBar">
-        <div style="position:relative">
-            <div id="UkazatelDS"  value="UDS">
-                <img src="images/ukazatelS.png" style="height:25px;pointer-events: none" >
-            </div>
-            <div class="stupniceL">
-            </div>
-        </div>
-    </div>
+    
     <div id="tools">
         <div class="tool" h="" x="" y="" id="cursor" value="50" style="background:radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(167, 167, 167) 100%)"><img src="images/cursor.png"></div>
         <div class="" h="" x="" y="" value=""></div>
@@ -538,9 +534,60 @@
                     "1px";
                 }
             }
+            else if(j=="marcato"){
+                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+5+"px":"0.5px";
+                if(radek.getAttribute("TonVzhuruNohama")){
+                    znakImg.style.left= 
+                    k==0?"2px":
+                    k==1||k==2?"2px":
+                    k==3||k==4?"4px":
+                    "3px";
+                }
+                else{
+                    znakImg.style.left= 
+                    k==0?"2px":
+                    k==1||k==2?"0px":
+                    k==3||k==4?"5px":
+                    "4px";
+                }
+            }
+            else if(j=="trilek"){
+                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+1+"px":"0.5px";
+                if(radek.getAttribute("TonVzhuruNohama")){
+                    znakImg.style.left= 
+                    k==0?"-5px":
+                    k==1||k==2?"-5px":
+                    k==3||k==4?"-3px":
+                    "-4px";
+                }
+                else{
+                    znakImg.style.left= 
+                    k==0?"-5px":
+                    k==1||k==2?"-5px":
+                    k==3||k==4?"1px":
+                    "-1px";
+                }
+            }
+            else if(j=="natryl"){
+                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+1+"px":"0.5px";
+                if(radek.getAttribute("TonVzhuruNohama")){
+                    znakImg.style.left= 
+                    k==0?"-5px":
+                    k==1||k==2?"-5px":
+                    k==3||k==4?"-3px":
+                    "-4px";
+                }
+                else{
+                    znakImg.style.left= 
+                    k==0?"-5px":
+                    k==1||k==2?"-5px":
+                    k==3||k==4?"1px":
+                    "-1px";
+                }
+            }
             this.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
         }
-        const znamenka=["krizek","becko","odrazka","akcent1","tenuto","prodluzovak","staccato","korunka","krizekk"];
+        const znamenka=["krizek","becko","odrazka","akcent1","tenuto","prodluzovak","staccato","korunka","marcato","trilek","natryl","krizekk"];
 
         function showOptions(){
             if(selectedTool==50&&!(document.getElementsByClassName("options")[0])&&!(document.getElementsByClassName("t")[0])){
@@ -562,7 +609,7 @@
                         this.parentElement.parentElement.parentElement.style.zIndex=2;  
                         divOptions=document.createElement("div");
                         divOptions.classList.add("options");
-                        let b=[posuvka,posuvka,posuvka,znamenko,znamenko,znamenko,znamenko,znamenko,notedelete];
+                        let b=[posuvka,posuvka,posuvka,znamenko,znamenko,znamenko,znamenko,znamenko,znamenko,znamenko,znamenko,notedelete];
                         let top=[26,22,26];
                         for(let i=0;i<znamenka.length;i++){
                             imgV=document.createElement("img");
@@ -763,16 +810,6 @@
             else{
                 CanClickAnyWhere-=1;
             }
-            if(canclickStupnice==1){
-                document.getElementById("stupniceBar").style.display="none";
-            }else{
-                canclickStupnice-=1;
-            }
-            if(canclickKey==1){
-                document.getElementById("keysBar").style.display="none";
-            }else{
-                canclickKey-=1;
-            }
 
         }
         document.onmouseup=function(){
@@ -807,23 +844,16 @@
     </script>
     <!-- Main Menu -->
     <script>
-        canclickKey=0
-        function keys(){
-            document.getElementById("keysBar").style.display="flex";
-            canclickKey=2;
-        }
         const keysSRC=["images/HouslovyKEY.png","images/BasovyKEY.png","images/AltovyKEY.png"];
-        const keyheight=[70,48,53]
         function keyChange(value){
             let keys=document.getElementsByClassName("key");
             for(let i=0;i<keys.length;i++){
                 keys[i].src=keysSRC[value];
-                keys[i].style.height=keyheight[value]+"px";
+                keys[i].style.height="70px";
             }
         }
 
         stupniceDurove=["Ces","Ges","Des","As","Es","B","F","C","G","D","A","E","H","Fis","Cis"]
-        canclickStupnice=0;
         let cursor="";
         document.getElementById("UkazatelDS").onmousedown=function(){cursor=this.getAttribute("value")};
         for(let i=0;i<15;i++){
@@ -837,14 +867,7 @@
             document.getElementsByClassName("stupniceL")[0].appendChild(sDiv);
 
         }
-        function stupnice(){
-            canclickStupnice=2;
-            document.getElementById("stupniceBar").style.top=+this.offsetTop + +20+"px"
-            document.getElementById("stupniceBar").style.display="flex";
-        }
-        document.getElementById("stupniceBar").onclick=function(){
-            canclickStupnice=2;
-        }
+
         document.getElementById("stupniceBar").onmousemove=function(){
             if(cursor=="UDS"){
                 
