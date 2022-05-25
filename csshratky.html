@@ -7,22 +7,41 @@
 </head>
 <body>
     <div class="options" style="margin:200px">
-        <svg class="pie" style="transform:rotate(0deg) translate(5px,0px)">
-            <circle cx="80" cy="80" r="70"></circle>
-            <path class="s1" d="M80,80 L80,10 A70,70 1 0,1 147.33,99.16 z"></path>
+        <svg class="pie" style="z-index: 6;">
+            <g >
+                <path class="s1" d="M80,80 L24.5,37.4 A70,70 1 0,1 135.5,37.4 z"></path>
+            </g>
         </svg>
-        <svg class="pie" style="transform:rotate(105deg) translate(5px,0px)">
-            <circle cx="80" cy="80" r="70"></circle>
-            <path class="s2" d="M80,80 L80,10 A70,70 1 0,1 105.29,14.73 z"></path>
+        <svg class="pie" style="z-index: 5;">
+            <g>
+                <path class="s2" d="M80,80 L67.2,11.2 A70,70 1 0,1 92.8,11.2 z"></path>
+            </g>
         </svg>
-        <svg class="pie" style="transform:rotate(126deg)"">
-            <circle cx="80" cy="80" r="70"></circle>
-            <path class="s3" d="M80,80 L80,10 A70,70 1 0,1 135.86,122.18 z"></path>
+        <!-- <svg class="pie">
+            <g>
+                <path class="s3" d="M80,80 L17.6,48.2 A70,70 1 0,1 142.4,48.2 z"></path>
+            </g>
         </svg>
-        <svg class="pie" style="transform:rotate(252deg)">
-            <circle cx="80" cy="80" r="70"></circle>
-            <path class="s4" d="M80,80 L80,10 A70,70 1 0,1 146.5,101.55 z"></path>
-        </svg>
+        <svg class="pie">
+            <g>
+                <path class="s4" d="M80,80 L24.5,37.5 A70,70 1 0,1 135.5,37.4 z"></path>
+            </g>
+        </svg> -->
     </div>
+    <script>
+        const pies=document.getElementsByClassName("pie");
+        const g =document.getElementsByTagName("g");
+        const rotation=["52.5","115.5","190.6","307"] 
+        for(let i=0;i<pies.length;i++){
+            g[i].onmouseenter=function(){
+                console.log(1)
+                pies[i].style.transform=`translate(5px,0px) rotate(${rotation[i]}deg) scale(1.1)`
+            }
+            g[i].onmouseout=function(){
+                console.log(2)
+                pies[i].style.transform=`translate(5px,0px) rotate(${rotation[i]}deg)`
+            }
+        }
+    </script>
 </body>
 </html>
