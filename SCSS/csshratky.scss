@@ -1,19 +1,18 @@
-.pie{
-    width: 230px;
-    height: 230px;
-}
 .options{
-    margin:200px;
     position:relative;
-    width:200px;
-    height: 200px;
+    width:170px;
+    height: 170px;
     display: flex;
     justify-content: center;
     align-items: center;
     svg{
+        width: 160px;
+        height: 160px;
+        transform-origin: 80px 80px;
         fill: transparent;
         position: absolute;
         .s1 {
+            
             fill: green;
         }
         .s2{
@@ -25,8 +24,9 @@
         .s4{
             fill:blue;
         }
-        &:hover{
-            
+        path:hover &{
+            width:170px;
+            height:170px
         }
     }
 }
