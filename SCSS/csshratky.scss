@@ -13,19 +13,41 @@
             transition:all 100ms;
             transform-origin:80px 80px;
         }
-        path:hover{
-            transform:scale(1.1);
+    }
+
+    .sections:nth-child(2){
+        top:35px;
+        left:105px;
+    }
+    .sections:nth-child(3){
+        top:98px;
+        left:125px;
+    }
+    .sections:nth-child(4){
+        top:100px;
+        left:55px;
+    }
+    .sections:nth-child(5){
+        top:35px;
+        left:30px;
+    }
+    .sections{
+        z-index: 2;
+        position:absolute;
+        img{
+            height:40px;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .hidden{
+            display:none;
+            position: relative;
+            img{
+                position:absolute;
+                height:27px;
+                user-select: none;
+                -webkit-user-drag: none;
+            }
         }
     }
-    img{
-        height:30px;
-        user-select: none;
-        -webkit-user-drag: none;
-    }
-}
-.sections{
-    z-index: 2;
-    position:absolute;
-    top:40px;
-    left:110px;
 }

@@ -9,24 +9,48 @@
 
     <div class="options" style="margin:200px">
         <svg width="160px" height="160px">
-            <g>
-                <path class="s" style="fill: rgba(0, 128, 0, 0.5);"  d="M80,80 L80,10 A70,70 1 0,1 147.3,99.2 z">
-                </path>
-            </g>
-            <g>
-                <path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L147.3,99.2 A70,70 1 0,1 135.9,122.2 z"></path>
-            </g>
-            <g>
-                <path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L135.9,122.2 A70,70 1 0,1 12.7,99.2 z"></path>
-            </g>
-            <g>
-                <path class="s" style="fill:rgba(0, 0, 255, 0.5)" d="M80,80 L12.7,99.2 A70,70 1 0,1 80,10 z"></path>
-            </g>
+            <g><path class="s" style="fill: rgba(0, 128, 0, 0.5);"  d="M80,80 L80,10 A70,70 1 0,1 147.3,99.2 z"></path></g>
+            <g><path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L147.3,99.2 A70,70 1 0,1 135.9,122.2 z"></path></g>
+            <g><path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L135.9,122.2 A70,70 1 0,1 12.7,99.2 z"></path></g>
+            <g><path class="s" style="fill:rgba(0, 0, 255, 0.5)" d="M80,80 L12.7,99.2 A70,70 1 0,1 80,10 z"></path></g>
         </svg>
         <div class="sections">
             <img src="images/krizek.png" >
+            <div class="hidden">
+                <img src="/images/krizek.png" style="top:-24px;left:-14px">
+                <img src="/images/becko.png"style="top:-8px;left:12px">
+                <img src="/images/odrazka.png"style="top:24px;left:29px">
+                <img src="/images/dvakratkrizek.png"style="top:0px;left:-20px">
+                <img src="/images/dvakratbecko.png"style="top:20px;left:-1px">
+            </div>
         </div>
-        
+        <div class="sections">
+            <img src="images/krizekk.png" style="height:15px;">
+            <div class="hidden">
+            <img src="images/krizekk.png" style="height:15px;top:2px;left:5px">
+            </div>
+        </div>
+        <div class="sections">
+            <img src="images/korunka.png">
+            <div class="hidden">
+                <img src="images/prodluzovakICON.png" style="top:13px;left:50px;">
+                <img src="images/staccatoICON.png" style="top:23px;left:20px;">
+                <img src="images/tenutoICON.png" style="top:17px;left:-10px">
+                <img src="images/korunkaICON.png" style="top:-3px;left:-30px">
+                <img src="images/akcentICON.png" style="top:-5px;left:25px;">
+                <img src="images/marcatoICON.png" style="top:-10px;left:0px;">
+            </div>
+        </div>
+        <div class="sections">
+            <img src="images/trilek.png" >
+            <div class="hidden">
+                <img src="images/trilek.png" style="top:30px;left:-25px;">
+                <img src="images/natryl.png" style="top:-5px;left:-12px;">
+                <img src="images/mordent.png" style="top:-22px;left:15px;">
+                <img src="images/obal1.png" style="top:22px;left:0px;">
+                <img src="images/obal2.png" style="top:5px;left:15px;">
+            </div>
+        </div>
     </div>
     <script>
         const pies=document.getElementsByClassName("sections");
@@ -34,15 +58,18 @@
         for(let i=0;i<pies.length;i++){
             s[i].onmouseenter=function(){
                 s[i].style.transform="scale(1.1)";
+                pies[i].getElementsByTagName("img")[0].style.display="none";
+                pies[i].getElementsByClassName("hidden")[0].style.display="block";
             }
             s[i].onmouseout=function(){
                 s[i].style.transform="scale(1)";
+                pies[i].getElementsByTagName("img")[0].style.display="block"
+                pies[i].getElementsByClassName("hidden")[0].style.display="none";
             }
             pies[i].onmouseenter=function(){
                 s[i].style.transform="scale(1.1)";
-            }
-            pies[i].onmouseout=function(){
-                s[i].style.transform="scale(1)";
+                pies[i].getElementsByTagName("img")[0].style.display="none";
+                pies[i].getElementsByClassName("hidden")[0].style.display="block";
             }
         }
     </script>
