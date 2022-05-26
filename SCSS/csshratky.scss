@@ -6,40 +6,26 @@
     justify-content: center;
     align-items: center;
     svg{
-        width:100px;
-        height:100px;
-        transform-origin: 80px 85px;
+        transform-origin: 80px 80px;
         position: absolute;
         fill: transparent;
-        .s1 {
-            
-            fill: green;
+        path{
+            transition:all 100ms;
+            transform-origin:80px 80px;
         }
-        .s2{
-            fill:black;
+        path:hover{
+            transform:scale(1.1);
         }
-        .s3{
-            fill:red;
-        }
-        .s4{
-            fill:blue;
-        }
-        
     }
-    svg:nth-child(1){
-        transform:translate(5px,0px) rotate(52.5deg);
+    img{
+        height:30px;
+        user-select: none;
+        -webkit-user-drag: none;
     }
-    
-    svg:nth-child(2){
-        transform:translate(5px,0px) rotate(115.5deg);
-
-    }
-    svg:nth-child(3){
-        transform:translate(5px,0px) rotate(190.6deg);
-
-    }
-    svg:nth-child(4){
-        transform:translate(5px,0px) rotate(307deg);
-
-    }
+}
+.sections{
+    z-index: 2;
+    position:absolute;
+    top:40px;
+    left:110px;
 }

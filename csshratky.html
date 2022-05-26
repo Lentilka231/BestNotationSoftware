@@ -6,40 +6,43 @@
     <title>Not so important</title>
 </head>
 <body>
+
     <div class="options" style="margin:200px">
-        <svg class="pie" style="z-index: 6;">
-            <g >
-                <path class="s1" d="M80,80 L24.5,37.4 A70,70 1 0,1 135.5,37.4 z"></path>
+        <svg width="160px" height="160px">
+            <g>
+                <path class="s" style="fill: rgba(0, 128, 0, 0.5);"  d="M80,80 L80,10 A70,70 1 0,1 147.3,99.2 z">
+                </path>
+            </g>
+            <g>
+                <path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L147.3,99.2 A70,70 1 0,1 135.9,122.2 z"></path>
+            </g>
+            <g>
+                <path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L135.9,122.2 A70,70 1 0,1 12.7,99.2 z"></path>
+            </g>
+            <g>
+                <path class="s" style="fill:rgba(0, 0, 255, 0.5)" d="M80,80 L12.7,99.2 A70,70 1 0,1 80,10 z"></path>
             </g>
         </svg>
-        <svg class="pie" style="z-index: 5;">
-            <g>
-                <path class="s2" d="M80,80 L67.2,11.2 A70,70 1 0,1 92.8,11.2 z"></path>
-            </g>
-        </svg>
-        <!-- <svg class="pie">
-            <g>
-                <path class="s3" d="M80,80 L17.6,48.2 A70,70 1 0,1 142.4,48.2 z"></path>
-            </g>
-        </svg>
-        <svg class="pie">
-            <g>
-                <path class="s4" d="M80,80 L24.5,37.5 A70,70 1 0,1 135.5,37.4 z"></path>
-            </g>
-        </svg> -->
+        <div class="sections">
+            <img src="images/krizek.png" >
+        </div>
+        
     </div>
     <script>
-        const pies=document.getElementsByClassName("pie");
-        const g =document.getElementsByTagName("g");
-        const rotation=["52.5","115.5","190.6","307"] 
+        const pies=document.getElementsByClassName("sections");
+        const s = document.getElementsByClassName("s");
         for(let i=0;i<pies.length;i++){
-            g[i].onmouseenter=function(){
-                console.log(1)
-                pies[i].style.transform=`translate(5px,0px) rotate(${rotation[i]}deg) scale(1.1)`
+            s[i].onmouseenter=function(){
+                s[i].style.transform="scale(1.1)";
             }
-            g[i].onmouseout=function(){
-                console.log(2)
-                pies[i].style.transform=`translate(5px,0px) rotate(${rotation[i]}deg)`
+            s[i].onmouseout=function(){
+                s[i].style.transform="scale(1)";
+            }
+            pies[i].onmouseenter=function(){
+                s[i].style.transform="scale(1.1)";
+            }
+            pies[i].onmouseout=function(){
+                s[i].style.transform="scale(1)";
             }
         }
     </script>
