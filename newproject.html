@@ -6,6 +6,55 @@
     <title>New Project</title>
 </head>
 <body>
+    <div id="secret">
+        <div class="options">
+            <div style="top:12px;position:absolute">
+                <svg width="160px" height="160px">
+                    <g><path class="s" style="fill: rgba(0, 128, 0, 0.5);"  d="M80,80 L80,10 A70,70 1 0,1 147.3,99.2 z"></path></g>
+                    <g><path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L147.3,99.2 A70,70 1 0,1 135.9,122.2 z"></path></g>
+                    <g><path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L135.9,122.2 A70,70 1 0,1 12.7,99.2 z"></path></g>
+                    <g><path class="s" style="fill:rgba(0, 0, 255, 0.5)" d="M80,80 L12.7,99.2 A70,70 1 0,1 80,10 z"></path></g>
+                </svg>
+                <div class="sections" style="top:40px;left:25px;">
+                    <img src="images/krizek.png" >
+                    <div class="hidden">
+                        <img src="images/krizek.png" onclick="posuvka(this,17)" style="top:-24px;left:-14px">
+                        <img src="images/becko.png" onclick="posuvka(this,13)"  style="top:-8px;left:12px">
+                        <img src="images/odrazka.png" onclick="posuvka(this,17)" style="top:24px;left:29px">
+                        <img src="images/dvakratkrizek.png" onclick="posuvka(this,15,-25)" style="top:0px;left:-20px">
+                        <img src="images/dvakratbecko.png" onclick="posuvka(this,11,-25)" style="top:20px;left:-1px">
+                    </div>
+                </div>
+                <div class="sections"style="top:98px;left:45px;">
+                    <img src="images/krizekk.png" style="height:15px;">
+                    <div class="hidden">
+                        <img src="images/krizekk.png" onclick="notedelete()" style="height:15px;top:2px;left:5px">
+                    </div>
+                </div>
+                <div class="sections" style="top:100px;left:-25px;">
+                    <img src="images/korunka.png">
+                    <div class="hidden">
+                        <img src="images/prodluzovakICON.png" onclick="" style="top:13px;left:50px;">
+                        <img src="images/staccatoICON.png" style="top:23px;left:20px;">
+                        <img src="images/tenutoICON.png" style="top:17px;left:-10px">
+                        <img src="images/korunkaICON.png" style="top:-3px;left:-30px">
+                        <img src="images/akcentICON.png" style="top:-5px;left:25px;">
+                        <img src="images/marcatoICON.png" style="top:-10px;left:0px;">
+                    </div>
+                </div>
+                <div class="sections" style="top:35px;left:-50px;">
+                    <img src="images/trilek.png" >
+                    <div class="hidden">
+                        <img src="images/trilek.png" style="top:30px;left:-25px;">
+                        <img src="images/natryl.png" style="top:-5px;left:-12px;">
+                        <img src="images/mordent.png" style="top:-22px;left:15px;">
+                        <img src="images/obal1.png" style="top:22px;left:0px;">
+                        <img src="images/obal2.png" style="top:5px;left:15px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="mainBar">
         <div class="cell">
             <img src="images/newDocument.png" style="height:30px">
@@ -399,23 +448,25 @@
                 movingNote.parentElement.parentElement.style.zIndex=2;
             }
         }
+        // vše týkající se barevného kolečka :D
         function notedelete(){
             this.parentElement.parentElement.remove();
         }
-        function posuvka(){
-            if(this.parentElement.parentElement.getElementsByClassName("posuvka")[0]){
-                if(this.src==this.parentElement.parentElement.getElementsByClassName("posuvka")[0].src){
-                    this.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
+        function posuvka(ps,top,left){
+            if(ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0]){
+                if(ps.src==ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].src){
+                    ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
                     return
                 }
-                this.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
+                ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
             }
             znakImg = document.createElement("img");
             znakImg.classList.add("posuvka");
-            znakImg.src=this.src;
+            znakImg.src=ps.src;
             znakImg.style.position="absolute";
-            znakImg.style.top=+this.parentElement.parentElement.getAttribute("posuvka")+ +this.getAttribute("top")+"px";
-            this.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
+            znakImg.style.top=+ps.parentElement.parentElement.parentElement.parentElement.getAttribute("posuvka")+ +top+"px";
+            znakImg.style.left=left+"px";
+            ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
         }
         function znamenko(){
             if(this.parentElement.parentElement.getElementsByClassName("znamenko")[0]){
@@ -587,14 +638,9 @@
             }
             this.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
         }
-        const znamenka=["krizek","becko","odrazka","akcent1","tenuto","prodluzovak","staccato","korunka","marcato","trilek","natryl","krizekk"];
-
+        const opt = document.getElementsByClassName("options")[0];
         function showOptions(){
-            if(selectedTool==50&&!(document.getElementsByClassName("options")[0])&&!(document.getElementsByClassName("t")[0])){
-                if(document.getElementsByClassName("options")[0]){
-                    document.getElementsByClassName("options")[0].parentElement.appendChild(document.getElementsByClassName("options")[0]);
-                    document.getElementsByClassName("options")[0].remove();
-                }
+            if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
                 this.style.zIndex=5
                 if(this.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.getAttribute("value")!=0){
                     this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"OrangeO.png";
@@ -603,92 +649,92 @@
                     this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
                     this.getElementsByClassName("n")[0].style.marginTop="0px";
                 }
-                
-                if(!this.getElementsByClassName("options")[0]){
-                    if(this.getAttribute("value")<7){
-                        this.parentElement.parentElement.parentElement.style.zIndex=2;  
-                        divOptions=document.createElement("div");
-                        divOptions.classList.add("options");
-                        let b=[posuvka,posuvka,posuvka,znamenko,znamenko,znamenko,znamenko,znamenko,znamenko,znamenko,znamenko,notedelete];
-                        let top=[26,22,26];
-                        for(let i=0;i<znamenka.length;i++){
-                            imgV=document.createElement("img");
-                            imgV.src="images/"+znamenka[i]+".png";
-                            imgV.setAttribute("znak",znamenka[i]);
-                            imgV.classList.add("v");
-                            imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
-                            imgV.onmouseenter=function(){this.style.height="32px"};
-                            imgV.onmouseleave=function(){this.style.height="30px"};
-                            imgV.onclick=b[i];
-                            imgV.setAttribute("top",top[i])
-                            divOptions.appendChild(imgV);
-                        }
-                        this.appendChild(divOptions);
-                        this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
-                        document.getElementsByClassName("options")[0].onmouseleave=function(){
-                            if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")!=0){
-                                this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
-                                this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
-                            }else{
-                                this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                                this.getElementsByClassName("n")[0].style.marginTop="0px";
-                            }
-                            this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                            this.parentElement.style.zIndex=2;
-                            this.parentElement.parentElement.parentElement.parentElement.style.zIndex=0;  
-                            this.remove();
-                        }
-                    }
-                    else if(this.getAttribute("value")<13){
-                        divOptions=document.createElement("div");
-                        divOptions.classList.add("options");
-                        a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
-                        b=[posuvka,posuvka,posuvka,notedelete];
-                        for(let i=0;i<4;i++){
-                            imgV=document.createElement("img");
-                            imgV.src=a[i];
-                            imgV.classList.add("v");
-                            imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
-                            imgV.onmouseenter=function(){this.style.height="32px"};
-                            imgV.onmouseleave=function(){this.style.height="30px"};
-                            imgV.onclick=b[i];
-                            divOptions.appendChild(imgV);
-                        }
-                        this.appendChild(divOptions);
-                        this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
-                        document.getElementsByClassName("options")[0].onmouseleave=function(){
+                if(this.getAttribute("value")<7){
+                    this.parentElement.parentElement.parentElement.style.zIndex=2;  
+                    this.appendChild(opt)
+                    opt.appendChild(this.getElementsByClassName("cImg")[0]);
+                    opt.style.display="flex"
+                    opt.onmouseleave=function(){
+                        if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")!=0){
+                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
+                            this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
+                        }else{
                             this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                            this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                            this.remove();
+                            this.getElementsByClassName("n")[0].style.marginTop="0px";
                         }
+                        this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
+                        this.parentElement.style.zIndex=2;
+                        this.parentElement.parentElement.parentElement.parentElement.style.zIndex=0;  
+                        this.style.display="none";
+                        document.getElementById("secret").appendChild(this);
                     }
-                    else if(this.getAttribute("value")==13){
-                        divOptions=document.createElement("div");
-                        divOptions.classList.add("options");
-                        a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
-                        b=[posuvka,posuvka,posuvka,notedelete];
-                        for(let i=0;i<4;i++){
-                            imgV=document.createElement("img");
-                            imgV.src=a[i];
-                            imgV.classList.add("v");
-                            imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
-                            imgV.onmouseenter=function(){this.style.height="32px"};
-                            imgV.onmouseleave=function(){this.style.height="30px"};
-                            imgV.onclick=b[i];
-                            divOptions.appendChild(imgV);
-                        }
-                        this.appendChild(divOptions);
-                        this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
-                        document.getElementsByClassName("options")[0].onmouseleave=function(){
-                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                            
-                            this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                            this.remove();
-                        }
+                }
+                else if(this.getAttribute("value")<13){
+                    divOptions=document.createElement("div");
+                    divOptions.classList.add("options");
+                    a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
+                    b=[posuvka,posuvka,posuvka,notedelete];
+                    for(let i=0;i<4;i++){
+                        imgV=document.createElement("img");
+                        imgV.src=a[i];
+                        imgV.classList.add("v");
+                        imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
+                        imgV.onmouseenter=function(){this.style.height="32px"};
+                        imgV.onmouseleave=function(){this.style.height="30px"};
+                        imgV.onclick=b[i];
+                        divOptions.appendChild(imgV);
                     }
+                    this.appendChild(divOptions);
+                    this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
+                    document.getElementsByClassName("options")[0].onmouseleave=function(){
+                        this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                        this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
+                        this.remove();
+                    }
+                }
+                else if(this.getAttribute("value")==13){
+                    divOptions=document.createElement("div");
+                    divOptions.classList.add("options");
+                    a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
+                    b=[posuvka,posuvka,posuvka,notedelete];
+                    for(let i=0;i<4;i++){
+                        imgV=document.createElement("img");
+                        imgV.src=a[i];
+                        imgV.classList.add("v");
+                        imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
+                        imgV.onmouseenter=function(){this.style.height="32px"};
+                        imgV.onmouseleave=function(){this.style.height="30px"};
+                        imgV.onclick=b[i];
+                        divOptions.appendChild(imgV);
+                    }
+                    this.appendChild(divOptions);
+                    this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
+                    document.getElementsByClassName("options")[0].onmouseleave=function(){
+                        this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                        
+                        this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
+                        this.remove();
+                    }
+                }
             }
         }
-    }
+        const pies=document.getElementsByClassName("sections");
+        const s = document.getElementsByClassName("s");
+        for(let i=0;i<pies.length;i++){
+            s[i].onmouseenter=function(){
+                for(let x=0;x<pies.length;x++){
+                    s[x].style.transform="scale(1)";
+                    pies[x].getElementsByTagName("img")[0].style.display="block"
+                    pies[x].getElementsByClassName("hidden")[0].style.display="none";
+                }
+                s[i].style.transform="scale(1.1)";
+                pies[i].getElementsByTagName("img")[0].style.display="none";
+                pies[i].getElementsByClassName("hidden")[0].style.display="block";
+            }
+            s[i].onmouseout=function(){
+                
+            }
+        }
     </script>
     <!-- Dragging system -->
     <script>
@@ -761,6 +807,7 @@
                 debugger;
             };
             if(e.key==="q"){
+                
                 if(document.getElementsByClassName("t")[0]){
                     document.getElementsByClassName("t")[0].remove();
                 }
