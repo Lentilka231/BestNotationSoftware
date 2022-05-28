@@ -11,7 +11,7 @@
             <div style="top:12px;position:absolute">
                 <svg width="160px" height="160px">
                     <g><path class="s" style="fill: rgba(0, 128, 0, 0.5);"  d="M80,80 L80,10 A70,70 1 0,1 147.3,99.2 z"></path></g>
-                    <g><path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L147.3,99.2 A70,70 1 0,1 135.9,122.2 z"></path></g>
+                    <g><path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L147.3,99.2 A70,70 1 0,1 135.9,122.2 z" onclick="notedelete(this)"></path></g>
                     <g><path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L135.9,122.2 A70,70 1 0,1 12.7,99.2 z"></path></g>
                     <g><path class="s" style="fill:rgba(0, 0, 255, 0.5)" d="M80,80 L12.7,99.2 A70,70 1 0,1 80,10 z"></path></g>
                 </svg>
@@ -21,35 +21,35 @@
                         <img src="images/krizek.png" onclick="posuvka(this,17)" style="top:-24px;left:-14px">
                         <img src="images/becko.png" onclick="posuvka(this,13)"  style="top:-8px;left:12px">
                         <img src="images/odrazka.png" onclick="posuvka(this,17)" style="top:24px;left:29px">
-                        <img src="images/dvakratkrizek.png" onclick="posuvka(this,15,-25)" style="top:0px;left:-20px">
+                        <img src="images/dvakratkrizek.png" onclick="posuvka(this,15,-25)" style="top:3px;left:-20px">
                         <img src="images/dvakratbecko.png" onclick="posuvka(this,11,-25)" style="top:20px;left:-1px">
                     </div>
                 </div>
                 <div class="sections"style="top:98px;left:45px;">
                     <img src="images/krizekk.png" style="height:15px;">
                     <div class="hidden">
-                        <img src="images/krizekk.png" onclick="notedelete()" style="height:15px;top:2px;left:5px">
+                        <img src="images/krizekk.png" onclick="notedelete(this)" style="height:15px;top:2px;left:5px">
                     </div>
                 </div>
                 <div class="sections" style="top:100px;left:-25px;">
                     <img src="images/korunka.png">
                     <div class="hidden">
-                        <img src="images/prodluzovakICON.png" onclick="" style="top:13px;left:50px;">
-                        <img src="images/staccatoICON.png" style="top:23px;left:20px;">
-                        <img src="images/tenutoICON.png" style="top:17px;left:-10px">
-                        <img src="images/korunkaICON.png" style="top:-3px;left:-30px">
-                        <img src="images/akcentICON.png" style="top:-5px;left:25px;">
-                        <img src="images/marcatoICON.png" style="top:-10px;left:0px;">
+                        <img src="images/prodluzovakICON.png" onclick="znamenko(this,'prodluzovak')" style="top:13px;left:50px;">
+                        <img src="images/staccatoICON.png" onclick="znamenko(this,'staccato')" style="top:23px;left:20px;">
+                        <img src="images/tenutoICON.png" onclick="znamenko(this,'tenuto')" style="top:17px;left:-10px">
+                        <img src="images/korunkaICON.png" onclick="znamenko(this,'korunka')" style="top:-3px;left:-30px">
+                        <img src="images/akcentICON.png" onclick="znamenko(this,'akcent')" style="top:-5px;left:25px;">
+                        <img src="images/marcatoICON.png" onclick="znamenko(this,'marcato')" style="top:-10px;left:0px;">
                     </div>
                 </div>
                 <div class="sections" style="top:35px;left:-50px;">
                     <img src="images/trilek.png" >
                     <div class="hidden">
-                        <img src="images/trilek.png" style="top:30px;left:-25px;">
-                        <img src="images/natryl.png" style="top:-5px;left:-12px;">
-                        <img src="images/mordent.png" style="top:-22px;left:15px;">
-                        <img src="images/obal1.png" style="top:22px;left:0px;">
-                        <img src="images/obal2.png" style="top:5px;left:15px;">
+                        <img src="images/trilek.png" onclick="znamenko(this,'trilek')" style="top:30px;left:-25px;">
+                        <img src="images/natryl.png" onclick="znamenko(this,'natryl')" style="top:-5px;left:-12px;">
+                        <img src="images/mordent.png" onclick="znamenko(this,'mordent')" style="top:-22px;left:15px;">
+                        <img src="images/obal1.png" onclick="znamenko(this,'obal1')" style="top:22px;left:0px;">
+                        <img src="images/obal2.png" onclick="znamenko(this,'obal2')" style="top:5px;left:15px;">
                     </div>
                 </div>
             </div>
@@ -199,528 +199,528 @@
         </div>
     <!-- Vkládání not -->
     <script>
-        const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka","tricetidvatinkaPomlka","taktovaCara"];
-        const page =document.getElementById("whitePage");
-        let selectedTool=50;
-        let selectedX;
-        let selectedY;
-        let selectedH;
-        let selectedPosuvka;
-        x=document.getElementsByClassName("line");
-        y=document.getElementsByClassName("space");
-        for(let i=0;i<x.length;i++){
-            x[i].onmouseenter=targetable;
-            x[i].onmouseout=hideNote;
-            x[i].onmousemove=moveWithNote;
-            x[i].onmouseup=stopMovingNote;
-        }
-        for(let i=0;i<y.length;i++){
-            y[i].onmouseenter=targetable;
-            y[i].onmouseout=hideNote;
-            y[i].onmousemove=moveWithNote;
-            y[i].onmouseup=stopMovingNote;
-        }
+    const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka","tricetidvatinkaPomlka","taktovaCara"];
+    const page =document.getElementById("whitePage");
+    let selectedTool=50;
+    let selectedX;
+    let selectedY;
+    let selectedH;
+    let selectedPosuvka;
+    x=document.getElementsByClassName("line");
+    y=document.getElementsByClassName("space");
+    for(let i=0;i<x.length;i++){
+        x[i].onmouseenter=targetable;
+        x[i].onmouseout=hideNote;
+        x[i].onmousemove=moveWithNote;
+        x[i].onmouseup=stopMovingNote;
+    }
+    for(let i=0;i<y.length;i++){
+        y[i].onmouseenter=targetable;
+        y[i].onmouseout=hideNote;
+        y[i].onmousemove=moveWithNote;
+        y[i].onmouseup=stopMovingNote;
+    }
 
-        boxes=document.getElementsByClassName("tool");
-        for(let i=0;i<boxes.length;i++){
-            boxes[i].onclick=selectNote;
-        }
-        function targetable(){
-            if(selectedTool!=50){
-                let divimg = document.createElement("div");
-                let img = document.createElement("img");
-                let containImg =document.createElement("div"); 
-                containImg.style.position="relative";
-                containImg.classList.add("cImg");
-                if(this.getAttribute("TonVzhuruNohama")&&selectedTool>0&&selectedTool<7){
-                    img.src = "images/"+tools[selectedTool]+"O.png";
-                    img.style.marginTop="21px";
-                }else{
-                    img.src = "images/"+tools[selectedTool]+".png";
-                    img.style.marginTop="0px";
-                }
-                img.style.height = selectedH+"px";
-                containImg.style.height=selectedH+"px";
-                containImg.style.zIndex="5";
-                img.classList.add("n");
-                divimg.classList.add("nota");
-                divimg.classList.add("t");
-                divimg.setAttribute("value",selectedTool);
-                divimg.setAttribute("x",selectedX);
-                divimg.setAttribute("y",selectedY);
-                divimg.setAttribute("h",selectedH);
-                divimg.setAttribute("posuvka",selectedPosuvka);
-                divimg.style.top = selectedY+"px";
-                divimg.style.left = window.event.clientX-page.getBoundingClientRect().left-selectedX+"px";
-                containImg.onmousedown=moveNoteManually;
-                containImg.onmouseup=stopMovingNote;
-                divimg.onmouseenter=showOptions;
-                containImg.appendChild(img)
-                divimg.appendChild(containImg);
-                if(this.getAttribute("x")&&selectedTool<7){
-                    let container = document.createElement("div");
-                    if(this.getAttribute("x")<0){
-                        container.style.bottom=+this.getAttribute("y")+ +selectedPosuvka+ -1+"px";
-                        container.style.position="absolute";
-                        container.classList.add("helpLine");
-                        for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
-                            let space= document.createElement("div");
-                            let line=document.createElement("div");
-                            space.style.width="20px";
-                            space.style.height="8px";
-                            line.style.height="1px";
-                            line.style.backgroundColor="black";
-                            space.appendChild(line)
-                            container.appendChild(space);
-                        }
-                        divimg.appendChild(container);
-                    }else if(this.getAttribute("x")>0){
-                        container.style.top=+this.getAttribute("y")+ -selectedPosuvka+ +1+"px";                        
-                        container.style.position="absolute";
-                        container.classList.add("helpLine");
-                        for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
-                            let space= document.createElement("div");
-                            let line=document.createElement("div");
-                            space.style.width="20px";
-                            space.style.height="8px";
-                            space.style.position="relative";
-                            line.style.height="1px";
-                            line.style.width="20px";
-                            line.style.backgroundColor="black";
-                            line.style.bottom="0px";
-                            line.style.position="absolute";
-                            space.appendChild(line)
-                            container.appendChild(space);
-                        }
-                        divimg.appendChild(container);
+    boxes=document.getElementsByClassName("tool");
+    for(let i=0;i<boxes.length;i++){
+        boxes[i].onclick=selectNote;
+    }
+    function targetable(){
+        if(selectedTool!=50){
+            let divimg = document.createElement("div");
+            let img = document.createElement("img");
+            let containImg =document.createElement("div"); 
+            containImg.style.position="relative";
+            containImg.classList.add("cImg");
+            if(this.getAttribute("TonVzhuruNohama")&&selectedTool>0&&selectedTool<7){
+                img.src = "images/"+tools[selectedTool]+"O.png";
+                img.style.marginTop="21px";
+            }else{
+                img.src = "images/"+tools[selectedTool]+".png";
+                img.style.marginTop="0px";
+            }
+            img.style.height = selectedH+"px";
+            containImg.style.height=selectedH+"px";
+            containImg.style.zIndex="5";
+            img.classList.add("n");
+            divimg.classList.add("nota");
+            divimg.classList.add("t");
+            divimg.setAttribute("value",selectedTool);
+            divimg.setAttribute("x",selectedX);
+            divimg.setAttribute("y",selectedY);
+            divimg.setAttribute("h",selectedH);
+            divimg.setAttribute("posuvka",selectedPosuvka);
+            divimg.style.top = selectedY+"px";
+            divimg.style.left = window.event.clientX-page.getBoundingClientRect().left-selectedX+"px";
+            containImg.onmousedown=moveNoteManually;
+            containImg.onmouseup=stopMovingNote;
+            divimg.onmouseenter=showOptions;
+            containImg.appendChild(img)
+            divimg.appendChild(containImg);
+            if(this.getAttribute("x")&&selectedTool<7){
+                let container = document.createElement("div");
+                if(this.getAttribute("x")<0){
+                    container.style.bottom=+this.getAttribute("y")+ +selectedPosuvka+ -1+"px";
+                    container.style.position="absolute";
+                    container.classList.add("helpLine");
+                    for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
+                        let space= document.createElement("div");
+                        let line=document.createElement("div");
+                        space.style.width="20px";
+                        space.style.height="8px";
+                        line.style.height="1px";
+                        line.style.backgroundColor="black";
+                        space.appendChild(line)
+                        container.appendChild(space);
                     }
+                    divimg.appendChild(container);
+                }else if(this.getAttribute("x")>0){
+                    container.style.top=+this.getAttribute("y")+ -selectedPosuvka+ +1+"px";                        
+                    container.style.position="absolute";
+                    container.classList.add("helpLine");
+                    for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
+                        let space= document.createElement("div");
+                        let line=document.createElement("div");
+                        space.style.width="20px";
+                        space.style.height="8px";
+                        space.style.position="relative";
+                        line.style.height="1px";
+                        line.style.width="20px";
+                        line.style.backgroundColor="black";
+                        line.style.bottom="0px";
+                        line.style.position="absolute";
+                        space.appendChild(line)
+                        container.appendChild(space);
+                    }
+                    divimg.appendChild(container);
                 }
-                if(selectedTool<7){
-                    this.getElementsByClassName("c")[0].appendChild(divimg);
+            }
+            if(selectedTool<7){
+                this.getElementsByClassName("c")[0].appendChild(divimg);
+            }
+            else{
+                this.parentElement.getElementsByClassName("line")[2].appendChild(divimg);
+            }
+        }
+        else{
+            movingNote = document.getElementsByClassName("t")[0];
+            if(movingNote){
+                if(movingNote.getAttribute("value")<7){
+                    if(this.getAttribute("TonVzhuruNohama")&&movingNote.getAttribute("value")!=0){
+                        movingNote.getElementsByClassName("n")[0].src = "images/"+tools[movingNote.getAttribute("value")]+"O.png";
+                        movingNote.getElementsByClassName("n")[0].style.marginTop="21px";
+                    }else{
+                        movingNote.getElementsByClassName("n")[0].src = "images/"+tools[movingNote.getAttribute("value")]+".png";
+                        movingNote.getElementsByClassName("n")[0].style.marginTop="0px";
+                    }
+                    if(movingNote.getElementsByClassName("helpLine")[0]){
+                        movingNote.getElementsByClassName("helpLine")[0].remove();
+                    }
+                    if(movingNote.getElementsByClassName("znamenko")[0]){
+                        znakImg = movingNote.getElementsByClassName("znamenko")[0];
+                        let j =znakImg.getAttribute("znak");
+                        if(j=="akcent"){
+                            if(this.getAttribute("prostredniTony")){
+                                znakImg.style.top=this.getAttribute("TonVzhuruNohama")?
+                                -5*this.getAttribute("prostredniTony")+ +8+"px":
+                                +5*this.getAttribute("prostredniTony")+ +32+"px";
+                            }else{
+                                znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"3px":"27px";
+                            }
+                        }
+                        else if(j=="tenuto"){
+                            if(this.getAttribute("middle")){
+                                znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"-5px":"22px";
+                            }
+                            else{
+                                znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"-1px":"18px";
+                            }
+                        }
+                        else if(j=="prodluzovak"){
+                            znakImg.style.top=this.classList.contains("line")||(this.getAttribute("y")||5)<4?"11px":"15px";
+                        }
+                        else if(j=="staccato"){
+                            if(this.getAttribute("middle")){
+                                znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"2px":"30px";
+                            }else{
+                                znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"6px":"25px";
+                            }
+                        }
+                    }
+                    if(this.getAttribute("x")){
+                        let container = document.createElement("div");
+                        
+                        if(this.getAttribute("x")<0){
+                            container.style.bottom=+this.getAttribute("y")+ +movingNote.getAttribute("posuvka")+ -1+"px";
+                            container.style.position="absolute";
+                            container.classList.add("helpLine");
+                            for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
+                                let space= document.createElement("div");
+                                let line=document.createElement("div");
+                                space.style.width="20px";
+                                space.style.height="8px";
+                                line.style.height="1px";
+                                line.style.backgroundColor="black";
+                                space.appendChild(line)
+                                container.appendChild(space);
+                            }
+                            movingNote.appendChild(container);
+                        }
+                        else if(this.getAttribute("x")>0){
+                            container.style.top=+this.getAttribute("y")+ -movingNote.getAttribute("posuvka")+ +1+"px";                        
+                            container.style.position="absolute";
+                            container.classList.add("helpLine");
+                            for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
+                                let space= document.createElement("div");
+                                let line=document.createElement("div");
+                                space.style.width="20px";
+                                space.style.height="8px";
+                                space.style.position="relative";
+                                line.style.height="1px";
+                                line.style.width="20px";
+                                line.style.backgroundColor="black";
+                                line.style.bottom="0px";
+                                line.style.position="absolute";
+                                space.appendChild(line)
+                                container.appendChild(space);
+                            }
+                            movingNote.appendChild(container);
+                        }
+                    }
+                    this.getElementsByClassName("c")[0].appendChild(movingNote);
                 }
                 else{
-                    this.parentElement.getElementsByClassName("line")[2].appendChild(divimg);
-                }
-            }
-            else{
-                movingNote = document.getElementsByClassName("t")[0];
-                if(movingNote){
-                    if(movingNote.getAttribute("value")<7){
-                        if(this.getAttribute("TonVzhuruNohama")&&movingNote.getAttribute("value")!=0){
-                            movingNote.getElementsByClassName("n")[0].src = "images/"+tools[movingNote.getAttribute("value")]+"O.png";
-                            movingNote.getElementsByClassName("n")[0].style.marginTop="21px";
-                        }else{
-                            movingNote.getElementsByClassName("n")[0].src = "images/"+tools[movingNote.getAttribute("value")]+".png";
-                            movingNote.getElementsByClassName("n")[0].style.marginTop="0px";
-                        }
-                        if(movingNote.getElementsByClassName("helpLine")[0]){
-                            movingNote.getElementsByClassName("helpLine")[0].remove();
-                        }
-                        if(movingNote.getElementsByClassName("znamenko")[0]){
-                            znakImg = movingNote.getElementsByClassName("znamenko")[0];
-                            let j =znakImg.getAttribute("znak");
-                            if(j=="akcent1"){
-                                if(this.getAttribute("prostredniTony")){
-                                    znakImg.style.top=this.getAttribute("TonVzhuruNohama")?
-                                    -5*this.getAttribute("prostredniTony")+ +8+"px":
-                                    +5*this.getAttribute("prostredniTony")+ +32+"px";
-                                }else{
-                                    znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"3px":"27px";
-                                }
-                            }
-                            else if(j=="tenuto"){
-                                if(this.getAttribute("middle")){
-                                    znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"-5px":"22px";
-                                }
-                                else{
-                                    znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"-1px":"18px";
-                                }
-                            }
-                            else if(j=="prodluzovak"){
-                                znakImg.style.top=this.classList.contains("line")||(this.getAttribute("y")||5)<4?"11px":"15px";
-                            }
-                            else if(j=="staccato"){
-                                if(this.getAttribute("middle")){
-                                    znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"2px":"30px";
-                                }else{
-                                    znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"6px":"25px";
-                                }
-                            }
-                        }
-                        if(this.getAttribute("x")){
-                            let container = document.createElement("div");
-                            
-                            if(this.getAttribute("x")<0){
-                                container.style.bottom=+this.getAttribute("y")+ +movingNote.getAttribute("posuvka")+ -1+"px";
-                                container.style.position="absolute";
-                                container.classList.add("helpLine");
-                                for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
-                                    let space= document.createElement("div");
-                                    let line=document.createElement("div");
-                                    space.style.width="20px";
-                                    space.style.height="8px";
-                                    line.style.height="1px";
-                                    line.style.backgroundColor="black";
-                                    space.appendChild(line)
-                                    container.appendChild(space);
-                                }
-                                movingNote.appendChild(container);
-                            }
-                            else if(this.getAttribute("x")>0){
-                                container.style.top=+this.getAttribute("y")+ -movingNote.getAttribute("posuvka")+ +1+"px";                        
-                                container.style.position="absolute";
-                                container.classList.add("helpLine");
-                                for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
-                                    let space= document.createElement("div");
-                                    let line=document.createElement("div");
-                                    space.style.width="20px";
-                                    space.style.height="8px";
-                                    space.style.position="relative";
-                                    line.style.height="1px";
-                                    line.style.width="20px";
-                                    line.style.backgroundColor="black";
-                                    line.style.bottom="0px";
-                                    line.style.position="absolute";
-                                    space.appendChild(line)
-                                    container.appendChild(space);
-                                }
-                                movingNote.appendChild(container);
-                            }
-                        }
-                        this.getElementsByClassName("c")[0].appendChild(movingNote);
-                    }
-                    else{
-                        this.parentElement.getElementsByClassName("line")[2].appendChild(movingNote);
-                    }
+                    this.parentElement.getElementsByClassName("line")[2].appendChild(movingNote);
                 }
             }
         }
-        function hideNote(){
-            if(selectedTool==50){
-            }
-            else{
-                if(document.getElementsByClassName("t")[0]){
-                    document.getElementsByClassName("t")[0].remove();
-                }
-            }
-        }       
-        function moveWithNote(){
-            movingDiv=document.getElementsByClassName("t")[0];
-            if(movingDiv){
-                movingDiv.style.left= window.event.clientX-page.getBoundingClientRect().left-movingDiv.getAttribute("x")+"px";
-            }
+    }
+    function hideNote(){
+        if(selectedTool==50){
         }
-        function selectNote(e,vN){
-            vybranaNota=vN||this;
+        else{
             if(document.getElementsByClassName("t")[0]){
                 document.getElementsByClassName("t")[0].remove();
             }
-            selectedTool=vybranaNota.getAttribute("value");
-            selectedX=vybranaNota.getAttribute("x");
-            selectedY=vybranaNota.getAttribute("y");
-            selectedH=vybranaNota.getAttribute("h");
-            selectedPosuvka=vybranaNota.getAttribute("posuvka");
-            for(i=0;i<boxes.length;i++){
-                boxes[i].style.background="white";
+        }
+    }       
+    function moveWithNote(){
+        movingDiv=document.getElementsByClassName("t")[0];
+        if(movingDiv){
+            movingDiv.style.left= window.event.clientX-page.getBoundingClientRect().left-movingDiv.getAttribute("x")+"px";
+        }
+    }
+    function selectNote(e,vN){
+        vybranaNota=vN||this;
+        if(document.getElementsByClassName("t")[0]){
+            document.getElementsByClassName("t")[0].remove();
+        }
+        selectedTool=vybranaNota.getAttribute("value");
+        selectedX=vybranaNota.getAttribute("x");
+        selectedY=vybranaNota.getAttribute("y");
+        selectedH=vybranaNota.getAttribute("h");
+        selectedPosuvka=vybranaNota.getAttribute("posuvka");
+        for(i=0;i<boxes.length;i++){
+            boxes[i].style.background="white";
+        }
+        vybranaNota.style.background="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
+        
+    }
+    function moveNoteManually(){
+        if(this.parentElement.classList.contains("options")){
+            this.parentElement.parentElement.appendChild(this);
+            this.parentElement.classList.add("t");
+            this.parentElement.style.zIndex=-1;
+            optionReset(this.parentElement.getElementsByClassName("options")[0])
+        }
+    }
+    function stopMovingNote(){
+        if(document.getElementsByClassName("t")[0]){
+            movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("cImg")[0].getElementsByClassName("n")[0];
+            if(movingNote.parentElement.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&movingNote.parentElement.parentElement.getAttribute("value")!=0){
+                movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+"O.png";
+                movingNote.style.marginTop="21px";
+            }else{
+                movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+".png";
+                movingNote.style.marginTop="0px";
             }
-            vybranaNota.style.background="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
-            
+            movingNote.parentElement.parentElement.classList.remove("t");
+            movingNote.parentElement.parentElement.style.zIndex=2;
         }
-        function moveNoteManually(){
-            if(this.parentElement.classList.contains("options")){
-                this.parentElement.parentElement.appendChild(this);
-                this.parentElement.classList.add("t");
-                this.parentElement.style.zIndex=-1;
-                this.parentElement.getElementsByClassName("options")[0].remove();
-            }
-        }
-        function stopMovingNote(){
-            if(document.getElementsByClassName("t")[0]){
-                movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("cImg")[0].getElementsByClassName("n")[0];
-                if(movingNote.parentElement.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&movingNote.parentElement.parentElement.getAttribute("value")!=0){
-                    movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+"O.png";
-                    movingNote.style.marginTop="21px";
-                }else{
-                    movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+".png";
-                    movingNote.style.marginTop="0px";
-                }
-                movingNote.parentElement.parentElement.classList.remove("t");
-                movingNote.parentElement.parentElement.style.zIndex=2;
-            }
-        }
-        // vše týkající se barevného kolečka :D
-        function notedelete(){
-            this.parentElement.parentElement.remove();
-        }
-        function posuvka(ps,top,left){
-            if(ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0]){
-                if(ps.src==ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].src){
-                    ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
-                    return
-                }
+    }
+    // vše týkající se barevného kolečka :D
+    function notedelete(e){
+        e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].remove();
+        e.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
+        optionReset(e.parentElement.parentElement.parentElement.parentElement);
+    }
+    function posuvka(ps,top,left){
+        if(ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0]){
+            if(ps.src==ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].src){
                 ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
+                return
             }
-            znakImg = document.createElement("img");
-            znakImg.classList.add("posuvka");
-            znakImg.src=ps.src;
-            znakImg.style.position="absolute";
-            znakImg.style.top=+ps.parentElement.parentElement.parentElement.parentElement.getAttribute("posuvka")+ +top+"px";
-            znakImg.style.left=left+"px";
-            ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
+            ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
         }
-        function znamenko(){
-            if(this.parentElement.parentElement.getElementsByClassName("znamenko")[0]){
-                if(this.src==this.parentElement.parentElement.getElementsByClassName("znamenko")[0].src){
-                    this.parentElement.parentElement.getElementsByClassName("znamenko")[0].remove();
-                    return
-                }
-                this.parentElement.parentElement.getElementsByClassName("znamenko")[0].remove();
+        znakImg = document.createElement("img");
+        znakImg.classList.add("posuvka");
+        znakImg.src=ps.src;
+        znakImg.style.position="absolute";
+        znakImg.style.top=+ps.parentElement.parentElement.parentElement.parentElement.getAttribute("posuvka")+ +top+"px";
+        znakImg.style.left=left+"px";
+        ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
+    }
+    function znamenko(e,j){
+        if(e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0]){
+            if(e.src.replace("ICON","")==e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].src){
+                e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].remove();
+                return
             }
-            znakImg = document.createElement("img");
-            znakImg.classList.add("znamenko");
-            znakImg.setAttribute("top",this.getAttribute("top"));
-            znakImg.src=this.src;
-            znakImg.style.position="absolute";
-            znakImg.setAttribute("znak",this.getAttribute("znak"));
-
-            let k=this.parentElement.parentElement.getAttribute("value")
-            let j=this.getAttribute("znak");
-            let radek=this.parentElement.parentElement.parentElement.parentElement;
-            if(j=="akcent1"){
-                if(radek.getAttribute("prostredniTony")){
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?
-                    -5*radek.getAttribute("prostredniTony")+ +8+"px":
-                    +5*radek.getAttribute("prostredniTony")+ +22+"px";
-                }else{
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"3px":"27px";
-                }
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"1px":
-                    k==1||k==2?"-1px":
-                    k==3||k==4?"2px":
-                    "1px";
-                }
-                else{
-                    znakImg.style.left= 
-                    k==0?"0px":
-                    k==1||k==2?"-2px":
-                    k==3||k==4?"3px":
-                    "1px";
-                }
-            }
-            else if(j=="tenuto"){
-                if(radek.getAttribute("middle")){
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"-5px":"22px";
-                }else{
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"-1px":"18px";
-                }
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"1px":
-                    k==1||k==2?"-1px":
-                    k==3||k==4?"2px":
-                    "1px";
-                }
-                else{
-                    znakImg.style.left= 
-                    k==0?"0px":
-                    k==1||k==2?"-2px":
-                    k==3||k==4?"3px":
-                    "1px";
-                }
-            }
-            else if(j=="prodluzovak")
-            {
-                znakImg.style.top=radek.classList.contains("line")||(radek.getAttribute("y")||5)<4?"11px":"15px";
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"5px":
-                    k==1||k==2?"2px":
-                    k==3||k==4?"5px":
-                    "4px";
-                }else{
-                    znakImg.style.left= 
-                    k==0?"5px":
-                    k==1||k==2?"1px":
-                    k==3||k==4?"5px":
-                    "4px";
-                }
-            }
-            else if(j=="staccato"){
-                if(radek.getAttribute("middle")){
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"2px":"30px";
-                }else{
-                    znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"6px":"25px";
-                }
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"-6px":
-                    k==1||k==2?"-6px":
-                    k==3||k==4?"-4px":
-                    "-5px";
-                }
-                else{
-                    znakImg.style.left= 
-                    k==0?"-6px":
-                    k==1||k==2?"-8px":
-                    k==3||k==4?"-3px":
-                    "-4px";
-                }
-            }
-            else if(j=="korunka"){
-                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+5+"px":"0.5px";
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"0px":
-                    k==1||k==2?"-1px":
-                    k==3||k==4?"1px":
-                    "1px";
-                }
-                else{
-                    znakImg.style.left= 
-                    k==0?"0px":
-                    k==1||k==2?"-2px":
-                    k==3||k==4?"3px":
-                    "1px";
-                }
-            }
-            else if(j=="marcato"){
-                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+5+"px":"0.5px";
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"2px":
-                    k==1||k==2?"2px":
-                    k==3||k==4?"4px":
-                    "3px";
-                }
-                else{
-                    znakImg.style.left= 
-                    k==0?"2px":
-                    k==1||k==2?"0px":
-                    k==3||k==4?"5px":
-                    "4px";
-                }
-            }
-            else if(j=="trilek"){
-                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+1+"px":"0.5px";
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"-5px":
-                    k==1||k==2?"-5px":
-                    k==3||k==4?"-3px":
-                    "-4px";
-                }
-                else{
-                    znakImg.style.left= 
-                    k==0?"-5px":
-                    k==1||k==2?"-5px":
-                    k==3||k==4?"1px":
-                    "-1px";
-                }
-            }
-            else if(j=="natryl"){
-                znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+1+"px":"0.5px";
-                if(radek.getAttribute("TonVzhuruNohama")){
-                    znakImg.style.left= 
-                    k==0?"-5px":
-                    k==1||k==2?"-5px":
-                    k==3||k==4?"-3px":
-                    "-4px";
-                }
-                else{
-                    znakImg.style.left= 
-                    k==0?"-5px":
-                    k==1||k==2?"-5px":
-                    k==3||k==4?"1px":
-                    "-1px";
-                }
-            }
-            this.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
+            e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].remove();
         }
-        const opt = document.getElementsByClassName("options")[0];
-        function showOptions(){
-            if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
-                this.style.zIndex=5
-                if(this.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.getAttribute("value")!=0){
-                    this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"OrangeO.png";
-                    this.getElementsByClassName("n")[0].style.marginTop="21px";
-                }else{
-                    this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
-                    this.getElementsByClassName("n")[0].style.marginTop="0px";
-                }
-                if(this.getAttribute("value")<7){
-                    this.parentElement.parentElement.parentElement.style.zIndex=2;  
-                    this.appendChild(opt)
-                    opt.appendChild(this.getElementsByClassName("cImg")[0]);
-                    opt.style.display="flex"
-                    opt.onmouseleave=function(){
-                        if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")!=0){
-                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
-                            this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
-                        }else{
-                            this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                            this.getElementsByClassName("n")[0].style.marginTop="0px";
-                        }
-                        this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                        this.parentElement.style.zIndex=2;
-                        this.parentElement.parentElement.parentElement.parentElement.style.zIndex=0;  
-                        this.style.display="none";
-                        document.getElementById("secret").appendChild(this);
-                    }
-                }
-                else if(this.getAttribute("value")<13){
-                    divOptions=document.createElement("div");
-                    divOptions.classList.add("options");
-                    a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
-                    b=[posuvka,posuvka,posuvka,notedelete];
-                    for(let i=0;i<4;i++){
-                        imgV=document.createElement("img");
-                        imgV.src=a[i];
-                        imgV.classList.add("v");
-                        imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
-                        imgV.onmouseenter=function(){this.style.height="32px"};
-                        imgV.onmouseleave=function(){this.style.height="30px"};
-                        imgV.onclick=b[i];
-                        divOptions.appendChild(imgV);
-                    }
-                    this.appendChild(divOptions);
-                    this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
-                    document.getElementsByClassName("options")[0].onmouseleave=function(){
+        znakImg = document.createElement("img");
+        znakImg.classList.add("znamenko");
+        znakImg.setAttribute("top",e.getAttribute("top"));
+        znakImg.src=e.src.replace("ICON","");
+        znakImg.style.position="absolute";
+        znakImg.setAttribute("znak",e.getAttribute("znak"));
+        let k=e.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("value");
+        let radek=e.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        if(j=="akcent"){
+            if(radek.getAttribute("prostredniTony")){
+                znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?
+                -5*radek.getAttribute("prostredniTony")+ +8+"px":
+                +5*radek.getAttribute("prostredniTony")+ +22+"px";
+            }else{
+                znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"3px":"27px";
+            }
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"1px":
+                k==1||k==2?"-1px":
+                k==3||k==4?"2px":
+                "1px";
+            }
+            else{
+                znakImg.style.left= 
+                k==0?"0px":
+                k==1||k==2?"-2px":
+                k==3||k==4?"3px":
+                "1px";
+            }
+        }
+        else if(j=="tenuto"){
+            if(radek.getAttribute("middle")){
+                znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"-5px":"22px";
+            }else{
+                znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"-1px":"18px";
+            }
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"1px":
+                k==1||k==2?"-1px":
+                k==3||k==4?"2px":
+                "1px";
+            }
+            else{
+                znakImg.style.left= 
+                k==0?"0px":
+                k==1||k==2?"-2px":
+                k==3||k==4?"3px":
+                "1px";
+            }
+        }
+        else if(j=="prodluzovak")
+        {
+            znakImg.style.top=radek.classList.contains("line")||(radek.getAttribute("y")||5)<4?"11px":"15px";
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"5px":
+                k==1||k==2?"2px":
+                k==3||k==4?"5px":
+                "4px";
+            }else{
+                znakImg.style.left= 
+                k==0?"5px":
+                k==1||k==2?"1px":
+                k==3||k==4?"5px":
+                "4px";
+            }
+        }
+        else if(j=="staccato"){
+            if(radek.getAttribute("middle")){
+                znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"2px":"30px";
+            }else{
+                znakImg.style.top=radek.getAttribute("TonVzhuruNohama")?"6px":"25px";
+            }
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"-6px":
+                k==1||k==2?"-6px":
+                k==3||k==4?"-4px":
+                "-5px";
+            }
+            else{
+                znakImg.style.left= 
+                k==0?"-6px":
+                k==1||k==2?"-8px":
+                k==3||k==4?"-3px":
+                "-4px";
+            }
+        }
+        else if(j=="korunka"){
+            znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+5+"px":"0.5px";
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"0px":
+                k==1||k==2?"-1px":
+                k==3||k==4?"1px":
+                "1px";
+            }
+            else{
+                znakImg.style.left= 
+                k==0?"0px":
+                k==1||k==2?"-2px":
+                k==3||k==4?"60px":
+                "1px";
+            }
+        }
+        else if(j=="marcato"){
+            znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+5+"px":"0.5px";
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"2px":
+                k==1||k==2?"2px":
+                k==3||k==4?"4px":
+                "3px";
+            }
+            else{
+                znakImg.style.left= 
+                k==0?"2px":
+                k==1||k==2?"0px":
+                k==3||k==4?"5px":
+                "4px";
+            }
+        }
+        else if(j=="trilek"){
+            znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+1+"px":"0.5px";
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"-5px":
+                k==1||k==2?"-5px":
+                k==3||k==4?"-3px":
+                "-4px";
+            }
+            else{
+                znakImg.style.left= 
+                k==0?"-5px":
+                k==1||k==2?"-5px":
+                k==3||k==4?"1px":
+                "-1px";
+            }
+        }
+        else if(j=="natryl"||j=="trilek"||j=="natryl"||j=="mordent"||j=="obal1"||j=="obal2"){
+            znakImg.style.top=radek.getAttribute("z")?radek.getAttribute("z")*(-4.5)+1+"px":"0.5px";
+            if(radek.getAttribute("TonVzhuruNohama")){
+                znakImg.style.left= 
+                k==0?"-5px":
+                k==1||k==2?"-5px":
+                k==3||k==4?"-3px":
+                "-4px";
+            }
+            else{
+                znakImg.style.left= 
+                k==0?"-5px":
+                k==1||k==2?"-5px":
+                k==3||k==4?"1px":
+                "-1px";
+            }
+        }
+        e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
+    }
+    const opt = document.getElementsByClassName("options")[0];
+    function showOptions(){
+        if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
+            this.style.zIndex=5
+            if(this.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.getAttribute("value")!=0){
+                this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"OrangeO.png";
+                this.getElementsByClassName("n")[0].style.marginTop="21px";
+            }else{
+                this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
+                this.getElementsByClassName("n")[0].style.marginTop="0px";
+            }
+            if(this.getAttribute("value")<7){
+                this.parentElement.parentElement.parentElement.style.zIndex=2;  
+                this.appendChild(opt)
+                opt.appendChild(this.getElementsByClassName("cImg")[0]);
+                opt.style.display="flex"
+                opt.onmouseleave=function(){
+                    if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")!=0){
+                        this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
+                        this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
+                    }else{
                         this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                        this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                        this.remove();
+                        this.getElementsByClassName("n")[0].style.marginTop="0px";
                     }
+                    this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
+                    this.parentElement.style.zIndex=2;
+                    this.parentElement.parentElement.parentElement.parentElement.style.zIndex=0;  
+                    this.style.display="none";
+                    optionReset(this);
                 }
-                else if(this.getAttribute("value")==13){
-                    divOptions=document.createElement("div");
-                    divOptions.classList.add("options");
-                    a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
-                    b=[posuvka,posuvka,posuvka,notedelete];
-                    for(let i=0;i<4;i++){
-                        imgV=document.createElement("img");
-                        imgV.src=a[i];
-                        imgV.classList.add("v");
-                        imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
-                        imgV.onmouseenter=function(){this.style.height="32px"};
-                        imgV.onmouseleave=function(){this.style.height="30px"};
-                        imgV.onclick=b[i];
-                        divOptions.appendChild(imgV);
-                    }
-                    this.appendChild(divOptions);
-                    this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
-                    document.getElementsByClassName("options")[0].onmouseleave=function(){
-                        this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                        
-                        this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                        this.remove();
-                    }
+            }
+            else if(this.getAttribute("value")<13){
+                divOptions=document.createElement("div");
+                divOptions.classList.add("options");
+                a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
+                b=[posuvka,posuvka,posuvka,notedelete];
+                for(let i=0;i<4;i++){
+                    imgV=document.createElement("img");
+                    imgV.src=a[i];
+                    imgV.classList.add("v");
+                    imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
+                    imgV.onmouseenter=function(){this.style.height="32px"};
+                    imgV.onmouseleave=function(){this.style.height="30px"};
+                    imgV.onclick=b[i];
+                    divOptions.appendChild(imgV);
+                }
+                this.appendChild(divOptions);
+                this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
+                document.getElementsByClassName("options")[0].onmouseleave=function(){
+                    this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                    this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
+                    this.remove();
+                }
+            }
+            else if(this.getAttribute("value")==13){
+                divOptions=document.createElement("div");
+                divOptions.classList.add("options");
+                a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
+                b=[posuvka,posuvka,posuvka,notedelete];
+                for(let i=0;i<4;i++){
+                    imgV=document.createElement("img");
+                    imgV.src=a[i];
+                    imgV.classList.add("v");
+                    imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
+                    imgV.onmouseenter=function(){this.style.height="32px"};
+                    imgV.onmouseleave=function(){this.style.height="30px"};
+                    imgV.onclick=b[i];
+                    divOptions.appendChild(imgV);
+                }
+                this.appendChild(divOptions);
+                this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
+                document.getElementsByClassName("options")[0].onmouseleave=function(){
+                    this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                    
+                    this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
+                    this.remove();
                 }
             }
         }
-        const pies=document.getElementsByClassName("sections");
-        const s = document.getElementsByClassName("s");
-        for(let i=0;i<pies.length;i++){
+    }
+    const pies=document.getElementsByClassName("sections");
+    const s = document.getElementsByClassName("s");
+    for(let i=0;i<pies.length;i++){
             s[i].onmouseenter=function(){
                 for(let x=0;x<pies.length;x++){
                     s[x].style.transform="scale(1)";
@@ -731,10 +731,17 @@
                 pies[i].getElementsByTagName("img")[0].style.display="none";
                 pies[i].getElementsByClassName("hidden")[0].style.display="block";
             }
-            s[i].onmouseout=function(){
-                
-            }
         }
+    //pomocné funkce
+    function optionReset(e){
+        document.getElementById("secret").appendChild(e);
+        e.style.display="none";
+        for(let x=0;x<pies.length;x++){
+            s[x].style.transform="scale(1)";
+            pies[x].getElementsByTagName("img")[0].style.display="block"
+            pies[x].getElementsByClassName("hidden")[0].style.display="none";
+        }
+    }
     </script>
     <!-- Dragging system -->
     <script>
