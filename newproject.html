@@ -55,6 +55,12 @@
             </div>
         </div>
     </div>
+    <div id="DruhyKolmichLinek">
+        <img onclick="" src="/images/taktovaCara.png">
+        <img onclick="" src="/images/taktovaCaradvakrat.png">
+        <img onclick="" src="/images/repeticeL.png">
+        <img onclick="" src="/images/repeticeP.png">
+    </div>
     <div id="mainBar">
         <div class="cell">
             <img src="images/newDocument.png" style="height:30px">
@@ -197,6 +203,7 @@
             </div>
             <div class="konecniTakt"></div>
         </div>
+    </div>
     <!-- Vkládání not -->
     <script>
     const tools=["celaNota","pulovaNota","ctvrtovaNota","osminkaNota","sestnatinkaNota","tricetidvatinkaNota","sedesatictyritinkaNota","celaPomlka","pulovaPomlka","ctvrtovaPomlka","osminkaPomlka","sestnatinkovaPomlka","tricetidvatinkaPomlka","taktovaCara"];
@@ -254,7 +261,11 @@
             divimg.style.left = window.event.clientX-page.getBoundingClientRect().left-selectedX+"px";
             containImg.onmousedown=moveNoteManually;
             containImg.onmouseup=stopMovingNote;
-            divimg.onmouseenter=showOptions;
+            if(selectedTool==13){
+                divimg.onmouseenter=showThirdOptions;
+            }else{
+                divimg.onmouseenter=showOptions;
+            }
             containImg.appendChild(img)
             divimg.appendChild(containImg);
             if(this.getAttribute("x")&&selectedTool<7){
@@ -299,7 +310,7 @@
                 this.getElementsByClassName("c")[0].appendChild(divimg);
             }
             else{
-                this.parentElement.getElementsByClassName("line")[2].appendChild(divimg);
+                this.parentElement.getElementsByClassName("line")[2].getElementsByClassName("c")[0].appendChild(divimg);
             }
         }
         else{
@@ -346,6 +357,9 @@
                                 znakImg.style.top=this.getAttribute("TonVzhuruNohama")?"6px":"25px";
                             }
                         }
+                        else if(j=="korunka"||j=="marcato"||j=="trilek"||j=="natryl"||j=="trilek"||j=="natryl"||j=="mordent"||j=="obal1"||j=="obal2"){
+                            znakImg.style.top=this.getAttribute("z")?this.getAttribute("z")*(-4.5)+5+"px":"0.5px";
+                        }                        
                     }
                     if(this.getAttribute("x")){
                         let container = document.createElement("div");
@@ -437,7 +451,7 @@
     function stopMovingNote(){
         if(document.getElementsByClassName("t")[0]){
             movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("cImg")[0].getElementsByClassName("n")[0];
-            if(movingNote.parentElement.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&movingNote.parentElement.parentElement.getAttribute("value")!=0){
+            if(movingNote.parentElement.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&movingNote.parentElement.parentElement.getAttribute("value")<7&&movingNote.parentElement.parentElement.getAttribute("value")!=0){
                 movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+"O.png";
                 movingNote.style.marginTop="21px";
             }else{
@@ -483,7 +497,7 @@
         znakImg.setAttribute("top",e.getAttribute("top"));
         znakImg.src=e.src.replace("ICON","");
         znakImg.style.position="absolute";
-        znakImg.setAttribute("znak",e.getAttribute("znak"));
+        znakImg.setAttribute("znak",j);
         let k=e.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("value");
         let radek=e.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
         if(j=="akcent"){
@@ -641,21 +655,21 @@
     const opt = document.getElementsByClassName("options")[0];
     function showOptions(){
         if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
+
             this.style.zIndex=5
-            if(this.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.getAttribute("value")!=0){
+            if(this.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.getAttribute("value")<7&&this.getAttribute("value")!=0){
                 this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"OrangeO.png";
                 this.getElementsByClassName("n")[0].style.marginTop="21px";
             }else{
                 this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
                 this.getElementsByClassName("n")[0].style.marginTop="0px";
             }
-            if(this.getAttribute("value")<7){
                 this.parentElement.parentElement.parentElement.style.zIndex=2;  
                 this.appendChild(opt)
                 opt.appendChild(this.getElementsByClassName("cImg")[0]);
                 opt.style.display="flex"
                 opt.onmouseleave=function(){
-                    if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")!=0){
+                    if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")<7&&this.parentElement.getAttribute("value")!=0){
                         this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
                         this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
                     }else{
@@ -667,55 +681,7 @@
                     this.parentElement.parentElement.parentElement.parentElement.style.zIndex=0;  
                     this.style.display="none";
                     optionReset(this);
-                }
-            }
-            else if(this.getAttribute("value")<13){
-                divOptions=document.createElement("div");
-                divOptions.classList.add("options");
-                a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
-                b=[posuvka,posuvka,posuvka,notedelete];
-                for(let i=0;i<4;i++){
-                    imgV=document.createElement("img");
-                    imgV.src=a[i];
-                    imgV.classList.add("v");
-                    imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
-                    imgV.onmouseenter=function(){this.style.height="32px"};
-                    imgV.onmouseleave=function(){this.style.height="30px"};
-                    imgV.onclick=b[i];
-                    divOptions.appendChild(imgV);
-                }
-                this.appendChild(divOptions);
-                this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
-                document.getElementsByClassName("options")[0].onmouseleave=function(){
-                    this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                    this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                    this.remove();
-                }
-            }
-            else if(this.getAttribute("value")==13){
-                divOptions=document.createElement("div");
-                divOptions.classList.add("options");
-                a=["images/krizek.png","images/becko.png","images/odrazka.png","images/krizekk.png"];
-                b=[posuvka,posuvka,posuvka,notedelete];
-                for(let i=0;i<4;i++){
-                    imgV=document.createElement("img");
-                    imgV.src=a[i];
-                    imgV.classList.add("v");
-                    imgV.style.transform=`rotate(${-90-i*30}deg) translateX(60px) rotate(${90+i*30}deg)`
-                    imgV.onmouseenter=function(){this.style.height="32px"};
-                    imgV.onmouseleave=function(){this.style.height="30px"};
-                    imgV.onclick=b[i];
-                    divOptions.appendChild(imgV);
-                }
-                this.appendChild(divOptions);
-                this.getElementsByClassName("options")[0].appendChild(this.getElementsByClassName("cImg")[0]);
-                document.getElementsByClassName("options")[0].onmouseleave=function(){
-                    this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                    
-                    this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                    this.remove();
-                }
-            }
+                }            
         }
     }
     const pies=document.getElementsByClassName("sections");
@@ -741,6 +707,14 @@
             pies[x].getElementsByTagName("img")[0].style.display="block"
             pies[x].getElementsByClassName("hidden")[0].style.display="none";
         }
+    }
+    const thirdOPT=document.getElementById("DruhyKolmichLinek");
+    function showThirdOptions(){
+        thirdOPT.style.display="flex";
+        console.log("left: "+this.getBoundingClientRect().left)
+        console.log("top:"+ (this.getBoundingClientRect().top+50))
+        thirdOPT.style.top=+this.getBoundingClientRect().top+50+"px";
+        thirdOPT.style.left=+this.getBoundingClientRect().left+"px";
     }
     </script>
     <!-- Dragging system -->
@@ -813,8 +787,7 @@
             if(e.key==="p"){
                 debugger;
             };
-            if(e.key==="q"){
-                
+            if(e.key==="q"){  
                 if(document.getElementsByClassName("t")[0]){
                     document.getElementsByClassName("t")[0].remove();
                 }

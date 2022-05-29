@@ -168,7 +168,7 @@ body{
     top:300px;
     width:210px;
     height:110px;
-    background-color: var($shadow2);
+    background-color: $shadow2;
     padding:5px;
     display:none;
     z-index:5;
@@ -182,7 +182,7 @@ body{
     cursor: pointer;
 }
 #Tacts img:hover{
-    background-color: var($hover);
+    background-color: $hover;
 }
 .konecniTakt{
     height:37px;
@@ -248,7 +248,7 @@ body{
     background-color: var($hover);
 }
 .textstupnice{
-    font-size: 16px;
+    font-size: 14px;
     position: relative;
     top:10px;
 }
@@ -309,5 +309,23 @@ body{
                 -webkit-user-drag: none;
             }
         }
+    }
+}
+#DruhyKolmichLinek{
+    display:none;
+    justify-content:space-around;
+    position: absolute;
+    width:100px;
+    height:50px;
+    padding:5px;
+    z-index: 1;
+    background-color: $shadow2;
+    img{
+        border-radius: 5px;
+        height:50px;
+        
+    }
+    img:hover{
+        background-color: $hover;
     }
 }
