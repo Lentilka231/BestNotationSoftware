@@ -313,13 +313,22 @@ body{
 }
 #DruhyKolmichLinek{
     display:none;
-    justify-content:space-around;
+    height:120px;
+    width:138px;
     position: absolute;
-    width:100px;
-    height:50px;
-    padding:5px;
     z-index: 1;
-    background-color: $shadow2;
+
+    div{
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom:0px;
+        justify-content:space-around;
+        width:fit-content;
+        height:50px;
+        padding:5px;
+        background-color: $shadow2
+    }
     img{
         border-radius: 5px;
         height:50px;

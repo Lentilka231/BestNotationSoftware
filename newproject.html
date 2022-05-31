@@ -55,11 +55,14 @@
             </div>
         </div>
     </div>
-    <div id="DruhyKolmichLinek">
-        <img onclick="" src="/images/taktovaCara.png">
-        <img onclick="" src="/images/taktovaCaradvakrat.png">
-        <img onclick="" src="/images/repeticeL.png">
-        <img onclick="" src="/images/repeticeP.png">
+    <div id="DruhyKolmichLinek" onmouseleave="optThreeHide()">
+        <div>
+            <img onclick="zmenaTaktu(this.src)" src="/images/taktovaCara.png">
+            <img onclick="zmenaTaktu(this.src)" src="/images/taktovaCaradvakrat.png">
+            <img onclick="zmenaTaktu(this.src)" src="/images/repeticeL.png">
+            <img onclick="zmenaTaktu(this.src)" src="/images/repeticeP.png">
+            <img onclick="selectedTakt.remove();optThreeHide()" src="/images/krizekk.png">
+        </div>
     </div>
     <div id="mainBar">
         <div class="cell">
@@ -213,6 +216,7 @@
     let selectedY;
     let selectedH;
     let selectedPosuvka;
+    let selectedTakt;
     x=document.getElementsByClassName("line");
     y=document.getElementsByClassName("space");
     for(let i=0;i<x.length;i++){
@@ -710,11 +714,19 @@
     }
     const thirdOPT=document.getElementById("DruhyKolmichLinek");
     function showThirdOptions(){
-        thirdOPT.style.display="flex";
-        console.log("left: "+this.getBoundingClientRect().left)
-        console.log("top:"+ (this.getBoundingClientRect().top+50))
-        thirdOPT.style.top=+this.getBoundingClientRect().top+50+"px";
-        thirdOPT.style.left=+this.getBoundingClientRect().left+"px";
+        if(selectedTool==50){
+            selectedTakt=this;
+            thirdOPT.style.display="block";
+            thirdOPT.style.top=+this.getBoundingClientRect().top-20+"px";
+            thirdOPT.style.left=+this.getBoundingClientRect().left-40+"px";
+        }
+    }
+    function optThreeHide(){
+        thirdOPT.style.display="none";
+    }
+    function zmenaTaktu(e){
+        console.log("etwas")
+        selectedTakt.getElementsByClassName("n")[0].src=e;
     }
     </script>
     <!-- Dragging system -->
