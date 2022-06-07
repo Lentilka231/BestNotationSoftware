@@ -184,20 +184,17 @@ body{
 #Tacts img:hover{
     background-color: $hover;
 }
-.konecniTakt{
-    height:37px;
-    width:1px;
-    position: absolute;
-    background-color: black;
-    top:38px;
-    right:0px;
-}
 
 .cImg{
     cursor: pointer;
 
 }
-
+.konecniTakt{
+    position:absolute;
+    right:-6px;
+    top:33px;
+    height:46px;
+}
 .posuvka{
     height:30px;
     position: absolute;

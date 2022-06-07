@@ -170,7 +170,8 @@
                 <img class="takt" src="images/TaktC.png">
             </div>
             <div class="tempo"><img style="height:20px" src="images/ctvrtovaNota.png"> = <p contenteditable="true">60</p></div>
-            <div class="konecniTakt"></div>
+            <div ></div>
+            <img onmouseenter="showThirdOptions(this,'last')" src="images/taktovaCara.png" class="konecniTakt n">
         </div>
         <div class="row" style="margin-top:75px;">
             <div class="space" TonVzhuruNohama="t" x="4" y="7"><div class="c"></div></div>
@@ -713,12 +714,19 @@
         }
     }
     const thirdOPT=document.getElementById("DruhyKolmichLinek");
-    function showThirdOptions(){
+    function showThirdOptions(m){
+        console.log(typeof m);
+        if(m){
+            e=m;
+        }else{
+            e=this;
+        }
+        
         if(selectedTool==50){
-            selectedTakt=this;
+            selectedTakt=e;
             thirdOPT.style.display="block";
-            thirdOPT.style.top=+this.getBoundingClientRect().top-20+"px";
-            thirdOPT.style.left=+this.getBoundingClientRect().left-40+"px";
+            thirdOPT.style.top=+e.getBoundingClientRect().top-20+"px";
+            thirdOPT.style.left=+e.getBoundingClientRect().left-40+"px";
         }
     }
     function optThreeHide(){
