@@ -714,16 +714,19 @@
         }
     }
     const thirdOPT=document.getElementById("DruhyKolmichLinek");
-    function showThirdOptions(m){
-        console.log(typeof m);
-        if(m){
+    function showThirdOptions(m,j){
+        if(j=="last"){
             e=m;
         }else{
             e=this;
         }
         
         if(selectedTool==50){
-            selectedTakt=e;
+            if(e.classList.contains("n")){
+                selectedTakt=e.parentElement.parentElement;
+            }else{
+                selectedTakt=e;
+            }
             thirdOPT.style.display="block";
             thirdOPT.style.top=+e.getBoundingClientRect().top-20+"px";
             thirdOPT.style.left=+e.getBoundingClientRect().left-40+"px";
@@ -733,7 +736,6 @@
         thirdOPT.style.display="none";
     }
     function zmenaTaktu(e){
-        console.log("etwas")
         selectedTakt.getElementsByClassName("n")[0].src=e;
     }
     </script>
@@ -847,7 +849,7 @@
                 selectNote(null,document.getElementsByClassName("tool")[11]);
             }
             if(e.key==="j"){
-                selectNote(null,jdocument.getElementsByClassName("tool")[12]);
+                selectNote(null,document.getElementsByClassName("tool")[12]);
             }
         })
         document.onclick=function(){
