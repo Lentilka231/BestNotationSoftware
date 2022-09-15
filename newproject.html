@@ -54,6 +54,34 @@
                 </div>
             </div>
         </div>
+        <div class="optionsDyn">
+            <div>
+                <svg width="160px" height="160px">
+                    <g><path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L140.62,45 A70,70 1 0,1 140.62,115" onclick="dyndelete(this)"></path></g>
+                    <g><path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L140.62,115 A70,70 1 1,1 140.62,45"></path></g>
+                </svg>
+                <div class="sections"style="top:-26px;left:60px;">
+                    <img src="images/krizekk.png" style="height:15px;">
+                    <div class="hidden">
+                        <img src="images/krizekk.png" onclick="notedelete(this)" style="height:15px;top:2px;left:5px">
+                    </div>
+                </div>
+                <div class="sections" style="top:-30px;left:-50px;">
+                    <img src="images/dynamics-mf.png">
+                    <div class="hidden">
+                        <img src="images/dynamics-fff.png" onclick="" style="top:-45px;left:75px">
+                        <img src="images/dynamics-ff.png" onclick="" style="top:-55px;left:40px">
+                        <img src="images/dynamics-f.png" onclick="" style="top:-40px;left:10px">
+                        <img src="images/dynamics-mf.png" onclick="" style="top:-15px;left:-5px">
+                        <img src="images/dynamics-mp.png" onclick="" style="top:15px;left:-5px">
+                        <img src="images/dynamics-p.png" onclick="" style="top:40px;left:10px">
+                        <img src="images/dynamics-pp.png" onclick="" style="top:55px;left:40px">
+                        <img src="images/dynamics-ppp.png" onclick="" style="top:50px;left:75px">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
     </div>
     <div id="DruhyKolmichLinek" onmouseleave="optThreeHide()">
         <div>
@@ -83,9 +111,17 @@
                 </div>
             </div>
         </div>
-        <div class="cell">
-            <img src="images/HouslovyKEY.png">
-            <div>Dynamika</div>
+        <div class="cell" id="dynamics">
+            <img src="images/dynamics-fff.png" onclick="targetableDyn(this)">
+            <img src="images/dynamics-ff.png"onclick="targetableDyn(this)">
+            <img src="images/dynamics-f.png" onclick="targetableDyn(this)">
+            <img src="images/dynamics-mf.png" onclick="targetableDyn(this)">
+            <img src="images/dynamics-fp.png" onclick="targetableDyn(this)">
+            <img src="images/dynamics-ppp.png"onclick="targetableDyn(this)">
+            <img src="images/dynamics-pp.png" onclick="targetableDyn(this)">
+            <img src="images/dynamics-p.png" onclick="targetableDyn(this)">
+            <img src="images/dynamics-mp.png" onclick="targetableDyn(this)">
+            <img src="images/dynamics-sfz.png"onclick="targetableDyn(this)">
         </div>
         <div class="cell">
             <img src="images/HouslovyKEY.png">
@@ -99,7 +135,7 @@
     
     <div id="tools">
         <div class="tool" h="" x="" y="" id="cursor" value="50" style="background:radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(167, 167, 167) 100%)"><img src="images/cursor.png"></div>
-        <div class="" h="" x="" y="" value=""></div>
+        <div class="tool" h="45" x="48" y="-8" posuvka="0" value="13"><img src="images/taktovaCara.png"></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
@@ -116,7 +152,7 @@
         <div class="tool" h="35" x="50" y="-8" posuvka="0" value="10"><img src="images/osminkaPomlka.png"></div>
         <div class="tool" h="35" x="50" y="-3" posuvka="0" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
         <div class="tool" h="40" x="58" y="-6" posuvka="0" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
-        <div class="tool" h="45" x="48" y="-8" posuvka="0" value="13"><img src="images/taktovaCara.png"></div>
+        
     </div>
     <div id="Tacts">
         <img src="images/Takt22.png">
@@ -156,7 +192,7 @@
             <div class="space"z="7"prostredniTony="1"><div class="c"></div></div>
             <div class="line" z="8"><div class="c"></div><div class="blackline"></div></div>
             <div class="space"z="9"><div class="c"></div></div>
-            <div class="space"z="10" x="-1" y="2"><div class="c"></div></div>
+            <div class="space dyn"z="10" x="-1" y="2"><div class="c"></div></div>
             <div class="space"z="11" x="-1" y="6"><div class="c"></div></div>
             <div class="space"z="12" x="-2" y="2"><div class="c"></div></div>
             <div class="space"z="13" x="-2" y="6"><div class="c"></div></div>
@@ -253,7 +289,7 @@
             }
             img.style.height = selectedH+"px";
             containImg.style.height=selectedH+"px";
-            containImg.style.zIndex="5";
+            containImg.style.zIndex=5;
             img.classList.add("n");
             divimg.classList.add("nota");
             divimg.classList.add("t");
@@ -317,6 +353,17 @@
             else{
                 this.parentElement.getElementsByClassName("line")[2].getElementsByClassName("c")[0].appendChild(divimg);
             }
+        }
+        else if(selectedDyn){
+            let newDyn = document.createElement("img");
+            let newDynDiv = document.createElement("div");
+            newDynDiv.classList.add("dynDIV");
+            newDynDiv.classList.add("tDyn");
+            newDynDiv.style.left=window.event.clientX-page.getBoundingClientRect().left-63 +"px";
+            newDyn.src=selectedDyn;
+            newDynDiv.appendChild(newDyn)
+            this.parentElement.getElementsByClassName("dyn")[0].getElementsByClassName("c")[0].appendChild(newDynDiv);
+            newDynDiv.onmouseenter=showOptionsForDyn;
         }
         else{
             movingNote = document.getElementsByClassName("t")[0];
@@ -415,7 +462,11 @@
         }
     }
     function hideNote(){
-        if(selectedTool==50){
+        if(selectedDyn){
+            if(document.getElementsByClassName("tDyn")[0]){
+                document.getElementsByClassName("tDyn")[0].remove();
+            }
+        }else if(selectedTool==50){
         }
         else{
             if(document.getElementsByClassName("t")[0]){
@@ -424,6 +475,10 @@
         }
     }       
     function moveWithNote(){
+        movingDyn=document.getElementsByClassName("tDyn")[0];
+        if(movingDyn){
+            movingDyn.style.left=window.event.clientX-page.getBoundingClientRect().left-63 +"px";
+        }
         movingDiv=document.getElementsByClassName("t")[0];
         if(movingDiv){
             movingDiv.style.left= window.event.clientX-page.getBoundingClientRect().left-movingDiv.getAttribute("x")+"px";
@@ -439,6 +494,7 @@
         selectedY=vybranaNota.getAttribute("y");
         selectedH=vybranaNota.getAttribute("h");
         selectedPosuvka=vybranaNota.getAttribute("posuvka");
+        dynamicsReset();
         for(i=0;i<boxes.length;i++){
             boxes[i].style.background="white";
         }
@@ -454,6 +510,11 @@
         }
     }
     function stopMovingNote(){
+        if(document.getElementsByClassName("tDyn")[0]){
+            movingDyn=document.getElementsByClassName("tDyn")[0];
+            movingDyn.classList.remove("tDyn");
+            movingDyn.style.zIndex=2;
+        }
         if(document.getElementsByClassName("t")[0]){
             movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("cImg")[0].getElementsByClassName("n")[0];
             if(movingNote.parentElement.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&movingNote.parentElement.parentElement.getAttribute("value")<7&&movingNote.parentElement.parentElement.getAttribute("value")!=0){
@@ -658,10 +719,10 @@
         e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
     }
     const opt = document.getElementsByClassName("options")[0];
+    const optDyn =document.getElementsByClassName("optionsDyn")[0];
     function showOptions(){
         if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
-
-            this.style.zIndex=5
+            this.style.zIndex=5;
             if(this.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.getAttribute("value")<7&&this.getAttribute("value")!=0){
                 this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"OrangeO.png";
                 this.getElementsByClassName("n")[0].style.marginTop="21px";
@@ -669,48 +730,78 @@
                 this.getElementsByClassName("n")[0].src="images/"+tools[this.getAttribute("value")]+"Orange.png";
                 this.getElementsByClassName("n")[0].style.marginTop="0px";
             }
-                this.parentElement.parentElement.parentElement.style.zIndex=2;  
-                this.appendChild(opt)
-                opt.appendChild(this.getElementsByClassName("cImg")[0]);
-                opt.style.display="flex"
-                opt.onmouseleave=function(){
-                    if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")<7&&this.parentElement.getAttribute("value")!=0){
-                        this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
-                        this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
-                    }else{
-                        this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
-                        this.getElementsByClassName("n")[0].style.marginTop="0px";
-                    }
-                    this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
-                    this.parentElement.style.zIndex=2;
-                    this.parentElement.parentElement.parentElement.parentElement.style.zIndex=0;  
-                    this.style.display="none";
-                    optionReset(this);
-                }            
+            this.parentElement.parentElement.parentElement.style.zIndex=2;  
+            this.appendChild(opt);
+            opt.appendChild(this.getElementsByClassName("cImg")[0]);
+            opt.onmouseleave=function(){
+                if(this.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&this.parentElement.getAttribute("value")<7&&this.parentElement.getAttribute("value")!=0){
+                    this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+"O.png";
+                    this.parentElement.getElementsByClassName("n")[0].style.marginTop="21px";
+                }else{
+                    this.parentElement.getElementsByClassName("n")[0].src="images/"+tools[this.parentElement.getAttribute("value")]+".png";
+                    this.getElementsByClassName("n")[0].style.marginTop="0px";
+                }
+                this.parentElement.appendChild(this.parentElement.getElementsByClassName("cImg")[0]);
+                this.parentElement.style.zIndex=2;
+                this.parentElement.parentElement.parentElement.parentElement.style.zIndex=0;  
+                optionReset(this);
+            }            
         }
     }
-    const pies=document.getElementsByClassName("sections");
-    const s = document.getElementsByClassName("s");
-    for(let i=0;i<pies.length;i++){
-            s[i].onmouseenter=function(){
-                for(let x=0;x<pies.length;x++){
-                    s[x].style.transform="scale(1)";
-                    pies[x].getElementsByTagName("img")[0].style.display="block"
-                    pies[x].getElementsByClassName("hidden")[0].style.display="none";
-                }
-                s[i].style.transform="scale(1.1)";
-                pies[i].getElementsByTagName("img")[0].style.display="none";
-                pies[i].getElementsByClassName("hidden")[0].style.display="block";
+    function showOptionsForDyn(){
+        if(selectedTool==50&&!(document.getElementsByClassName("tDyn")[0])){
+            this.parentElement.style.zIndex=2;
+            this.style.zIndex=5;
+            this.appendChild(optDyn);
+            optDyn.onmouseleave=function(){
+                optionDynReset(this);
             }
         }
+    }
+    const pies=document.getElementsByClassName("options")[0].getElementsByClassName("sections");
+    const s = document.getElementsByClassName("s");
+    for(let i=0;i<pies.length;i++){
+        s[i].onmouseenter=function(){
+            for(let x=0;x<pies.length;x++){
+                s[x].style.transform="scale(1)";
+                pies[x].getElementsByTagName("img")[0].style.display="block"
+                pies[x].getElementsByClassName("hidden")[0].style.display="none";
+            }
+            s[i].style.transform="scale(1.1)";
+            pies[i].getElementsByTagName("img")[0].style.display="none";
+            pies[i].getElementsByClassName("hidden")[0].style.display="block";
+        }
+    }
     //pomocné funkce
     function optionReset(e){
         document.getElementById("secret").appendChild(e);
-        e.style.display="none";
         for(let x=0;x<pies.length;x++){
             s[x].style.transform="scale(1)";
             pies[x].getElementsByTagName("img")[0].style.display="block"
             pies[x].getElementsByClassName("hidden")[0].style.display="none";
+        }
+    }
+    const piesdyn=document.getElementsByClassName("optionsDyn")[0].getElementsByClassName("sections");
+    const sdyn = document.getElementsByClassName("optionsDyn")[0].getElementsByClassName("s");
+    for(let i=0;i<pies.length;i++){
+        sdyn[i].onmouseenter=function(){
+            console.log("it has happend")
+            for(let x=0;x<piesdyn.length;x++){
+                sdyn[x].style.transform="scale(1)";
+                piesdyn[x].getElementsByTagName("img")[0].style.display="block"
+                piesdyn[x].getElementsByClassName("hidden")[0].style.display="none";
+            }
+            sdyn[i].style.transform="scale(1.1)";
+            piesdyn[i].getElementsByTagName("img")[0].style.display="none";
+            piesdyn[i].getElementsByClassName("hidden")[0].style.display="block";
+        }
+    }
+    function optionDynReset(e){
+        document.getElementById("secret").appendChild(e);
+        for(let x=0;x<pies.length;x++){
+            sdyn[x].style.transform="scale(1)";
+            piesdyn[x].getElementsByTagName("img")[0].style.display="block"
+            piesdyn[x].getElementsByClassName("hidden")[0].style.display="none";
         }
     }
     const thirdOPT=document.getElementById("DruhyKolmichLinek");
@@ -738,46 +829,59 @@
     function zmenaTaktu(e){
         selectedTakt.getElementsByClassName("n")[0].src=e;
     }
+    function dynamicsReset(){
+        selectedDyn="";
+        for(let i=0;i<dynamic.length;i++){
+            dynamic[i].style.backgroundColor="";
+        }
+        tDyn=document.getElementsByClassName("tDyn")[0];
+        if(tDyn){
+            tDyn.remove()
+        }
+        
+    }
     </script>
     <!-- Dragging system -->
     <script>
         dragElement(document.getElementById("tools"));
 
         function dragElement(elmnt) {
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-        document.getElementById("tools").onmousedown = dragMouseDown;
+            document.getElementById("tools").onmousedown = dragMouseDown;
 
 
-        function dragMouseDown(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // get the mouse cursor position at startup:
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            // call a function whenever the cursor moves:
-            document.onmousemove = elementDrag;
-        }
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
 
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // calculate the new cursor position:
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            // set the element's new position:
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
 
-        function closeDragElement() {
-            /* stop moving when mouse button is released:*/
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = defaultSettingForDocMouseUp;
+                document.onmousemove = null;
+                cursor="";
+
+            }
         }
     </script>
     <!-- On Key pressed -->
@@ -851,6 +955,7 @@
             if(e.key==="j"){
                 selectNote(null,document.getElementsByClassName("tool")[12]);
             }
+            dynamicsReset();
         })
         document.onclick=function(){
             if(CanClickAnyWhere==1){
@@ -861,7 +966,8 @@
             }
 
         }
-        document.onmouseup=function(){
+        document.onmouseup=defaultSettingForDocMouseUp;
+        function defaultSettingForDocMouseUp(){
             if(cursor){
                 cursor="";
             }
@@ -919,7 +1025,6 @@
 
         document.getElementById("stupniceBar").onmousemove=function(){
             if(cursor=="UDS"){
-                
                 for(let i=0;i<15;i++){
                     let h=window.event.clientX-document.getElementById("stupniceBar").getBoundingClientRect().left+ -35;
 
@@ -936,8 +1041,18 @@
                 }
             }
         }
-    
-    
+        //dynamika 
+        const dynamic= document.getElementById("dynamics").children;
+        let selectedDyn;
+        console.log(dynamic);
+        function targetableDyn(dyn){
+            selectNote(null,document.getElementsByClassName("tool")[0]);
+            for(let i=0;i<dynamic.length;i++){
+                dynamic[i].style.backgroundColor="";
+            }
+            dyn.style.backgroundColor="rgb(173, 173, 173)";
+            selectedDyn=dyn.src;
+        }
     </script>
 </body>
 </html>
