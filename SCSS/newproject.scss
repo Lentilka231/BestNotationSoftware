@@ -402,3 +402,51 @@ body{
         background-color: $hover;
     }
 }
+#settings-Gear-Wheel{
+    position:absolute;
+    right:5em;
+    width:2em;
+    height:2em;
+    padding:0.2em;
+    cursor: pointer;
+}
+#settings-Gear-Wheel:hover{
+    background-color: $hover;
+}
+#settings-Menu{
+    font-family: Arial, Helvetica, sans-serif;
+    display:none;
+    z-index:10;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:40em;
+    height:30em;
+    background-color: $shadow2;
+    box-shadow: 0px 0px 10px black;
+    #krizek{
+        cursor: pointer;
+        position: absolute;
+        right:1em;
+        top:1em;
+        width:1.7em;
+    }
+    #krizek:hover{
+        background-color: $hover;
+    }
+    #settings-Side-Menu{
+        padding:1em;
+        background-color: $shadow1;
+        height:calc(100% - 2em);
+        width:10em;
+    }
+    .settings-Side-Menu-Button{
+        padding:0.5em;
+        cursor: pointer;
+
+    }
+    .settings-Side-Menu-Button:hover{
+        color:#c8c8c8;
+    }
+}
