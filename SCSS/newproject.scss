@@ -449,4 +449,10 @@ body{
     .settings-Side-Menu-Button:hover{
         color:#c8c8c8;
     }
+    .settings-Side-Menu-Line{
+        transition:width 300ms ease;
+        background-color: #c8c8c8;
+        height:1px;   
+        width:0em;   
+    }
 }

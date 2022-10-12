@@ -164,7 +164,21 @@
             <div class="settings-Side-Menu-Button">
                 Rychlé klávesy
             </div>
+            <div class="settings-Side-Menu-Line"> </div>
+            <div class="settings-Side-Menu-Button">
+                Rychlé klávesy
+            </div>
+            <div class="settings-Side-Menu-Line"> </div>
+            <div class="settings-Side-Menu-Button">
+                Rychlé klávesy
+            </div>
+            <div class="settings-Side-Menu-Line"> </div>
+            <div class="settings-Side-Menu-Button">
+                Rychlé klávesy
+            </div>
+
         </div>
+
     </div>
     <div id="Tacts">
         <img src="images/Takt22.png">
@@ -1074,7 +1088,34 @@
         document.getElementById("krizek").onclick=function(){
             document.getElementById("settings-Menu").style.display="none";
         }
-        const x = document.getElementsByClassName("settings-Side-Menu-Button");
+        const settingsSideMenuButtons = document.getElementsByClassName("settings-Side-Menu-Button");
+        const settingsSideMenuLines = document.getElementsByClassName("settings-Side-Menu-Line");
+        for(let i=0;i<settingsSideMenuButtons.length;i++){
+            settingsSideMenuButtons[i].onmouseenter=function(){
+                if(i==0){
+                    settingsSideMenuLines[0].style.width="10em"
+                }
+                else if(i+1==settingsSideMenuButtons.length){
+                    settingsSideMenuLines[settingsSideMenuLines.length-1].style.width="10em"
+                }
+                else{
+                    settingsSideMenuLines[i-1].style.width="10em"
+                    settingsSideMenuLines[i].style.width="10em"
+                }
+            }
+            settingsSideMenuButtons[i].onmouseleave=function(){
+                if(i==0){
+                    settingsSideMenuLines[0].style.width="0em"
+                }
+                else if(i==settingsSideMenuButtons.length){
+                    settingsSideMenuLines[-1].style.width="0em"
+                }
+                else{
+                    settingsSideMenuLines[i-1].style.width="0em"
+                    settingsSideMenuLines[i].style.width="0em"
+                }
+            }
+        }
     </script>
 </body>
 </html>
