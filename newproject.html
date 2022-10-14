@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
     <link rel="stylesheet" href="stylesheets/newproject.css">
     <meta charset="UTF-8">
     <title>New Project</title>
@@ -172,14 +171,22 @@
         <div id="settings-Side-Parameters">
             <table>
                 <tr><th>Název</th><th>Tlačítka</th></tr>
-                <tr><td>Nota celá</td><td>E</td></tr>
-                <tr><td>Nota půlová</td><td>R</td></tr>
-                <tr><td>Nota čtvrťová</td><td>T</td></tr>
-                <tr><td>Nota osminková</td><td>Z</td></tr>
-                <tr><td>Nota šestnástinková</td><td>U</td></tr>
-                <tr><td>Nota třicetidvatinková</td><td></td></tr>
-                <tr></tr>
-                <tr><td>Taktová čára</td><td>W</td></tr>
+                <tr><td>Kurzor</td><td>q</td></tr>
+                <tr><td>Taktová čára</td><td>SpaceBar</td></tr>
+                <tr style="height:5px"><td></td><td></td></tr>
+                <tr><td>Nota celá</td><td>w</td></tr>
+                <tr><td>Nota půlová</td><td>e</td></tr>
+                <tr><td>Nota čtvrťová</td><td>r</td></tr>
+                <tr><td>Nota osminková</td><td>t</td></tr>
+                <tr><td>Nota šestnástinková</td><td>z</td></tr>
+                <tr><td>Nota třicetidvatinková</td><td>u</td></tr>
+                <tr style="height:5px"><td></td><td></td></tr>
+                <tr><td>Pomlka celá</td><td>s</td></tr>
+                <tr><td>Pomlka půlová</td><td>d</td></tr>
+                <tr><td>Pomlka čtvrťová</td><td>f</td></tr>
+                <tr><td>Pomlka osminková</td><td>g</td></tr>
+                <tr><td>Pomlka šestnástinková</td><td>h</td></tr>
+                <tr><td>Pomlka třicetidvatinková</td><td>j</td></tr>
 
             </table>
         </div>
@@ -815,7 +822,6 @@
     const sdyn = document.getElementsByClassName("optionsDyn")[0].getElementsByClassName("s");
     for(let i=0;i<pies.length;i++){
         sdyn[i].onmouseenter=function(){
-            console.log("it has happend")
             for(let x=0;x<piesdyn.length;x++){
                 sdyn[x].style.transform="scale(1)";
                 piesdyn[x].getElementsByTagName("img")[0].style.display="block"
@@ -916,6 +922,14 @@
     </script>
     <!-- On Key pressed -->
     <script>
+        let a =document.getElementById("settings-Side-Parameters").getElementsByTagName("td");
+        const listOfHotKeys ={};
+        for(let i=0;i<a.length;i=i+2){
+            if(a[i*1].innerText!=""){
+                listOfHotKeys[a[i*1].innerText]=a[i*2].innerText;
+                console.log(a[i*1].innerText);
+            }
+        }
         document.addEventListener("keydown",function(e){
             if(e.key==="Escape"){
                 div=document.getElementsByClassName("t")[0];
@@ -943,47 +957,16 @@
             if(e.key==="p"){
                 debugger;
             };
-            if(e.key==="q"){  
+            if(e.key===listOfHotKeys[1].innerText){  
                 if(document.getElementsByClassName("t")[0]){
                     document.getElementsByClassName("t")[0].remove();
                 }
                 selectNote(null,document.getElementsByClassName("tool")[0]);
             }
-            if(e.key==="w"){
-                selectNote(null,document.getElementsByClassName("tool")[1]);
-            }
-            if(e.key==="e"){
-                selectNote(null,document.getElementsByClassName("tool")[2]);
-            }
-            if(e.key==="r"){
-                selectNote(null,document.getElementsByClassName("tool")[3]);
-            }
-            if(e.key==="t"){
-                selectNote(null,document.getElementsByClassName("tool")[4]);
-            }
-            if(e.key==="z"){
-                selectNote(null,document.getElementsByClassName("tool")[5]);
-            }
-            if(e.key==="u"){
-                selectNote(null,document.getElementsByClassName("tool")[6]);
-            }
-            if(e.key==="s"){
-                selectNote(null,document.getElementsByClassName("tool")[7]);
-            }
-            if(e.key==="d"){
-                selectNote(null,document.getElementsByClassName("tool")[8]);
-            }
-            if(e.key==="f"){
-                selectNote(null,document.getElementsByClassName("tool")[9]);
-            }
-            if(e.key==="g"){
-                selectNote(null,document.getElementsByClassName("tool")[10]);
-            }
-            if(e.key==="h"){
-                selectNote(null,document.getElementsByClassName("tool")[11]);
-            }
-            if(e.key==="j"){
-                selectNote(null,document.getElementsByClassName("tool")[12]);
+            for(let i=1;i<15;i++){
+                if(e.key===listOfHotKeys[2*i+1].innerText){
+                    selectNote(null,document.getElementsByClassName("tool")[i]);
+                }
             }
             dynamicsReset();
         })
@@ -1074,7 +1057,6 @@
         //dynamika 
         const dynamic= document.getElementById("dynamics").children;
         let selectedDyn;
-        console.log(dynamic);
         function targetableDyn(dyn){
             selectNote(null,document.getElementsByClassName("tool")[0]);
             for(let i=0;i<dynamic.length;i++){
@@ -1087,7 +1069,7 @@
     <!--Settings-->
     <script>
         document.getElementById("settings-Gear-Wheel").onclick=function(){
-            document.getElementById("settings-Menu").style.display="block";
+            document.getElementById("settings-Menu").style.display="flex";
         }
         document.getElementById("krizek").onclick=function(){
             document.getElementById("settings-Menu").style.display="none";
