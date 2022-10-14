@@ -425,6 +425,8 @@ body{
     height:30em;
     background-color: $shadow2;
     box-shadow: 0px 0px 10px black;
+    display:flex;
+
     #krizek{
         cursor: pointer;
         position: absolute;
@@ -454,5 +456,12 @@ body{
         background-color: #c8c8c8;
         height:1px;   
         width:0em;   
+    }
+    #settings-Side-Parameters{
+        padding:1em;
+    }
+    #settings-Side-Parameters table tr td:nth-child(2){
+        text-align: center;
+
     }
 }
