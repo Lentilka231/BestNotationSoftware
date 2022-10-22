@@ -137,25 +137,24 @@
     </div>
     
     <div id="tools">
-        <div class="tool" h="" x="" y="" id="cursor" value="50" style="background:radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(167, 167, 167) 100%)"><img src="images/cursor.png"></div>
-        <div class="tool" h="45" x="48" y="-8" posuvka="0" value="13"><img src="images/taktovaCara.png"></div>
+        <div class="tool kurzor" h="" x="" y="" id="cursor" value="50" style="background:radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(167, 167, 167) 100%)"><img src="images/cursor.png"></div>
+        <div class="tool taktCara" h="45" x="48" y="-8" posuvka="0" value="13"><img src="images/taktovaCara.png"></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
         <div class="" h="" x="" y="" value=""></div>
-        <div class="tool" h="38" x="50" y="-19" posuvka="-10" value="0"><img src="images/celaNota.png"></div>
-        <div class="tool" h="38" x="50" y="-19" posuvka="-10" value="1"><img src="images/pulovaNota.png"></div>
-        <div class="tool" h="38" x="50" y="-19" posuvka="-10" value="2"><img src="images/ctvrtovaNota.png"></div>
-        <div class="tool" h="38" x="50" y="-19" posuvka="-10" value="3"><img src="images/osminkaNota.png"></div>
-        <div class="tool" h="38" x="49" y="-19" posuvka="-10" value="4"><img src="images/sestnatinkaNota.png"></div>
-        <div class="tool" h="38" x="49" y="-19" posuvka="-10" value="5"><img src="images/tricetidvatinkaNota.png"></div>
-        <div class="tool" h="35" x="58" y="-8" posuvka="0" value="7"><img src="images/celaPomlka.png"></div>
-        <div class="tool" h="35" x="58" y="-8" posuvka="0" value="8"><img src="images/pulovaPomlka.png"></div>
-        <div class="tool" h="35" x="50" y="-8" posuvka="0" value="9"><img src="images/ctvrtovaPomlka.png"></div>
-        <div class="tool" h="35" x="50" y="-8" posuvka="0" value="10"><img src="images/osminkaPomlka.png"></div>
-        <div class="tool" h="35" x="50" y="-3" posuvka="0" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
-        <div class="tool" h="40" x="58" y="-6" posuvka="0" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
-        
+        <div class="tool celaNota" h="38" x="50" y="-19" posuvka="-10" class="celaNota" value="0"><img src="images/celaNota.png"></div>
+        <div class="tool pulNota" h="38" x="50" y="-19" posuvka="-10" value="1"><img src="images/pulovaNota.png"></div>
+        <div class="tool ctvrtNota" h="38" x="50" y="-19" posuvka="-10" value="2"><img src="images/ctvrtovaNota.png"></div>
+        <div class="tool osmiNota" h="38" x="50" y="-19" posuvka="-10" value="3"><img src="images/osminkaNota.png"></div>
+        <div class="tool sestnaNota" h="38" x="49" y="-19" posuvka="-10" value="4"><img src="images/sestnatinkaNota.png"></div>
+        <div class="tool tricetiNota" h="38" x="49" y="-19" posuvka="-10" value="5"><img src="images/tricetidvatinkaNota.png"></div>
+        <div class="tool celaPomlka" h="35" x="58" y="-8" posuvka="0" value="7"><img src="images/celaPomlka.png"></div>
+        <div class="tool pulPomlka" h="35" x="58" y="-8" posuvka="0" value="8"><img src="images/pulovaPomlka.png"></div>
+        <div class="tool ctvrtPomlka" h="35" x="50" y="-8" posuvka="0" value="9"><img src="images/ctvrtovaPomlka.png"></div>
+        <div class="tool osminPomlka" h="35" x="50" y="-8" posuvka="0" value="10"><img src="images/osminkaPomlka.png"></div>
+        <div class="tool sestnaPomlka" h="35" x="50" y="-3" posuvka="0" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
+        <div class="tool tricetiPomlka" h="40" x="58" y="-6" posuvka="0" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
     </div>
     <div id="settings-Menu">
         <img id="krizek" src="images\krizekk.png">
@@ -171,22 +170,22 @@
         <div id="settings-Side-Parameters">
             <table>
                 <tr><th>Název</th><th>Tlačítka</th></tr>
-                <tr><td>Kurzor</td><td>q</td></tr>
-                <tr><td>Taktová čára</td><td>SpaceBar</td></tr>
+                <tr><td value="kurzor">Kurzor</td><td contenteditable="true" spellcheck="true">Q</td></tr>
+                <tr><td value="taktCara">Taktová čára</td><td contenteditable="true" spellcheck="true">SpaceBar</td></tr>
                 <tr style="height:5px"><td></td><td></td></tr>
-                <tr><td>Nota celá</td><td>w</td></tr>
-                <tr><td>Nota půlová</td><td>e</td></tr>
-                <tr><td>Nota čtvrťová</td><td>r</td></tr>
-                <tr><td>Nota osminková</td><td>t</td></tr>
-                <tr><td>Nota šestnástinková</td><td>z</td></tr>
-                <tr><td>Nota třicetidvatinková</td><td>u</td></tr>
+                <tr><td value="celaNota">Nota celá</td><td contenteditable="true" spellcheck="true">W</td></tr>
+                <tr><td value="pulNota">Nota půlová</td><td contenteditable="true" spellcheck="true">E</td></tr>
+                <tr><td value="ctvrtNota">Nota čtvrťová</td><td contenteditable="true" spellcheck="true">R</td></tr>
+                <tr><td value="osmiNota">Nota osminková</td><td contenteditable="true" spellcheck="true">T</td></tr>
+                <tr><td value="sestnaNota">Nota šestnáctinková</td><td contenteditable="true" spellcheck="true">Z</td></tr>
+                <tr><td value="tricetiNota">Nota třicetidvatinková</td><td contenteditable="true" spellcheck="true">U</td></tr>
                 <tr style="height:5px"><td></td><td></td></tr>
-                <tr><td>Pomlka celá</td><td>s</td></tr>
-                <tr><td>Pomlka půlová</td><td>d</td></tr>
-                <tr><td>Pomlka čtvrťová</td><td>f</td></tr>
-                <tr><td>Pomlka osminková</td><td>g</td></tr>
-                <tr><td>Pomlka šestnástinková</td><td>h</td></tr>
-                <tr><td>Pomlka třicetidvatinková</td><td>j</td></tr>
+                <tr><td value="celaPomlka">Pomlka celá</td><td contenteditable="true" spellcheck="true">S</td></tr>
+                <tr><td value="pulPomlka">Pomlka půlová</td><td contenteditable="true" spellcheck="true">D</td></tr>
+                <tr><td value="ctvrtPomlka">Pomlka čtvrťová</td><td contenteditable="true" spellcheck="true">F</td></tr>
+                <tr><td value="osminPomlka">Pomlka osminková</td><td contenteditable="true" spellcheck="true">G</td></tr>
+                <tr><td value="sestnaPomlka">Pomlka šestnástinková</td><td contenteditable="true" spellcheck="true">H</td></tr>
+                <tr><td value="tricetiPomlka">Pomlka třicetidvatinková</td><td contenteditable="true" spellcheck="true">J</td></tr>
 
             </table>
         </div>
@@ -925,12 +924,11 @@
         let a =document.getElementById("settings-Side-Parameters").getElementsByTagName("td");
         const listOfHotKeys ={};
         for(let i=0;i<a.length;i=i+2){
-            if(a[i*1].innerText!=""){
-                listOfHotKeys[a[i*1].innerText]=a[i*2].innerText;
-                console.log("ponozka - "+a[i*1].innerText);
+            if(a[i].innerText!=""){
+                listOfHotKeys[a[i].getAttribute("value")]=a[i+1].innerText;
             }
         }
-        console.log(listOfHotKeys)
+        
         document.addEventListener("keydown",function(e){
             if(e.key==="Escape"){
                 div=document.getElementsByClassName("t")[0];
@@ -955,20 +953,17 @@
                 selectedY="";
                 selectedH="";
             }
-            if(e.key==="p"){
+            else if(e.key==="p"){
                 debugger;
-            };
-            if(e.key===listOfHotKeys[1].innerText){  
-                if(document.getElementsByClassName("t")[0]){
-                    document.getElementsByClassName("t")[0].remove();
-                }
-                selectNote(null,document.getElementsByClassName("tool")[0]);
             }
-            console.log("etwas")
-            for(var key in listOfHotKeys){
-                console.log(key)
-                if(e.key===listOfHotKeys[key]){
-                    selectNote(null,document.getElementsByClassName("tool")[i]);
+            else{
+                for(var key in listOfHotKeys){
+                    if(e.key===listOfHotKeys[key].toLowerCase()){
+                        selectNote(null,document.getElementsByClassName(key)[0]);
+                    }else if (e.keyCode===32 && listOfHotKeys[key]=="SpaceBar"){
+                        selectNote(null,document.getElementsByClassName(key)[0]);
+                        e.preventDefault();
+                    }
                 }
             }
             dynamicsReset();
