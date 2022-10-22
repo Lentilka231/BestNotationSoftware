@@ -927,9 +927,10 @@
         for(let i=0;i<a.length;i=i+2){
             if(a[i*1].innerText!=""){
                 listOfHotKeys[a[i*1].innerText]=a[i*2].innerText;
-                console.log(a[i*1].innerText);
+                console.log("ponozka - "+a[i*1].innerText);
             }
         }
+        console.log(listOfHotKeys)
         document.addEventListener("keydown",function(e){
             if(e.key==="Escape"){
                 div=document.getElementsByClassName("t")[0];
@@ -963,8 +964,10 @@
                 }
                 selectNote(null,document.getElementsByClassName("tool")[0]);
             }
-            for(let i=1;i<15;i++){
-                if(e.key===listOfHotKeys[2*i+1].innerText){
+            console.log("etwas")
+            for(var key in listOfHotKeys){
+                console.log(key)
+                if(e.key===listOfHotKeys[key]){
                     selectNote(null,document.getElementsByClassName("tool")[i]);
                 }
             }
