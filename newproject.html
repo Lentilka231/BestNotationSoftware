@@ -135,7 +135,9 @@
     <div id="keysBar">
 
     </div>
-    
+    <div>
+
+    </div>
     <div id="tools">
         <div class="tool kurzor" h="" x="" y="" id="cursor" value="50" style="background:radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(167, 167, 167) 100%)"><img src="images/cursor.png"></div>
         <div class="tool taktCara" h="45" x="48" y="-8" posuvka="0" value="13"><img src="images/taktovaCara.png"></div>
@@ -156,40 +158,56 @@
         <div class="tool sestnaPomlka" h="35" x="50" y="-3" posuvka="0" value="11"><img src="images/sestnatinkovaPomlka.png"></div>
         <div class="tool tricetiPomlka" h="40" x="58" y="-6" posuvka="0" value="12"><img src="images/tricetidvatinkaPomlka.png"></div>
     </div>
-    <div id="settings-Menu">
-        <img id="krizek" src="images\krizekk.png">
-        <div id="settings-Side-Menu">
-            <div class="settings-Side-Menu-Button">
-                Rychlé klávesy
-            </div>
-            <div class="settings-Side-Menu-Line"> </div>
-            <div class="settings-Side-Menu-Button">
-                Vzhled stránky
-            </div>
-        </div>
-        <div id="settings-Side-Parameters">
-            <table>
-                <tr><th>Název</th><th>Tlačítka</th></tr>
-                <tr><td value="kurzor">Kurzor</td><td contenteditable="true" spellcheck="true">Q</td></tr>
-                <tr><td value="taktCara">Taktová čára</td><td contenteditable="true" spellcheck="true">SpaceBar</td></tr>
-                <tr style="height:5px"><td></td><td></td></tr>
-                <tr><td value="celaNota">Nota celá</td><td contenteditable="true" spellcheck="true">W</td></tr>
-                <tr><td value="pulNota">Nota půlová</td><td contenteditable="true" spellcheck="true">E</td></tr>
-                <tr><td value="ctvrtNota">Nota čtvrťová</td><td contenteditable="true" spellcheck="true">R</td></tr>
-                <tr><td value="osmiNota">Nota osminková</td><td contenteditable="true" spellcheck="true">T</td></tr>
-                <tr><td value="sestnaNota">Nota šestnáctinková</td><td contenteditable="true" spellcheck="true">Z</td></tr>
-                <tr><td value="tricetiNota">Nota třicetidvatinková</td><td contenteditable="true" spellcheck="true">U</td></tr>
-                <tr style="height:5px"><td></td><td></td></tr>
-                <tr><td value="celaPomlka">Pomlka celá</td><td contenteditable="true" spellcheck="true">S</td></tr>
-                <tr><td value="pulPomlka">Pomlka půlová</td><td contenteditable="true" spellcheck="true">D</td></tr>
-                <tr><td value="ctvrtPomlka">Pomlka čtvrťová</td><td contenteditable="true" spellcheck="true">F</td></tr>
-                <tr><td value="osminPomlka">Pomlka osminková</td><td contenteditable="true" spellcheck="true">G</td></tr>
-                <tr><td value="sestnaPomlka">Pomlka šestnástinková</td><td contenteditable="true" spellcheck="true">H</td></tr>
-                <tr><td value="tricetiPomlka">Pomlka třicetidvatinková</td><td contenteditable="true" spellcheck="true">J</td></tr>
 
-            </table>
+    <div id="settings-Menu" class="neviditelnazed">
+        <div id="settings-Menu-background">
+            <img id="krizek" src="images\krizekk.png">
+            <div id="settings-Side-Menu">
+                <div class="settings-Side-Menu-Button">
+                    Rychlé klávesy
+                </div>
+                <div class="settings-Side-Menu-Line"> </div>
+                <div class="settings-Side-Menu-Button">
+                    Vzhled stránky
+                </div>
+            </div>
+            <div id="settings-Side-Parameters">
+                <table>
+                    <tr><th>Název</th><th>Tlačítka</th><th></th></tr>
+                    <tr><td value="kurzor">Kurzor</td><td  spellcheck="true">Q</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="taktCara">Taktová čára</td><td  spellcheck="true">SpaceBar</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr style="height:5px"><td></td><td></td></tr>
+                    <tr><td value="celaNota">Nota celá</td><td  spellcheck="true">W</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="pulNota">Nota půlová</td><td  spellcheck="true">E</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="ctvrtNota">Nota čtvrťová</td><td  spellcheck="true">R</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="osmiNota">Nota osminková</td><td  spellcheck="true">T</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="sestnaNota">Nota šestnáctinková</td><td  spellcheck="true">Z</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="tricetiNota">Nota třicetidvatinková</td><td  spellcheck="true">U</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr style="height:5px"><td></td><td></td></tr>
+                    <tr><td value="celaPomlka">Pomlka celá</td><td  spellcheck="true">S</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="pulPomlka">Pomlka půlová</td><td  spellcheck="true">D</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="ctvrtPomlka">Pomlka čtvrťová</td><td  spellcheck="true">F</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="osminPomlka">Pomlka osminková</td><td  spellcheck="true">G</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="sestnaPomlka">Pomlka šestnástinková</td><td  spellcheck="true">H</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+                    <tr><td value="tricetiPomlka">Pomlka třicetidvatinková</td><td  spellcheck="true">J</td><td><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Pencil</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg></td></tr>
+    
+                </table>
+            </div>
         </div>
+       <div class="neviditelnazed">
+        <div class="settings-input">
+            <b>Vyber tlačítko</b>
+            <div class="settings-touched">Q</div>
+            <div class="settings-input-save" >
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" style="width:1em" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
+            </div>
+            <div class="settings-input-exit" style="right:1em;">
+                Zrušit
+            </div>
+        </div>
+       </div>
     </div>
+    
     <div id="Tacts">
         <img src="images/Takt22.png">
         <img src="images/Takt24.png">

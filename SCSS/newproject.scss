@@ -414,19 +414,11 @@ body{
     background-color: $hover;
 }
 #settings-Menu{
-    font-family: Arial, Helvetica, sans-serif;
-    display:none;
-    z-index:10;
-    position: fixed;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    width:40em;
-    height:30em;
-    background-color: $shadow2;
-    box-shadow: 0px 0px 10px black;
+    display:none;   
 
     #krizek{
+        z-index:51;
+
         cursor: pointer;
         position: absolute;
         right:1em;
@@ -440,7 +432,7 @@ body{
         padding:1em;
         background-color: $shadow1;
         height:calc(100% - 2em);
-        width:10em;
+        width:25%;
     }
     .settings-Side-Menu-Button{
         padding:0.5em;
@@ -456,11 +448,82 @@ body{
         height:1px;   
         width:0em;   
     }
+    #settings-Menu-background{
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        width:40em;
+        height:30em;
+        background-color: $shadow2;
+        box-shadow: 0px 0px 10px black;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
     #settings-Side-Parameters{
+        position:absolute;
+        top:0px;
+        right:0px;
+        margin-top:10px;
         padding:1em;
+    }
+    #settings-Side-Parameters table tr td:nth-child(1){
+        width:240px
     }
     #settings-Side-Parameters table tr td:nth-child(2){
         text-align: center;
-
     }
+    #settings-Side-Parameters table tr td:nth-child(3) svg{
+        background-color: rgb(242,242,242);
+        padding:1px 2px;
+        border-radius: 5px;
+        box-shadow:1px 1px 2px black;
+        cursor:pointer;
+        visibility: hidden;
+        float:right;
+    }
+    #settings-Side-Parameters table tr td:nth-child(3){
+        width:70px
+    }
+    #settings-Side-Parameters table tr:hover td:nth-child(3) svg{
+        visibility: visible;
+    }
+    #settings-Side-Parameters table tr svg{
+        width:20px
+    }
+    .settings-input{
+        width:10em;
+        height:4em;
+        background-color: rgb(100,100,100);
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        box-shadow:0px 0px 10px black; 
+        text-align: center;
+        font-size: 2em;
+        font-family:Arial, Helvetica, sans-serif;
+        padding:1em
+    }
+    .settings-touched{
+        margin-top:1em;
+        font-size:1em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .settings-input-save, .settings-input-exit{
+        width:fit-content;
+        padding:0.1em;
+        background-color: $shadow2;
+        border-radius: 0.1em;
+        position:absolute;
+    }
+}
+.neviditelnazed{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:50;
+    background: transparent;
 }
