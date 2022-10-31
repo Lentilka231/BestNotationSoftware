@@ -455,7 +455,7 @@ body{
         transform: translate(-50%,-50%);
         width:40em;
         height:30em;
-        background-color: $shadow2;
+        background-color: rgb(230,230,230);
         box-shadow: 0px 0px 10px black;
         font-family: Arial, Helvetica, sans-serif;
 
@@ -474,7 +474,7 @@ body{
         text-align: center;
     }
     #settings-Side-Parameters table tr td:nth-child(3) svg{
-        background-color: rgb(242,242,242);
+        background-color: white;
         padding:1px 2px;
         border-radius: 5px;
         box-shadow:1px 1px 2px black;
@@ -494,8 +494,8 @@ body{
     .settings-input{
         width:10em;
         height:4em;
-        background-color: rgb(100,100,100);
-        position: absolute;
+        background-color: white;
+        position: fixed;
         top:50%;
         left:50%;
         transform: translate(-50%,-50%);
@@ -513,10 +513,15 @@ body{
     .settings-input-save, .settings-input-exit{
         width:fit-content;
         padding:0.1em;
-        background-color: $shadow2;
+        height: 32px;
         border-radius: 0.1em;
         position:absolute;
+        cursor: pointer;
     }
+    .settings-input-save:hover, .settings-input-exit:hover{
+        background-color: $shadow2;
+    }
+    #settings-input{display:none}
 }
 .neviditelnazed{
     position:absolute;
