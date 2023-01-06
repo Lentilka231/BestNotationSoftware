@@ -939,72 +939,75 @@
     </script>
     <!-- On Key pressed -->
     <script>
-        let a =document.getElementById("settings-Side-Parameters").getElementsByTagName("td");
-        const settingsTouched =document.getElementsByClassName("settings-touched")[0];
-        const listOfHotKeys ={};
-        for(let i=0;i<a.length;i=i+3){
-            if(a[i].innerText!=""){
-                listOfHotKeys[a[i+2].classList[0].substring(3)]=a[i+1].innerText;
+        const settingsTouched = document.getElementsByClassName("settings-touched")[0];
+        
+        // vybírá funkci a písmenko na její aktivování 
+        const listOfHotKeys = {};
+        let a = document.getElementById("settings-Side-Parameters").getElementsByTagName("td");
+        for(let i = 0; i<a.length; i = i+3){
+            if(a[i].innerText != ""){
+                listOfHotKeys[a[i+2].classList[0].substring(3)] = a[i+1].innerText;
+                console.log(listOfHotKeys);
             }
         }
         
         document.addEventListener("keydown",function(e){
-            if(e.key==="Escape"){
-                div=document.getElementsByClassName("t")[0];
+            if(e.key === "Escape"){
+                div = document.getElementsByClassName("t")[0];
                 if(selectedTool<7){
                     if(div){
                         div.remove();
                     }
                 }
-                else if(selectedTool==50){
+                else if(selectedTool == 50){
                 }
                 else{
                     if(div){
                         div.remove();
                     }
                 }
-                for(i=0;i<boxes.length;i++){
-                    boxes[i].style.background="white";
+                for(i = 0; i<boxes.length; i++){
+                    boxes[i].style.background = "white";
                 }
-                document.getElementById("cursor").style.background="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
-                selectedTool="50";
-                selectedX="";
-                selectedY="";
-                selectedH="";
+                document.getElementById("cursor").style.background = "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(167,167,167,1) 100%)";
+                selectedTool = "50";
+                selectedX = "";
+                selectedY = "";
+                selectedH = "";
             }
-            else if(settingsNewInput!=""){
-                settingsTouched.innerText=e.key;
+            else if(settingsNewInput != ""){
+                settingsTouched.innerText = e.key;
                 e.preventDefault();
             }
-            else if(e.key==="p"){
+            else if(e.key === "p"){
                 debugger;
             }
             else{
                 for(var key in listOfHotKeys){
-                    
-                    if(e.key===listOfHotKeys[key].toLowerCase()){
-                        selectNote(null,document.getElementsByClassName(key)[0]);
-                    }else if (e.keyCode===32 && listOfHotKeys[key]=="SpaceBar"){
-                        selectNote(null,document.getElementsByClassName(key)[0]);
+                    if(e.key === listOfHotKeys[key].toLowerCase()){
+                        selectNote(null, document.getElementsByClassName(key)[0]);
+                    }
+                    else if(e.keyCode === 32 && listOfHotKeys[key] == "SpaceBar"){
+                        selectNote(null, document.getElementsByClassName(key)[0]);
                         e.preventDefault();
                     }
                 }
             }
             dynamicsReset();
         })
-        document.onclick=function(){
-            if(CanClickAnyWhere==1){
-                nabidkaTakty.style.display="none";
+        document.onclick = function(){
+            if(CanClickAnyWhere == 1){
+                nabidkaTakty.style.display = "none";
             }
             else{
-                CanClickAnyWhere-=1;
+                CanClickAnyWhere -= 1;
             }
 
         }
-        document.onmouseup=defaultSettingForDocMouseUp;
+        document.onmouseup = defaultSettingForDocMouseUp;
         function defaultSettingForDocMouseUp(){
             if(cursor){
-                cursor="";
+                cursor = "";
             }
         }
     </script>   
@@ -1100,40 +1103,40 @@
         }
         const settingsSideMenuButtons = document.getElementsByClassName("settings-Side-Menu-Button");
         const settingsSideMenuLines = document.getElementsByClassName("settings-Side-Menu-Line");
-        for(let i=0;i<settingsSideMenuButtons.length;i++){
+        for(let i = 0; i < settingsSideMenuButtons.length; i++){
             settingsSideMenuButtons[i].onmouseenter=function(){
-                if(i==0){
-                    settingsSideMenuLines[0].style.width="10em"
+                if(i == 0){
+                    settingsSideMenuLines[0].style.width = "10em"
                 }
-                else if(i+1==settingsSideMenuButtons.length){
-                    settingsSideMenuLines[settingsSideMenuLines.length-1].style.width="10em"
+                else if(i+1 == settingsSideMenuButtons.length){
+                    settingsSideMenuLines[settingsSideMenuLines.length-1].style.width = "10em"
                 }
                 else{
-                    settingsSideMenuLines[i-1].style.width="10em"
-                    settingsSideMenuLines[i].style.width="10em"
+                    settingsSideMenuLines[i-1].style.width = "10em"
+                    settingsSideMenuLines[i].style.width = "10em"
                 }
             }
             settingsSideMenuButtons[i].onmouseleave=function(){
-                if(i==0){
-                    settingsSideMenuLines[0].style.width="0em"
+                if(i == 0){
+                    settingsSideMenuLines[0].style.width = "0em"
                 }
-                else if(i==settingsSideMenuButtons.length){
-                    settingsSideMenuLines[-1].style.width="0em"
+                else if(i == settingsSideMenuButtons.length){
+                    settingsSideMenuLines[-1].style.width = "0em"
                 }
                 else{
-                    settingsSideMenuLines[i-1].style.width="0em"
-                    settingsSideMenuLines[i].style.width="0em"
+                    settingsSideMenuLines[i-1].style.width = "0em"
+                    settingsSideMenuLines[i].style.width = "0em"
                 }
             }
         }
         function settingsEditPencilFunc (element){
-            settingsNewInput=element.parentElement.classList[0];
-            settingsInputDiv.style.display="block";
+            settingsNewInput = element.parentElement.classList[0];
+            settingsInputDiv.style.display = "block";
         }
         function settingsSavePencilFunc (){
             document.getElementsByClassName(settingsNewInput)[0].parentElement.getElementsByTagName("td")[1].innerText=settingsTouched.innerText.toUpperCase();
-            settingsTouched.innerText="";
-            settingsInputDiv.style.display="none";
+            settingsTouched.innerText = "";
+            settingsInputDiv.style.display = "none";
         }
     </script>
 </body>
