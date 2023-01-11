@@ -460,20 +460,20 @@ body{
         font-family: Arial, Helvetica, sans-serif;
 
     }
-    #settings-Side-Parameters{
+    #settings_HotKeys{
         position:absolute;
         top:0px;
         right:0px;
         margin-top:10px;
         padding:1em;
     }
-    #settings-Side-Parameters table tr td:nth-child(1){
+    #settings_HotKeys table tr td:nth-child(1){
         width:240px
     }
-    #settings-Side-Parameters table tr td:nth-child(2){
+    #settings_HotKeys table tr td:nth-child(2){
         text-align: center;
     }
-    #settings-Side-Parameters table tr td:nth-child(3) svg{
+    #settings_HotKeys table tr td:nth-child(3) svg{
         background-color: white;
         padding:1px 2px;
         border-radius: 5px;
@@ -482,13 +482,13 @@ body{
         visibility: hidden;
         float:right;
     }
-    #settings-Side-Parameters table tr td:nth-child(3){
+    #settings_HotKeys table tr td:nth-child(3){
         width:70px
     }
-    #settings-Side-Parameters table tr:hover td:nth-child(3) svg{
+    #settings_HotKeys table tr:hover td:nth-child(3) svg{
         visibility: visible;
     }
-    #settings-Side-Parameters table tr svg{
+    #settings_HotKeys table tr svg{
         width:20px
     }
     .settings-input{
