@@ -59,13 +59,13 @@
                     <g><path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L140.62,45 A70,70 1 0,1 140.62,115" onclick="dyndelete(this)"></path></g>
                     <g><path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L140.62,115 A70,70 1 1,1 140.62,45"></path></g>
                 </svg>
-                <div class="sections"style="top:-26px;left:60px;">
+                <div class="sections"style="top:3px;left:60px;">
                     <img src="images/krizekk.png" style="height:15px;">
                     <div class="hidden">
                         <img src="images/krizekk.png" onclick="notedelete(this)" style="height:15px;top:2px;left:5px">
                     </div>
                 </div>
-                <div class="sections" style="top:-30px;left:-50px;">
+                <div class="sections" style="top:0px;left:-50px;">
                     <img src="images/dynamics-mf.png">
                     <div class="hidden">
                         <img src="images/dynamics-fff.png" onclick="" style="top:-45px;left:75px">
@@ -93,8 +93,10 @@
     </div>
     <div id="mainBar">
         <div class="cell">
-            <img src="images/newDocument.png" style="height:30px">
-            <div>Nový dokument</div>
+            <div id="newDocument">
+                <img src="images/newDocument.png" style="height:30px">
+                <div>Nový dokument</div>    
+            </div>
         </div>
         <div class="cell KEYS">
             <img src="images/HouslovyKEY.png" onclick="keyChange(0)">
@@ -415,6 +417,7 @@
             newDynDiv.classList.add("tDyn");
             newDynDiv.style.left=window.event.clientX-page.getBoundingClientRect().left-63 +"px";
             newDyn.src=selectedDyn;
+            newDyn.classList.add("dynIMG")
             newDynDiv.appendChild(newDyn)
             this.parentElement.getElementsByClassName("dyn")[0].getElementsByClassName("c")[0].appendChild(newDynDiv);
             newDynDiv.onmouseenter=showOptionsForDyn;
@@ -807,7 +810,9 @@
             this.parentElement.style.zIndex=2;
             this.style.zIndex=5;
             this.appendChild(optDyn);
+            optDyn.appendChild(this.getElementsByTagName("img")[0])
             optDyn.onmouseleave=function(){
+                this.parentElement.appendChild(this.getElementsByClassName("dynIMG")[0])
                 optionDynReset(this);
             }
         }
@@ -837,21 +842,22 @@
     }
     const piesdyn=document.getElementsByClassName("optionsDyn")[0].getElementsByClassName("sections");
     const sdyn = document.getElementsByClassName("optionsDyn")[0].getElementsByClassName("s");
-    // for(let i=0;i<pies.length;i++){
-    //     sdyn[i].onmouseenter=function(){
-    //         for(let x=0;x<piesdyn.length;x++){
-    //             sdyn[x].style.transform="scale(1)";
-    //             piesdyn[x].getElementsByTagName("img")[0].style.display="block"
-    //             piesdyn[x].getElementsByClassName("hidden")[0].style.display="none";
-    //         }
-    //         sdyn[i].style.transform="scale(1.1)";
-    //         piesdyn[i].getElementsByTagName("img")[0].style.display="none";
-    //         piesdyn[i].getElementsByClassName("hidden")[0].style.display="block";
-    //     }
-    // }
+    console.log(sdyn);
+    for(let i=0;i<piesdyn.length;i++){
+        sdyn[i].onmouseenter=function(){
+            for(let x=0;x<piesdyn.length;x++){
+                sdyn[x].style.transform="scale(1)";
+                piesdyn[x].getElementsByTagName("img")[0].style.display="block"
+                piesdyn[x].getElementsByClassName("hidden")[0].style.display="none";
+            }
+            sdyn[i].style.transform="scale(1.1)";
+            piesdyn[i].getElementsByTagName("img")[0].style.display="none";
+            piesdyn[i].getElementsByClassName("hidden")[0].style.display="block";
+        }
+    }
     function optionDynReset(e){
         document.getElementById("secret").appendChild(e);
-        for(let x=0;x<pies.length;x++){
+        for(let x=0;x<piesdyn.length;x++){
             sdyn[x].style.transform="scale(1)";
             piesdyn[x].getElementsByTagName("img")[0].style.display="block"
             piesdyn[x].getElementsByClassName("hidden")[0].style.display="none";
@@ -953,7 +959,6 @@
 
             for(const [key, value] of Object.entries(listOfHotKeys)){
                 document.getElementsByClassName(key+"S")[0].getElementsByTagName("td")[1].innerText = value;
-                console.log(document.getElementsByClassName(key+"S")[0].getElementsByTagName("td")[1])
             }
         }
         getJSON(HOT_KEYS_URL)
@@ -965,7 +970,6 @@
             if(settingsNewInput!=""){
                 settingsTouched.innerText = e.key.toUpperCase();
                 e.preventDefault();
-                console.log(settingsNewInput)
             }
             else if(e.key==="Escape"){
                 div=document.getElementsByClassName("t")[0];
@@ -1100,6 +1104,12 @@
             }
             dyn.style.backgroundColor="rgb(173, 173, 173)";
             selectedDyn=dyn.src;
+        }
+
+        //reset stránky 
+        const newDOC = document.getElementById("newDocument");
+        newDOC.onclick = function(){
+            window.location.reload();
         }
     </script>
     <!--Settings-->

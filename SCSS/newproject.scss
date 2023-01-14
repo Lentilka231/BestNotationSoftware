@@ -54,13 +54,19 @@ body{
     top:120px;
     right:150px;   
     min-width:100px;
-
 }
 #Arranged{
     position: absolute;
     top:150px;
     right:150px;
     min-width:100px;   
+}
+#newDocument{
+    padding:5px;
+    width:fit-content;
+}
+#newDocument:hover{
+    background-color: $hover;
 }
 #tools{
     z-index: 5;
@@ -153,7 +159,7 @@ body{
 }   
 .cell{
     height:75px;
-    width:60px;
+    width:70px;
     text-align: center;
     align-items: center;
     font-size: 14px;
@@ -215,6 +221,11 @@ body{
 .cImg{
     cursor: pointer;
 
+}
+.dynIMG{
+    position:absolute;
+    top:0;
+    left:0;
 }
 .konecniTakt{
     position:absolute;
@@ -307,7 +318,7 @@ body{
     align-items: center;
     svg{
         left:-60px;
-        top:-95px;
+        top:-65px;
         transform-origin: 80px 80px;
         position: absolute;
         fill: transparent;
