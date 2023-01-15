@@ -62,23 +62,44 @@
                 <div class="sections"style="top:3px;left:60px;">
                     <img src="images/krizekk.png" style="height:15px;">
                     <div class="hidden">
-                        <img src="images/krizekk.png" onclick="notedelete(this)" style="height:15px;top:2px;left:5px">
+                        <img src="images/krizekk.png" onclick="dyndelete(this)" style="height:15px;top:2px;left:5px">
                     </div>
                 </div>
                 <div class="sections" style="top:0px;left:-50px;">
                     <img src="images/dynamics-mf.png">
                     <div class="hidden">
-                        <img src="images/dynamics-fff.png" onclick="" style="top:-45px;left:75px">
-                        <img src="images/dynamics-ff.png" onclick="" style="top:-55px;left:40px">
-                        <img src="images/dynamics-f.png" onclick="" style="top:-40px;left:10px">
-                        <img src="images/dynamics-mf.png" onclick="" style="top:-15px;left:-5px">
-                        <img src="images/dynamics-mp.png" onclick="" style="top:15px;left:-5px">
-                        <img src="images/dynamics-p.png" onclick="" style="top:40px;left:10px">
-                        <img src="images/dynamics-pp.png" onclick="" style="top:55px;left:40px">
-                        <img src="images/dynamics-ppp.png" onclick="" style="top:50px;left:75px">
+                        <img src="images/dynamics-fff.png" onclick="zmenDyn(this)" style="top:-45px;left:75px">
+                        <img src="images/dynamics-ff.png" onclick="zmenDyn(this)" style="top:-55px;left:40px">
+                        <img src="images/dynamics-f.png" onclick="zmenDyn(this)" style="top:-40px;left:10px">
+                        <img src="images/dynamics-mf.png" onclick="zmenDyn(this)" style="top:-15px;left:-5px">
+                        <img src="images/dynamics-mp.png" onclick="zmenDyn(this)" style="top:15px;left:-5px">
+                        <img src="images/dynamics-p.png" onclick="zmenDyn(this)" style="top:40px;left:10px">
+                        <img src="images/dynamics-pp.png" onclick="zmenDyn(this)" style="top:55px;left:40px">
+                        <img src="images/dynamics-ppp.png" onclick="zmenDyn(this)" style="top:50px;left:75px">
                     </div>
                 </div>
                 
+            </div>
+        </div>
+        <div class="optionsPause">
+            <div>
+                <svg width="160px" height="160px">
+                    <g><path class="s" style="fill:rgba(0, 0, 0, 0.5)" d="M80,80 L140.62,45 A70,70 1 0,1 140.62,115" onclick="pausedelete(this)"></path></g>
+                    <g><path class="s" style="fill:rgba(255, 0, 0, 0.5)" d="M80,80 L140.62,115 A70,70 1 1,1 140.62,45"></path></g>
+                </svg>
+                <div class="sections"style="top:68px;left:60px;">
+                    <img src="images/krizekk.png" style="height:15px;top:0px;left:0px;">
+                    <div class="hidden">
+                        <img src="images/krizekk.png" onclick="pausedelete(this)" style="height:15px;top:0px;left:5px">
+                    </div>
+                </div>
+                <div class="sections" style="top:65px;left:-50px;">
+                    <img src="images/korunkapomlkaICON.png">
+                    <div class="hidden">
+                        <img src="images/korunkapomlkaICON.png" onclick="pomlkaZnamenko(this,'korunka')" style="top:-50px;left:30px">
+                        <img src="images/prodluzovakpomlkaICON.png" onclick="pomlkaZnamenko(this,'prodluzovak')" style="top:30px;left:30px">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -92,7 +113,7 @@
         </div>
     </div>
     <div id="mainBar">
-        <div class="cell">
+        <div class="cell" style="border:none">
             <div id="newDocument">
                 <img src="images/newDocument.png" style="height:30px">
                 <div>Nový dokument</div>    
@@ -361,7 +382,11 @@
             if(selectedTool==13){
                 divimg.onmouseenter=showThirdOptions;
             }else{
-                divimg.onmouseenter=showOptions;
+                if(selectedTool>=7&&selectedTool<=12){
+                    divimg.onmouseenter=showOptionForPause;
+                }else{
+                    divimg.onmouseenter=showOptions;
+                }
             }
             containImg.appendChild(img)
             divimg.appendChild(containImg);
@@ -563,7 +588,14 @@
             this.parentElement.parentElement.appendChild(this);
             this.parentElement.classList.add("t");
             this.parentElement.style.zIndex=-1;
+
             optionReset(this.parentElement.getElementsByClassName("options")[0])
+        }else if(this.parentElement.classList.contains("optionsPause")){
+            this.parentElement.parentElement.appendChild(this);
+            this.parentElement.classList.add("t");
+            this.parentElement.style.zIndex=-1;
+            optionReset(this.parentElement.getElementsByClassName("optionsPause")[0])
+
         }
     }
     function stopMovingNote(){
@@ -775,8 +807,50 @@
         }
         e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
     }
+    function pomlkaZnamenko(e,j){
+        if(e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0]){
+            if(e.src.replace("pomlkaICON","")==e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].src){
+                e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].remove();
+                return
+            }
+            e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].remove();
+        }
+        znakImg = document.createElement("img");
+        znakImg.classList.add("znamenko");
+        znakImg.setAttribute("top",e.getAttribute("top"));
+        znakImg.src=e.src.replace("pomlkaICON","");
+        znakImg.style.position="absolute";
+        znakImg.setAttribute("znak",j);
+        let k=e.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("value");
+        let radek=e.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        if(j=="korunka"){
+            znakImg.style.top = k==11?"-30px":"-25px";
+            znakImg.style.left= 
+                k==7||k==8?"8px":
+                k==9?"-1px":
+                k==10||k==11?"0px":
+                "3px";
+        }else if(j=="prodluzovak"){
+            znakImg.style.top = 
+                k==7||k==8?"-2px":
+                k==9?"7px":
+                k==10?"-2px":
+                k==11?"2px":
+                "3px";
+            znakImg.style.left= 
+                k==7||k==8?"15px":
+                k==9?"2px":
+                k==10?"5px":
+                k==11?"4px":
+                "3px";
+        }
+        e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
+
+    }
+    
     const opt = document.getElementsByClassName("options")[0];
     const optDyn =document.getElementsByClassName("optionsDyn")[0];
+    const optPause = document.getElementsByClassName("optionsPause")[0]
     function showOptions(){
         if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
             this.style.zIndex=5;
@@ -807,7 +881,7 @@
     }
     function showOptionsForDyn(){
         if(selectedTool==50&&!(document.getElementsByClassName("tDyn")[0])){
-            this.parentElement.style.zIndex=2;
+            this.parentElement.parentElement.parentElement.style.zIndex=2;
             this.style.zIndex=5;
             this.appendChild(optDyn);
             optDyn.appendChild(this.getElementsByTagName("img")[0])
@@ -817,6 +891,23 @@
             }
         }
     }
+    function showOptionForPause(){
+        if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
+            this.style.zIndex=5;
+
+            this.parentElement.parentElement.parentElement.style.zIndex=2;  
+            this.appendChild(optPause);
+            optPause.appendChild(this.getElementsByClassName("cImg")[0]);
+            optPause.onmouseleave=function(){
+                this.parentElement.appendChild(this.getElementsByClassName("cImg")[0])
+                this.parentElement.style.zIndex=2;
+
+                optionDynReset(this);
+            }
+        }
+    }
+    
+    
     const pies=document.getElementsByClassName("options")[0].getElementsByClassName("sections");
     const s = document.getElementsByClassName("options")[0].getElementsByClassName("s");
     for(let i=0;i<pies.length;i++){
@@ -831,7 +922,6 @@
             pies[i].getElementsByClassName("hidden")[0].style.display="block";
         }
     }
-    //pomocné funkce
     function optionReset(e){
         document.getElementById("secret").appendChild(e);
         for(let x=0;x<pies.length;x++){
@@ -840,9 +930,10 @@
             pies[x].getElementsByClassName("hidden")[0].style.display="none";
         }
     }
+    
+    
     const piesdyn=document.getElementsByClassName("optionsDyn")[0].getElementsByClassName("sections");
     const sdyn = document.getElementsByClassName("optionsDyn")[0].getElementsByClassName("s");
-    console.log(sdyn);
     for(let i=0;i<piesdyn.length;i++){
         sdyn[i].onmouseenter=function(){
             for(let x=0;x<piesdyn.length;x++){
@@ -861,6 +952,31 @@
             sdyn[x].style.transform="scale(1)";
             piesdyn[x].getElementsByTagName("img")[0].style.display="block"
             piesdyn[x].getElementsByClassName("hidden")[0].style.display="none";
+        }
+    }
+    
+    
+    const piespause=document.getElementsByClassName("optionsPause")[0].getElementsByClassName("sections");
+    const spause = document.getElementsByClassName("optionsPause")[0].getElementsByClassName("s");
+    for(let i=0;i<piespause.length;i++){
+        spause[i].onmouseenter=function(){
+            for(let x=0;x<piespause.length;x++){
+                spause[x].style.transform="scale(1)";
+                piespause[x].getElementsByTagName("img")[0].style.display="block"
+                piespause[x].getElementsByClassName("hidden")[0].style.display="none";
+            }
+            spause[i].style.transform="scale(1.1)";
+            piespause[i].getElementsByTagName("img")[0].style.display="none";
+            piespause[i].getElementsByClassName("hidden")[0].style.display="block";
+        }
+    }
+    function optionPauseReset(e){
+        console.log("Lentilky jsou super")
+        document.getElementById("secret").appendChild(e);
+        for(let x=0;x<piespause.length;x++){
+            spause[x].style.transform="scale(1)";
+            piespause[x].getElementsByTagName("img")[0].style.display="block"
+            piespause[x].getElementsByClassName("hidden")[0].style.display="none";
         }
     }
     const thirdOPT=document.getElementById("DruhyKolmichLinek");
@@ -888,6 +1004,11 @@
     function zmenaTaktu(e){
         selectedTakt.getElementsByClassName("n")[0].src=e;
     }
+    function dyndelete(e){
+        e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("dynIMG")[0].remove();
+        e.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
+        optionDynReset(e.parentElement.parentElement.parentElement.parentElement);
+    }
     function dynamicsReset(){
         selectedDyn="";
         for(let i=0;i<dynamic.length;i++){
@@ -898,6 +1019,11 @@
             tDyn.remove()
         }
         
+    }
+    function pausedelete(e){
+        e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].remove();
+        e.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
+        optionPauseReset(e.parentElement.parentElement.parentElement.parentElement);
     }
     </script>
     <!-- Dragging system -->
@@ -1104,6 +1230,9 @@
             }
             dyn.style.backgroundColor="rgb(173, 173, 173)";
             selectedDyn=dyn.src;
+        }
+        function zmenDyn(e){
+            e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("dynIMG")[0].src = e.src;
         }
 
         //reset stránky 

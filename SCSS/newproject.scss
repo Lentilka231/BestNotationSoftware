@@ -62,6 +62,8 @@ body{
     min-width:100px;   
 }
 #newDocument{
+    position:relative;
+    top:-5px;
     padding:5px;
     width:fit-content;
 }
@@ -308,10 +310,51 @@ body{
     display:flex;
     align-items: center;
 }
+.optionsPause{
+    position:relative;
+    width:160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg{
+        left:-65px;
+        top:-5px;
+        transform-origin: 80px 80px;
+        position: absolute;
+        fill: transparent;
+        path{
+            transition:all 100ms;
+            transform-origin:80px 80px;
+        }
+    }
+    .sections{
+        z-index: 2;
+        position:absolute;
+        img{
+            position:relative;
+            top:-8px;
+            left:8px;
+            height:40px;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .hidden{
+            display:none;
+            position: relative;
+            img{
+                cursor:pointer;
+                position:absolute;
+                height:40px;
+                user-select: none;
+                -webkit-user-drag: none;
+            }
+        }
+    }
+}
 .optionsDyn{
     position:relative;
     width:160px;
-    z-index: -5;
     height: 160px;
     display: flex;
     justify-content: center;
