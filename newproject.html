@@ -1078,7 +1078,7 @@
         async function getJSON(url){
             const response = await fetch(url);
             listOfHotKeys = await response.json();
-
+            
             //Naplní nastavení v HTML s odpovídacími zkratky z JSONU
             let hotKeysHTML = document.getElementById("settings_HotKeys").getElementsByTagName("td");
             const newHotKeyTouched = document.getElementsByClassName("settings-touched")[0];
@@ -1192,8 +1192,6 @@
         }
 
         stupniceDurove=["Ces","Ges","Des","As","Es","B","F","C","G","D","A","E","H","Fis","Cis"]
-        let cursor="";
-        document.getElementById("UkazatelDS").onmousedown=function(){cursor=this.getAttribute("value")};
         for(let i=0;i<15;i++){
             let sDiv=document.createElement("div");
             let text= document.createElement("div");
@@ -1203,15 +1201,20 @@
             sDiv.classList.add("stupnice");
             sDiv.style.left=400/14*i+"px";
             document.getElementsByClassName("stupniceL")[0].appendChild(sDiv);
-
         }
 
-        document.getElementById("stupniceBar").onmousemove=function(){
-            if(cursor=="UDS"){
-                for(let i=0;i<15;i++){
-                    let h=window.event.clientX-document.getElementById("stupniceBar").getBoundingClientRect().left+ -35;
+        let cursor="";
+        document.getElementById("UkazatelDS").onmousedown=function(){cursor=this.getAttribute("value")};
 
+        document.getElementById("stupniceBar").onmousemove=function(){  // <-- pokud se pohybuje myš nad tóninama
+            if(cursor=="UDS"){   // <-- jestli právě držím červený ukazatel (šipku)
+                for(let i=0;i<15;i++){
+                    // pokud myš přejde na souřadnice [h,y], kde 
+                    // 1) h je v jedné z množin <23,57*i;33,57*i> kde i je {0;1;2;...;14;15}
+                    // 2) y je takové číslo aby se myš nacházela nad místem s tóninama
+                    let h=window.event.clientX-document.getElementById("stupniceBar").getBoundingClientRect().left+ -35;
                     if(h>Math.round(400/14*i)-5&&h<Math.round(400/14*i)+5){
+                        // uprav šipku na tuto tóninu + přepiš všude křížky a béčka 
                         document.getElementById("UkazatelDS").style.left=Math.round(400/14*i)+"px";
                         preznamenani=document.getElementsByClassName("preznamenani");
                         for(let x=0;x<preznamenani.length;x++){
