@@ -354,84 +354,94 @@
         if(selectedTool!=50){
             let divimg = document.createElement("div");
             let img = document.createElement("img");
-            let containImg =document.createElement("div"); 
-            containImg.style.position="relative";
-            containImg.classList.add("cImg");
-            if(this.getAttribute("TonVzhuruNohama")&&selectedTool>0&&selectedTool<7){
+            let containImg = document.createElement("div"); 
+            // nastavení základních parametrů
+            if(this.getAttribute("TonVzhuruNohama") && selectedTool>0 && selectedTool<7){
+                // jestliže se jedná o tón na prostřední lince a výš, musí být otočen
                 img.src = "images/"+tools[selectedTool]+"O.png";
-                img.style.marginTop="21px";
+                img.style.marginTop = "21px";
             }else{
                 img.src = "images/"+tools[selectedTool]+".png";
-                img.style.marginTop="0px";
+                img.style.marginTop = "0px";
             }
             img.style.height = selectedH+"px";
-            containImg.style.height=selectedH+"px";
-            containImg.style.zIndex=5;
-            img.classList.add("n");
-            divimg.classList.add("nota");
-            divimg.classList.add("t");
-            divimg.setAttribute("value",selectedTool);
-            divimg.setAttribute("x",selectedX);
-            divimg.setAttribute("y",selectedY);
-            divimg.setAttribute("h",selectedH);
-            divimg.setAttribute("posuvka",selectedPosuvka);
+            containImg.style.height = selectedH+"px";
+            containImg.style.zIndex = 5;
+            containImg.style.position="relative";
             divimg.style.top = selectedY+"px";
             divimg.style.left = window.event.clientX-page.getBoundingClientRect().left-selectedX+"px";
-            containImg.onmousedown=moveNoteManually;
-            containImg.onmouseup=stopMovingNote;
-            if(selectedTool==13){
-                divimg.onmouseenter=showThirdOptions;
-            }else{
-                if(selectedTool>=7&&selectedTool<=12){
-                    divimg.onmouseenter=showOptionForPause;
-                }else{
-                    divimg.onmouseenter=showOptions;
+
+            // přidávání tříd
+            img.classList.add("n");
+            containImg.classList.add("cImg");
+            divimg.classList.add("nota");
+            divimg.classList.add("t");
+
+            // nastavení parametrů pro budoucí využití
+            divimg.setAttribute("value", selectedTool);
+            divimg.setAttribute("x", selectedX);
+            divimg.setAttribute("y", selectedY);
+            divimg.setAttribute("h", selectedH);
+            divimg.setAttribute("posuvka", selectedPosuvka);
+
+            // nastavení eventů
+            containImg.onmousedown = moveNoteManually;
+            containImg.onmouseup = stopMovingNote;
+            if(selectedTool == 13){ // Jestli se jedná o taktovou čáru
+                divimg.onmouseenter = showThirdOptions; 
+            }else{ 
+                if(selectedTool>=7 && selectedTool<=12){ // jestli se jedná o pomlku
+                    divimg.onmouseenter = showOptionForPause;
+                }else{ // jestli se jedná o notu
+                    divimg.onmouseenter = showOptions;
                 }
             }
             containImg.appendChild(img)
             divimg.appendChild(containImg);
-            if(this.getAttribute("x")&&selectedTool<7){
+
+            if(this.getAttribute("x")&&selectedTool<7){ // pro noty vkládané pod notovou osnovu
                 let container = document.createElement("div");
                 if(this.getAttribute("x")<0){
-                    container.style.bottom=+this.getAttribute("y")+ +selectedPosuvka+ -1+"px";
-                    container.style.position="absolute";
+                    console.log("lol")
+                    container.style.bottom =+ this.getAttribute("y")+ +selectedPosuvka+ -1+"px";
+                    container.style.position = "absolute";
                     container.classList.add("helpLine");
-                    for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
-                        let space= document.createElement("div");
-                        let line=document.createElement("div");
-                        space.style.width="20px";
-                        space.style.height="8px";
-                        line.style.height="1px";
-                        line.style.backgroundColor="black";
+                    for(let i=0; i<Math.abs(this.getAttribute("x")); i++){
+                        let space = document.createElement("div");
+                        let line = document.createElement("div");
+                        space.style.width = "20px";
+                        space.style.height = "8px";
+                        line.style.height = "1px";
+                        line.style.backgroundColor = "black";
                         space.appendChild(line)
                         container.appendChild(space);
                     }
                     divimg.appendChild(container);
-                }else if(this.getAttribute("x")>0){
-                    container.style.top=+this.getAttribute("y")+ -selectedPosuvka+ +1+"px";                        
-                    container.style.position="absolute";
+                }else if(this.getAttribute("x")>0){ // pro noty vkládané nad notovou osnovu
+                    container.style.top =+ this.getAttribute("y")+ -selectedPosuvka+ +1+"px";                        
+                    container.style.position = "absolute";
                     container.classList.add("helpLine");
-                    for(let i=0;i<Math.abs(this.getAttribute("x"));i++){
-                        let space= document.createElement("div");
-                        let line=document.createElement("div");
-                        space.style.width="20px";
-                        space.style.height="8px";
-                        space.style.position="relative";
-                        line.style.height="1px";
-                        line.style.width="20px";
-                        line.style.backgroundColor="black";
-                        line.style.bottom="0px";
-                        line.style.position="absolute";
+                    for(let i=0; i<Math.abs(this.getAttribute("x")); i++){
+                        let space = document.createElement("div");
+                        let line = document.createElement("div");
+                        space.style.width = "20px";
+                        space.style.height = "8px";
+                        space.style.position = "relative";
+                        line.style.height = "1px";
+                        line.style.width = "20px";
+                        line.style.backgroundColor = "black";
+                        line.style.bottom = "0px";
+                        line.style.position = "absolute";
                         space.appendChild(line)
                         container.appendChild(space);
                     }
                     divimg.appendChild(container);
                 }
             }
-            if(selectedTool<7){
-                this.getElementsByClassName("c")[0].appendChild(divimg);
+            if(selectedTool<7){ // vložení do mezery
+                this.getElementsByClassName("c")[0].appendChild(divimg); 
             }
-            else{
+            else{ // vložení na linku
                 this.parentElement.getElementsByClassName("line")[2].getElementsByClassName("c")[0].appendChild(divimg);
             }
         }
@@ -600,21 +610,14 @@
     }
     function stopMovingNote(){
         if(document.getElementsByClassName("tDyn")[0]){
-            movingDyn=document.getElementsByClassName("tDyn")[0];
+            movingDyn = document.getElementsByClassName("tDyn")[0];
             movingDyn.classList.remove("tDyn");
-            movingDyn.style.zIndex=2;
+            movingDyn.style.zIndex = 2;
         }
         if(document.getElementsByClassName("t")[0]){
-            movingNote=document.getElementsByClassName("t")[0].getElementsByClassName("cImg")[0].getElementsByClassName("n")[0];
-            if(movingNote.parentElement.parentElement.parentElement.parentElement.getAttribute("TonVzhuruNohama")&&movingNote.parentElement.parentElement.getAttribute("value")<7&&movingNote.parentElement.parentElement.getAttribute("value")!=0){
-                movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+"O.png";
-                movingNote.style.marginTop="21px";
-            }else{
-                movingNote.src="images/"+tools[movingNote.parentElement.parentElement.getAttribute("value")]+".png";
-                movingNote.style.marginTop="0px";
-            }
+            movingNote = document.getElementsByClassName("t")[0].getElementsByClassName("cImg")[0].getElementsByClassName("n")[0];
             movingNote.parentElement.parentElement.classList.remove("t");
-            movingNote.parentElement.parentElement.style.zIndex=2;
+            movingNote.parentElement.parentElement.style.zIndex = 2;
         }
     }
     // vše týkající se barevného kolečka :D
@@ -623,23 +626,26 @@
         e.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
         optionReset(e.parentElement.parentElement.parentElement.parentElement);
     }
-    function posuvka(ps,top,left){
+    function posuvka(ps, top, left){
         if(ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0]){
-            if(ps.src==ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].src){
+            if(ps.src == ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].src){
+                // pouze vymaže předznamenání (při druhém kliknutí na tu samou ikonku)
                 ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
                 return
             }
+            // vymaže staré předznamenání a pokračuje ve tvorbě nového
             ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("posuvka")[0].remove();
         }
+        // vytvoří nové předznamenání a vložího k notě
         znakImg = document.createElement("img");
         znakImg.classList.add("posuvka");
-        znakImg.src=ps.src;
-        znakImg.style.position="absolute";
-        znakImg.style.top=+ps.parentElement.parentElement.parentElement.parentElement.getAttribute("posuvka")+ +top+"px";
-        znakImg.style.left=left+"px";
+        znakImg.src = ps.src;
+        znakImg.style.position = "absolute";
+        znakImg.style.top =+ ps.parentElement.parentElement.parentElement.parentElement.getAttribute("posuvka")+ +top+"px";
+        znakImg.style.left = left+"px";
         ps.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("cImg")[0].appendChild(znakImg);
     }
-    function znamenko(e,j){
+    function znamenko(e, j){
         if(e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0]){
             if(e.src.replace("ICON","")==e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].src){
                 e.parentElement.parentElement.parentElement.parentElement.getElementsByClassName("znamenko")[0].remove();
@@ -649,9 +655,9 @@
         }
         znakImg = document.createElement("img");
         znakImg.classList.add("znamenko");
-        znakImg.setAttribute("top",e.getAttribute("top"));
-        znakImg.src=e.src.replace("ICON","");
-        znakImg.style.position="absolute";
+        znakImg.setAttribute("top", e.getAttribute("top"));
+        znakImg.src = e.src.replace("ICON","");
+        znakImg.style.position = "absolute";
         znakImg.setAttribute("znak",j);
         let k=e.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("value");
         let radek=e.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
@@ -849,7 +855,7 @@
     }
     
     const opt = document.getElementsByClassName("options")[0];
-    const optDyn =document.getElementsByClassName("optionsDyn")[0];
+    const optDyn = document.getElementsByClassName("optionsDyn")[0];
     const optPause = document.getElementsByClassName("optionsPause")[0]
     function showOptions(){
         if(selectedTool==50&&!(document.getElementsByClassName("t")[0])){
@@ -908,26 +914,26 @@
     }
     
     
-    const pies=document.getElementsByClassName("options")[0].getElementsByClassName("sections");
+    const pies = document.getElementsByClassName("options")[0].getElementsByClassName("sections");
     const s = document.getElementsByClassName("options")[0].getElementsByClassName("s");
-    for(let i=0;i<pies.length;i++){
+    for(let i = 0; i<pies.length; i++){
         s[i].onmouseenter=function(){
-            for(let x=0;x<pies.length;x++){
+            for(let x = 0; x<pies.length; x++){
                 s[x].style.transform="scale(1)";
-                pies[x].getElementsByTagName("img")[0].style.display="block"
-                pies[x].getElementsByClassName("hidden")[0].style.display="none";
+                pies[x].getElementsByTagName("img")[0].style.display = "block"
+                pies[x].getElementsByClassName("hidden")[0].style.display = "none";
             }
-            s[i].style.transform="scale(1.1)";
-            pies[i].getElementsByTagName("img")[0].style.display="none";
-            pies[i].getElementsByClassName("hidden")[0].style.display="block";
+            s[i].style.transform = "scale(1.1)";
+            pies[i].getElementsByTagName("img")[0].style.display = "none";
+            pies[i].getElementsByClassName("hidden")[0].style.display = "block";
         }
     }
     function optionReset(e){
         document.getElementById("secret").appendChild(e);
-        for(let x=0;x<pies.length;x++){
-            s[x].style.transform="scale(1)";
-            pies[x].getElementsByTagName("img")[0].style.display="block"
-            pies[x].getElementsByClassName("hidden")[0].style.display="none";
+        for(let x = 0; x<pies.length; x++){
+            s[x].style.transform = "scale(1)";
+            pies[x].getElementsByTagName("img")[0].style.display = "block"
+            pies[x].getElementsByClassName("hidden")[0].style.display = "none";
         }
     }
     
@@ -1029,12 +1035,9 @@
     <!-- Dragging system -->
     <script>
         dragElement(document.getElementById("tools"));
-
         function dragElement(elmnt) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
             document.getElementById("tools").onmousedown = dragMouseDown;
-
 
             function dragMouseDown(e) {
                 e = e || window.event;
@@ -1046,7 +1049,6 @@
                 // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
             }
-
             function elementDrag(e) {
                 e = e || window.event;
                 e.preventDefault();
@@ -1059,13 +1061,11 @@
                 elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
                 elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
             }
-
             function closeDragElement() {
                 /* stop moving when mouse button is released:*/
                 document.onmouseup = defaultSettingForDocMouseUp;
                 document.onmousemove = null;
                 cursor="";
-
             }
         }
     </script>
